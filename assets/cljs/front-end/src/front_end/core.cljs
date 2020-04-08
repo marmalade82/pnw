@@ -2,22 +2,23 @@
     (:require
       [reagent.core :as r]
       [reagent.dom :as d]
-      [front-end.components.styled.input :refer [input]]
-      [front-end.components.styled.label :refer [label]]))
+      [front-end.screens.admin-posts-view :refer [admin-posts-view]]
+      [front-end.screens.admin-posts :refer [admin-posts]]
+      [front-end.screens.admin-posts-create :refer [admin-posts-create]]
+      [front-end.screens.admin-login :refer [admin-login]]))
 
 ;; -------------------------
 ;; Views
 
-(def text (r/atom "hello"))
-(def password (r/atom "pass"))
 
 (defn home-page []
   [:div 
-    [:h2 "Welcome to Reagent"] 
-    [label "Username"]
-    [input "text" @text #(reset! text %)]
-    [label "Password"]
-    [input "password" @password #(reset! password %)]])
+   [:h2 "Welcome to Reagent"]
+   [admin-login []]
+   [admin-posts]
+   [admin-posts-create]
+   [admin-posts-view]
+   ])
 
 ;; -------------------------
 ;; Initialize app
