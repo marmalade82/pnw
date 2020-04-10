@@ -8,6 +8,8 @@
 
 
 (defn admin-posts-create []
-  [:div
+  [:div { :class ["screen"]
+         
+         }
    [input "multi-text" @text #(reset! text %)]])
 

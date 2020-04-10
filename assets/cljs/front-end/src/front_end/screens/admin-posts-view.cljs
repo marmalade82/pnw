@@ -14,7 +14,9 @@
 (defn admin-posts-view []
   (let [post (get-post!)]
     (fn []
-      [:div
+      [:div { :class ["screen"]
+             
+             }
        [render-post @post]])))
 
 

@@ -21,7 +21,9 @@
   ; We do an initial fetch of the posts and then list them here
   (let [posts (get-posts!)]
     (fn []
-      [:div
+      [:div { :class ["screen"]
+             
+             }
        [:ul
         (for [item @posts]
           ^{:key item} [render-post item])]])))

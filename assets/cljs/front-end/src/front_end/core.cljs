@@ -5,6 +5,7 @@
       [front-end.screens.admin-posts-view :refer [admin-posts-view]]
       [front-end.screens.admin-posts :refer [admin-posts]]
       [front-end.screens.admin-posts-create :refer [admin-posts-create]]
+      [front-end.screens.testing :refer [testing]]
       [front-end.screens.admin-login :refer [admin-login]]))
 
 ;; -------------------------
@@ -13,10 +14,10 @@
 
 (defn home-page []
   [:div 
-   [:h2 "Welcome to Reagent"]
    [admin-login []]
    [admin-posts]
    [admin-posts-create]
+   [testing]
    [admin-posts-view]
    ])
 
