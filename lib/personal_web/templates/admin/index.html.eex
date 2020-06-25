@@ -1,3 +1,7 @@
 <div class="phx-hero">
   <h2>Hello World, from Phoenix!</h2>
+  <div id="app"></div>
+  <script>
+    front_end.screens.admin_login.init_BANG_()
+  </script>
 </div>

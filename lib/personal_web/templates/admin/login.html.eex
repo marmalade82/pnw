@@ -1,3 +1,6 @@
 <div>
-    Hi there, welcome to the login page!
+  <div id="app"></div>
+  <script>
+    front_end.screens.admin_login.init_BANG_()
+  </script>
 </div>

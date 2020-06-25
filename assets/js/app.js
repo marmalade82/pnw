@@ -15,3 +15,9 @@ import "phoenix_html"
 //
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
+
+//global.React = require('react'); 
+//global.ReactDOMServer = require('react-dom/server');
+
+// Need to import some specific functions from reagent here. For example,
+//import * as Reagent from "./reagent";

@@ -6,6 +6,7 @@
       [front-end.screens.admin-posts :refer [admin-posts]]
       [front-end.screens.admin-posts-create :refer [admin-posts-create]]
       [front-end.screens.testing :refer [testing]]
+      [front-end.screens.projects-view :refer [projects-view]]
       [front-end.screens.admin-login :refer [admin-login]]))
 
 ;; -------------------------
@@ -19,6 +20,7 @@
    [admin-posts-create]
    [testing]
    [admin-posts-view]
+   [projects-view]
    ])
 
 ;; -------------------------
@@ -29,3 +31,5 @@
 
 (defn init! []
   (mount-root))
+
+

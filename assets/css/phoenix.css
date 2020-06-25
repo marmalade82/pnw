@@ -98,12 +98,6 @@ header section {
   flex-direction: column;
   justify-content: space-between;
 }
-header section :first-child {
-  order: 2;
-}
-header section :last-child {
-  order: 1;
-}
 header nav ul,
 header nav li {
   margin: 0;
@@ -115,9 +109,6 @@ header nav li {
 header nav ul {
   margin: 1rem;
   margin-top: 0;
-}
-header nav a {
-  display: block;
 }
 
 @media (min-width: 40.0rem) { /* Small devices (landscape phones, 576px and up) */
@@ -131,4 +122,46 @@ header nav a {
     flex-basis: 527px;
     margin: 2rem 1rem;
   }
+}
+
+/* Custom styles start here!! */
+
+.nav-header-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2em;
+  color: rgb(21, 25, 87);
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.multi-children {
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
+.nav-container {
+  padding: 1em 2em 1em 2em;
+  /*border-width: 1px;
+  border-style: solid;
+  border-color: rgb(21, 25, 87);*/
+}
+
+a.nav-link:link {
+  color: rgb(21, 25, 87);
+}
+
+a.nav-link:hover {
+  color: lightgrey;
+}
+
+a.nav-link:visited {
+  color: rgb(21, 25, 87);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
 }

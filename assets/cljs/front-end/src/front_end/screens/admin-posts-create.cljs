@@ -13,3 +13,12 @@
          }
    [input "multi-text" @text #(reset! text %)]])
 
+
+;; -------------------------
+;; Initialize app
+
+(defn mount-root []
+  (d/render [admin-posts-create] (.getElementById js/document "app")))
+
+(defn ^:export init! []
+  (mount-root))

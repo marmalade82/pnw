@@ -1,0 +1,7 @@
+
+<div id="app">
+    Hi there
+    <script>
+        front_end.screens.projects.init_BANG_()
+    </script>
+</div>

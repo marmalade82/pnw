@@ -2,11 +2,15 @@ defmodule PersonalWeb.AdminController do
   use PersonalWeb, :controller
 
   def index(conn, _params) do
-    render(conn, "index.html")
+    conn
+    |> put_layout({ PersonalWeb.AdminView, "admin.html"})
+    |> render("index.html")
   end
 
   def show(conn, %{"message" => message}) do
-    render(conn, "show.html", message: message)
+    conn
+    |> put_layout({ PersonalWeb.AdminView, "admin.html"})
+    |> render("show.html", message: message)
   end
 
   def login(conn, _params) do

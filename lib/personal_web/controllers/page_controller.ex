@@ -8,4 +8,9 @@ defmodule PersonalWeb.PageController do
     #|> put_flash(:error, "Let's pretend we have an error.")
     |> render("index.html")
   end
+
+  def projects(conn, _params) do
+    conn
+    |> render("projects.html")
+  end
 end

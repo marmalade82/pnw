@@ -21,6 +21,14 @@
 
 
 
+;; -------------------------
+;; Initialize app
+
+(defn mount-root []
+  (d/render [admin-posts-view] (.getElementById js/document "app")))
+
+(defn ^:export init! []
+  (mount-root))
 
 
 

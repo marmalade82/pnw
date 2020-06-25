@@ -6,9 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Personal · Phoenix Framework</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/reagent.js") %>"></script>
   </head>
   <body>
     <header>
+      <section class="container">
+        <div class="column">
+          <a href="/">
+            <span class="nav-header-text">
+            Home of a preservation
+            </span>
+          </a>
+        </div>
+        <nav role="navigation">
+          <div class="row multi-children">
+            <div class="nav-container">
+              <a href="/" class="nav-link">Home</a>
+            </div>
+            <div class="nav-container">
+              <a href="/projects" class="nav-link">Projects</a>
+            </div>
+            <div class="nav-container">
+              <a href="/about" class="nav-link">About</a>
+            </div>
+          </div>
+        </nav>
+      </section>
+      <!--
       <section class="container">
         <nav role="navigation">
           <ul>
@@ -18,7 +42,7 @@
         <a href="http://phoenixframework.org/" class="phx-logo">
           <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
         </a>
-      </section>
+      </section>-->
     </header>
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

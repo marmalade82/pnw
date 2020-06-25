@@ -6,7 +6,8 @@
 
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [org.clojure/clojurescript "1.10.597"]
-                 [reagent "0.10.0"]]
+                 [reagent "0.10.0"]
+                 [cljs-http "0.1.46"]]
 
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-figwheel "0.5.19"]]
@@ -17,34 +18,41 @@
    [:cljsbuild :builds :app :compiler :output-dir]
    [:cljsbuild :builds :app :compiler :output-to]]
 
-  :resource-paths ["public"]
+  :resource-paths ["public" "resources"]
 
   :figwheel {:http-server-root "."
              :nrepl-port 7002
              :nrepl-middleware [cider.piggieback/wrap-cljs-repl]
              :css-dirs ["public/css"]}
 
-  :cljsbuild {:builds {:app
-                       {:source-paths ["src" "env/dev/cljs"]
-                        :compiler
+  :cljsbuild 
+    {:builds  {:app {:source-paths ["src" "env/dev/cljs"]
+                     :compiler
                         {:main "front-end.dev"
                          :output-to "public/js/app.js"
                          :output-dir "public/js/out"
                          :asset-path   "js/out"
                          :source-map true
                          :optimizations :none
-                         :pretty-print  true}
-                        :figwheel
+                         :pretty-print  true }
+                     :figwheel
                         {:on-jsload "front-end.core/mount-root"
                          :open-urls ["http://localhost:3449/index.html"]}}
-                       :release
-                       {:source-paths ["src" "env/prod/cljs"]
-                        :compiler
-                        {:output-to "public/js/app.js"
-                         :output-dir "target/release"
-                         :optimizations :advanced
-                         :infer-externs true
-                         :pretty-print false}}}}
+               :release {:source-paths ["src" "env/prod/cljs"]
+                         :compiler
+                          { :output-to "public/js/release.js"
+                            :output-dir "target/release"
+                            :optimizations :advanced
+                            :infer-externs true
+                            :pretty-print false}}
+               :lib {:source-paths ["src" "env/lib/cljs"]
+                     :compiler
+                        { :output-to "../../js/reagent.js"
+                          :output-dir "target/lib"
+                          :optimizations :simple
+                          :infer-externs true
+                          :pretty-print false }} 
+                                                  }}
 
   :aliases {"package" ["do" "clean" ["cljsbuild" "once" "release"]]}
 
