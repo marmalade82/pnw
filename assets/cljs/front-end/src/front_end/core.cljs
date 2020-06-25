@@ -7,13 +7,20 @@
       [front-end.screens.admin-posts-create :refer [admin-posts-create]]
       [front-end.screens.testing :refer [testing]]
       [front-end.screens.projects-view :refer [projects-view]]
+      [front-end.screens.home-page :refer [home-page]]
       [front-end.screens.admin-login :refer [admin-login]]))
 
 ;; -------------------------
 ;; Views
 
+(defn root-page []
+  [:div { :class "root"
+         }
+   [home-page]
+   ]
+  )
 
-(defn home-page []
+(defn test-page []
   [:div 
    [admin-login []]
    [admin-posts]
@@ -27,7 +34,7 @@
 ;; Initialize app
 
 (defn mount-root []
-  (d/render [home-page] (.getElementById js/document "app")))
+  (d/render [root-page] (.getElementById js/document "app")))
 
 (defn init! []
   (mount-root))
