@@ -1,85 +1,68 @@
 (ns front-end.screens.home-page
   (:require [reagent.core :as r]
             [reagent.dom :as d]
+            [front-end.components.styled.ordered-list :refer [ordered-list]]
+            [front-end.components.styled.unordered-list :refer [unordered-list]]
+            [front-end.screens.home-page.data :as data]
+
   ))
 
-(defn home-page []
-  [ :div {:class "HomePage-Container" }
-   [:span {:class "HomePage-Intro"}
-      "My name is Howard. I'm a full-stack developer who loves the backend!"
-    ]
+(defn render-work-experience
+  [{:keys [title company description achievements]}]
 
-   [:h3 {:class "HomePage-WorkExperienceHeader"}
-      "Work experience"
-    ]
-   [:ol {:class "HomePage-List"}
-    [:li {:class "HomePage-ListItem"}
-     [:span {:class "HomePage-Text"}
-       "ServiceNow Technical Lead @Cognizant"
-      ]
-     [:span {:class "HomePage-Text"}
-      ]
-     [:ul {:class "HomePage-List"}
-      [:li {:class "HomePage-ListItem"}
-       [:span {:class "HomePage-Text"}
-         "Responsible for communicating technical requirements to development teams while also providing operational support in the form of hotfixes, development, and debugging."
-        ]
-       ]
-      ]
-     ]
-    [:li {:class "HomePage-ListItem"}
-     [:span {:class "HomePage-Text"}
-      "ServiceNow Developer @Revature"
-      ]
-     [:ul {:class "HomePage-List"}
-      [:li {:class "HomePage-ListItem"}
-       [:span {:class "HomePage-Text"}
-        "Responsible for business analysis, form development, workflow implementation, database configuration, and testing"
-        ]
-       ]
-      ]
-     ]
-    ]
-   [:h3 {:class "HomePage-CleanCodeHeader"}
-      "Approach to clean code" 
-    ]
-   [:span {:class "HomePage-Text"}
-      "To me, clean code means three things:"
-    ]
-   [:ol {:class "HomePage-List"}
-    [:li {:class "HomePage-ListItem"}
-     [:span {:class "HomePage-Text"}
-        "Literate/Declarative programming"
-      ]
-     ]
-    [:li {:class "HomePage-ListItem"}
-     [:span {:class "HomePage-Text"}
-        "Organizing code as service layers"
-      ]
-     ]
-    [:li {:class "HomePage-ListItem"}
-     [:span {:class "HomePage-Text"}
-        "Using object-oriented ADTs only when truly needed"
-      ]
-     ]
-    ]
-
-   [:h3 {:class "HomePage-ProjectsHeader"}
-    "Personal projects"
-    ]
-   [:ol {:class "HomePage-List"}
-     [:li {:class "HomePage-ListItem"}
-       [:span "lexer-gen"]
-     ]
-     [:li {:class "HomePage-ListItem"}
-       [:span "spice"]
-     ]
-    [:li {:class "HomePage-ListItem"}
-       [:span "dev-hub"]
-     ]
-    [:li {:class "HomePage-ListItem"}
-     [:span "e-calendar"]
-     ]
+  [:<>
+    [:span {:class "HomePage-Text"} title] 
+    [:span {:class "HomePage-Text"} (str " @" company)]
+    [:span {:class "HomePage-Text"} description]
    ]
+  )
 
-  ])
+(defn render-clean-code [{:keys [text href]}]
+  [:<>
+    [:span {:class "HomePage-Text"} text]
+    [:a {:href href}
+     [:span {:class "HomePage-Text"}
+        "here"
+      ]
+      ]
+   ]
+  )
+
+(defn render-project [{:keys [title description href ]}]
+  [:<>
+    [:span {:class "HomePage-Text"} title]
+    [:span {:class "HomePage-Text"} description]
+    [:a {:href href}
+     [:span {:class "HomePage-Text"} "here"]
+      ]
+   ]
+  )
+
+(defn home-page []
+  (let [work-experience (map render-work-experience (data/work-experience))
+        clean-code (map render-clean-code (data/clean-code))
+        projects (map render-project (data/projects))
+        ]
+    [ :article {:class "HomePage-Container" }
+     [:span {:class "HomePage-Intro"}
+      "My name is Howard. I'm a full-stack developer who loves the backend!"
+      ]
+
+     [:h3 {:class "HomePage-WorkExperienceHeader"}
+      "Work experience"
+      ]
+     (into [ordered-list {:class "HomePage-List"}] work-experience)
+
+     [:h3 {:class "HomePage-CleanCodeHeader"}
+      "Approach to clean code" 
+      ]
+     [:span {:class "HomePage-Text"}
+      "To me, clean code has three major components:"
+      ]
+     (into [ordered-list {:class "HomePage-List"}] clean-code)
+
+     [:h3 {:class "HomePage-ProjectsHeader"}
+      "Personal projects"
+      ]
+     (into [unordered-list {:class "HomePage-List"}] projects)
+    ]))
