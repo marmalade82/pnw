@@ -1,0 +1,29 @@
+.Header-MenuItem:hover {
+  cursor: pointer;
+}
+
+.Header-Container {
+  display: flex;
+  flex-direction: row;
+  background-color: darkblue;
+  margin: 0 0 10px 0;
+}
+
+.Header-MenuItem {
+  padding: 10px 20px 10px 20px;
+  background-color: transparent;
+  color: lightblue;
+}
+
+.Footer-Container {
+  background-color: darkblue;
+  padding: 10px 20px 10px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Footer-Text {
+  color: lightblue;
+}
+
+/*# sourceMappingURL=index.css.map */

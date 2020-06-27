@@ -14,3 +14,16 @@
     "body" [:span {:class ["body-text"]
                    } text]))
 
+
+(defn my-text
+  [{:keys [class type text] :or {class "", type "body", text ""}}]
+  (case type
+    "1" [header-text "1" text]
+    "2" [header-text "2" text]
+    "3" [header-text "3" text]
+    "4" [header-text "4" text]
+    "5" [header-text "5" text]
+    "body" [:span {:class ["body-text" class]}
+             text
+            ])
+  )

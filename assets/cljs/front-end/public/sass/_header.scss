@@ -1,0 +1,16 @@
+@use 'clickable';
+
+.Header-Container {
+    display: flex;
+    flex-direction: row;
+    background-color: darkblue;
+    margin: 0 0 10px 0
+}
+
+.Header-MenuItem {
+    padding: 10px 20px 10px 20px;
+    background-color: transparent;
+    @extend %clickable;
+    color: lightblue;
+}
+
