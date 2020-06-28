@@ -1,16 +1,34 @@
 @use 'clickable';
+@use 'mixins';
+@use 'constants';
 
 .Header-Container {
     display: flex;
     flex-direction: row;
     background-color: darkblue;
-    margin: 0 0 10px 0
+    margin: 0;
 }
 
-.Header-MenuItem {
-    padding: 10px 20px 10px 20px;
+.Header-MenuItemsContainer {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    max-width: constants.$max-width;
+    margin: auto;
+}
+
+.Header-UnselectedMenuItem {
+    padding: 10px 20px;
     background-color: transparent;
     @extend %clickable;
     color: lightblue;
+    @include mixins.hover {
+        color: white;
+    }
 }
 
+.Header-SelectedMenuItem {
+    padding: 10px 20px;
+    background-color: transparent;
+    color: white;
+}

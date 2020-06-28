@@ -1,13 +1,11 @@
-.Header-UnselectedMenuItem:hover, .clickable:hover {
-  cursor: pointer;
-}
+@use 'clickable';
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Verdana, Helvetica, Arial, sans-serif;
   margin: 0 auto;
   padding-top: 72px;
   -webkit-font-smoothing: antialiased;
@@ -19,17 +17,16 @@ body {
 h1, h2, h3 {
   color: #000;
 }
-
 h1 {
-  font-size: 2.5em;
+  font-size: 2.5em
 }
 
 h2 {
-  font-size: 2em;
+  font-size: 2em
 }
 
 h3 {
-  font-size: 1.5em;
+  font-size: 1.5em
 }
 
 a {
@@ -44,6 +41,7 @@ a:hover {
 /**
 * EVERYTHING AFTER HERE IS CUSTOM.
 */
+
 .screen {
   padding-left: 20px;
   padding-right: 20px;
@@ -64,6 +62,10 @@ a:hover {
 
 .submit-button:hover {
   background-color: green;
+}
+
+.clickable {
+  @extend %clickable;
 }
 
 .header-li {
@@ -122,6 +124,7 @@ a.link-text:hover {
   text-decoration: underline;
 }
 
+
 .gallery-container {
   border-width: 1px;
   border-color: black;
@@ -155,52 +158,3 @@ a.link-text:hover {
 .gallery-item-body {
   font-size: 1em;
 }
-
-.Header-Container {
-  display: flex;
-  flex-direction: row;
-  background-color: darkblue;
-  margin: 0;
-}
-
-.Header-MenuItemsContainer {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  max-width: 1000px;
-  margin: auto;
-}
-
-.Header-UnselectedMenuItem {
-  padding: 10px 20px;
-  background-color: transparent;
-  color: lightblue;
-}
-.Header-UnselectedMenuItem:not([disabled]):hover {
-  color: white;
-}
-
-.Header-SelectedMenuItem {
-  padding: 10px 20px;
-  background-color: transparent;
-  color: white;
-}
-
-.Footer-Container {
-  background-color: darkblue;
-  padding: 10px 20px 10px 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.Footer-Text {
-  color: lightblue;
-}
-
-.HomePage-Container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 10px 20px;
-}
-
-/*# sourceMappingURL=index.css.map */
