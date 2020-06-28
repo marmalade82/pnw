@@ -12,13 +12,15 @@
 
 ; A simple component for menu items
 (defn- render-menu-item [item]
-  [:span {:class "Header-MenuItem"}
+  [:span {:class "Header-UnselectedMenuItem"}
     item
    ]
   )
 
 (defn header []
   (let [menu-items (map render-menu-item menu-items)]
-    (into [:header {:class "Header-Container"}] menu-items)
+    [:header {:class "Header-Container"}
+     (into [ :div {:class "Header-MenuItemsContainer"}] menu-items)
+     ]
     )
   )

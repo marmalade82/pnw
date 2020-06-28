@@ -7,6 +7,7 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [org.clojure/clojurescript "1.10.597"]
                  [reagent "0.10.0"]
+                 [clj-commons/secretary "1.2.5-SNAPSHOT"]
                  [cljs-http "0.1.46"]]
 
   :plugins [[lein-cljsbuild "1.1.7"]
