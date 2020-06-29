@@ -2,25 +2,18 @@
   (:require
    [reagent.dom :as d]
    [secretary.core :as secretary :refer-macros [defroute]]
-   [front-end.screens.home-page :refer [home-page]]
+   [cljs.core.async :as core]
    )
   )
 
-(defn root-page [page]
-  [:div { :class "root"
-         }
-   [page]
-   ]
-  )
+(def render-chan (core/chan))
 
-(defn mount-root [page]
-  (d/render [root-page page] (.getElementById js/document "app")))
 
 (defroute root-path "/" {}
-  (mount-root home-page))
+  (core/put! render-chan "home"))
 
 (defroute contact-path "/contact" {}
-  (mount-root home-page))
+  (core/put! render-chan "contact"))
 
 (defroute blog-path "/blog" {}
-  (mount-root home-page))
+  (core/put! render-chan "blog"))
