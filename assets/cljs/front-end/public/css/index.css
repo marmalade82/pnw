@@ -186,6 +186,10 @@ a.link-text:hover {
   color: white;
 }
 
+.Header-MenuItemLink {
+  padding: 10px 20px;
+}
+
 .Footer-Container {
   background-color: darkblue;
   padding: 10px 20px 10px 20px;

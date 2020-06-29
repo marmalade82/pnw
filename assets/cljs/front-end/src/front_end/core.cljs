@@ -29,15 +29,15 @@
    [projects-view]
    ])
 
-(defn root-page [page]
-  [:div { :class "root"
-         }
-   [page]
-   ]
-  )
-
-(defn mount-root [page]
-  (d/render [root-page page] (.getElementById js/document "app")))
+(defn mount-root [target]
+  (let [node (.getElementById js/document "app")]
+    (case target
+      "home" (d/render [home-page] node)
+      "blog" (d/render [home-page] node)
+      "contact" (d/render [home-page] node )
+      (d/render [home-page] node)
+      )
+    ))
 
 ;; -------------------------
 ;; Initialize app
@@ -46,12 +46,7 @@
   (core/take! render-chan
               (fn [target]
                 (js/console.log target)
-                (case target
-                  "home" (mount-root home-page)
-                  "blog" (mount-root home-page)
-                  "contact" (mount-root home-page)
-                  (mount-root home-page))
-                  
+                (mount-root target)
                 (trampoline render-loop)
                 ))
   )

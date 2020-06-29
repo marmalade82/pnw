@@ -13,8 +13,8 @@
 
 ; A simple component for menu items
 (defn- render-menu-item [item]
-  [:a {:class "Header-MenuItemLink",
-       :href (:href item)}
+  [:a {:href (:href item)
+       :class "Header-MenuItemLink"}
    [:span {:class "Header-UnselectedMenuItem"}
     (:label item)
     ]
