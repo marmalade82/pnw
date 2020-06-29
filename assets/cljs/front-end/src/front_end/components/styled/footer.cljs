@@ -7,11 +7,13 @@
 
 (defn footer []
   [:footer {:class "Footer-Container"}
-   (my-text {:class "Footer-Text"
-             :text "Built with ClojureScript, Elixir, and Sass"
-             })
-   (my-text {:class "Footer-Text"
-             :text "Howard Chen, 2020"
-             })
+   [:div {:class "Footer-Subcontainer"}
+    (my-text {:class "Footer-Text"
+              :text "Built with ClojureScript, Elixir, and Sass."
+              })
+    (my-text {:class "Footer-Text"
+              :text "Howard Chen \u00A9 2020"
+              })
+    ]
    ]
   )

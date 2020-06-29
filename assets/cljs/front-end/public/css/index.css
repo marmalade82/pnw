@@ -193,8 +193,15 @@ a.link-text:hover {
 .Footer-Container {
   background-color: darkblue;
   padding: 10px 20px 10px 20px;
+}
+
+.Footer-Subcontainer {
   display: flex;
   flex-direction: column;
+  max-width: 1000px;
+  margin: auto;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .Footer-Text {
@@ -205,6 +212,21 @@ a.link-text:hover {
   max-width: 1000px;
   margin: 0 auto;
   padding: 10px 20px;
+}
+
+.HomePage-WorkList .ListItemContainer {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.HomePage-Work-Title {
+  font-weight: bold;
+}
+
+.HomePage-Work-Company {
+  font-style: italic;
 }
 
 /*# sourceMappingURL=index.css.map */

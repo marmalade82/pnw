@@ -1,8 +1,17 @@
+@use 'constants';
+
 .Footer-Container {
     background-color: darkblue;
     padding: 10px 20px 10px 20px;
+}
+
+.Footer-Subcontainer {
     display: flex;
     flex-direction: column;
+    max-width: constants.$max-width;
+    margin: auto;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .Footer-Text {

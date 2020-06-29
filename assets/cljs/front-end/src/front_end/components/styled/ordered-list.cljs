@@ -12,7 +12,7 @@
   (let [children 
         (map as-list (r/children (r/current-component)))
         ]
-     (into [:ol {:class "OrderedList"}] children)
+     (into [:ol {:class ["OrderedList" class]}] children)
     )
   )
 

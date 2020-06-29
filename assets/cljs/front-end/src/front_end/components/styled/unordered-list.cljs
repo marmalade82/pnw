@@ -12,7 +12,7 @@
   (let [children 
         (map as-list (r/children (r/current-component)))
         ]
-    (into [:ul {:class "UnorderedList"}] children)
+    (into [:ul {:class ["UnorderedList" class]}] children)
     )
   )
 

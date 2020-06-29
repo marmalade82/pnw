@@ -4,7 +4,9 @@
             ))
 
 (defn list-item [{:keys [class] :or {class ""} }]
-  (into [:li ] (r/children (r/current-component)))
+  [:li {:class "ListItem"}
+   (into [:div {:class ["ListItemContainer" class]}]
+               (r/children (r/current-component)))]
    
   )
 

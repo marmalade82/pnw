@@ -9,38 +9,40 @@
             [front-end.components.styled.header :refer [header]]
   ))
 
-(defn- body-text [text]
-  [my-text {:class "HomePage-Text"
-            :type "body"
-            :text text
-            }]
+(defn- body-text
+  ([text class]
+    [my-text {:class class
+              :type "body"
+              :text text
+              }])
+  ([text] (body-text text ""))
   )
 
 (defn- render-work-experience
   [{:keys [title company description achievements]}]
 
   [:<>
-    (body-text title)
-    (body-text (str " @" company))
-    (body-text description)
+    (body-text title "HomePage-Work-Title")
+    (body-text (str " @" company) "HomePage-Work-Company")
+    (body-text description "HomePage-Work-Description")
    ]
   )
 
 (defn- render-clean-code [{:keys [text href]}]
   [:<>
-    (body-text text)
+    (body-text text "HomePage-Clean-Description")
     [:a {:href href}
-     (body-text "here")
+     (body-text "here" "HomePage-Clean-Link")
       ]
    ]
   )
 
 (defn- render-project [{:keys [title description href ]}]
   [:<>
-    (body-text title)
-    (body-text description)
+    (body-text title "HomePage-Project-Title")
+    (body-text description "HomePage-Project-Description")
     [:a {:href href}
-     (body-text "here")
+     (body-text "here" "HomePage-Project-Link")
       ]
    ]
   )
@@ -60,7 +62,7 @@
       [:h3 {:class "HomePage-WorkExperienceHeader"}
        "Work experience"
        ]
-      (into [ordered-list {:class "HomePage-List"}] work-experience)
+      (into [ordered-list {:class "HomePage-WorkList"}] work-experience)
 
       [:h3 {:class "HomePage-CleanCodeHeader"}
        "Approach to clean code" 
@@ -68,12 +70,12 @@
       (body-text
        "To me, clean code has three major components:"
        )
-      (into [ordered-list {:class "HomePage-List"}] clean-code)
+      (into [ordered-list {:class "HomePage-CleanCodeList"}] clean-code)
 
       [:h3 {:class "HomePage-ProjectsHeader"}
        "Personal projects"
        ]
-      (into [unordered-list {:class "HomePage-List"}] projects)
+      (into [unordered-list {:class "HomePage-ProjectsList"}] projects)
 
       ]
       [footer]
