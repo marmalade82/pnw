@@ -16,6 +16,7 @@
       [cljs.core.match :refer-macros [match]]
       [front-end.screens.home-page :refer [home-page]]
       [front-end.screens.construction-page :refer [construction-page]]
+      [front-end.screens.work-page :refer [work-page]]
       [front-end.screens.admin-login :refer [admin-login]]))
 
 ;; -------------------------
@@ -38,9 +39,9 @@
       "home" (d/render [home-page {:label "Home"}] node)
       "blog" (d/render [construction-page {:label "Blog"}] node)
       "contact" (d/render [construction-page {:label "Contact"}] node )
-      ["work" topic] (d/render [construction-page {:label "Work"}] node)
-      ["clean-code" topic] (d/render [construction-page {:label "Clean Code"}] node)
-      ["projects" topic] (d/render [construction-page {:label "Projects"}] node)
+      ["work" topic] (d/render [work-page {:label "Work", :topic topic}] node)
+      ["clean-code" topic] (d/render [construction-page {:label "Clean Code", :topic topic}] node)
+      ["projects" topic] (d/render [construction-page {:label "Projects", :topic topic}] node)
       (d/render [home-page] node)
       )
     ))
