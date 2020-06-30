@@ -1,4 +1,4 @@
-.Header-UnselectedMenuItem:hover, .clickable:hover {
+.Header-UnselectedMenuItem:hover, .Header-SelectedMenuItem:hover, .clickable:hover {
   cursor: pointer;
 }
 
@@ -35,10 +35,6 @@ h3 {
 a {
   text-decoration: none;
   color: #09f;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 /**
@@ -156,6 +152,14 @@ a.link-text:hover {
   font-size: 1em;
 }
 
+.OrderedList {
+  padding: 0;
+}
+
+.UnorderedList {
+  padding: 0;
+}
+
 .Header-Container {
   display: flex;
   flex-direction: row;
@@ -171,23 +175,31 @@ a.link-text:hover {
   margin: auto;
 }
 
-.Header-UnselectedMenuItem {
+.Header-SelectedMenuItem, .Header-UnselectedMenuItem {
+  width: 100px;
   padding: 10px 20px;
+  text-align: center;
   background-color: transparent;
-  color: lightblue;
+  border-width: 7px 0 7px 0;
+  border-style: solid;
+  border-color: transparent;
 }
-.Header-UnselectedMenuItem:not([disabled]):hover {
-  color: white;
+
+.Header-SelectedMenuItem:not([disabled]):hover, .Header-UnselectedMenuItem:not([disabled]):hover {
+  border-bottom-color: white;
+}
+
+.Header-UnselectedMenuItem {
+  color: lightblue;
 }
 
 .Header-SelectedMenuItem {
-  padding: 10px 20px;
-  background-color: transparent;
   color: white;
+  font-weight: bold;
 }
 
 .Header-MenuItemLink {
-  padding: 10px 20px;
+  display: contents;
 }
 
 .Footer-Container {
@@ -225,8 +237,40 @@ a.link-text:hover {
   font-weight: bold;
 }
 
+.HomePage-Work-Subtitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
 .HomePage-Work-Company {
-  font-style: italic;
+  width: 200px;
+}
+
+.HomePage-Work-Dates {
+  flex: 1;
+}
+
+.HomePage-ProjectsList .ListItemContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5em;
+}
+
+.HomePage-Project-Title {
+  font-weight: bold;
+}
+
+.Construction-Container {
+  text-align: center;
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  line-height: 1.25em;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -34,10 +34,6 @@ a {
   color: #09f;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
 /**
 * EVERYTHING AFTER HERE IS CUSTOM.
 */
@@ -157,4 +153,12 @@ a.link-text:hover {
 
 .gallery-item-body {
   font-size: 1em;
+}
+
+.OrderedList {
+  padding: 0;
+}
+
+.UnorderedList {
+  padding: 0;
 }

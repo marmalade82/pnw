@@ -17,6 +17,27 @@
     font-weight: bold;
 }
 
+.HomePage-Work-Subtitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
 .HomePage-Work-Company {
-    font-style: italic;
+    width: 200px;
+}
+
+.HomePage-Work-Dates {
+    flex: 1;
+}
+
+.HomePage-ProjectsList .ListItemContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5em;
+}
+
+.HomePage-Project-Title {
+    font-weight: bold;
 }

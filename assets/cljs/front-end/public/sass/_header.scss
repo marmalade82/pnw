@@ -17,22 +17,36 @@
     margin: auto;
 }
 
-.Header-UnselectedMenuItem {
+%MenuItem {
+    width: 100px;
     padding: 10px 20px;
+    text-align: center;
     background-color: transparent;
     @extend %clickable;
-    color: lightblue;
+    border-width: 7px 0 7px 0;
+    border-style: solid;
+    border-color: transparent;
+}
+
+%MenuItem-Hover {
     @include mixins.hover {
-        color: white;
+        border-bottom-color: white;
     }
 }
 
+.Header-UnselectedMenuItem {
+    color: lightblue;
+    @extend %MenuItem;
+    @extend %MenuItem-Hover;
+}
+
 .Header-SelectedMenuItem {
-    padding: 10px 20px;
-    background-color: transparent;
     color: white;
+    font-weight: bold;
+    @extend %MenuItem;
+    @extend %MenuItem-Hover;
 }
 
 .Header-MenuItemLink {
-    padding: 10px 20px;
+    display: contents;
 }
