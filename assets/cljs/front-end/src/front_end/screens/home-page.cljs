@@ -3,10 +3,9 @@
             [reagent.dom :as d]
             [front-end.components.styled.ordered-list :refer [ordered-list]]
             [front-end.components.styled.unordered-list :refer [unordered-list]]
+            [front-end.components.styled.layout :refer [layout]]
             [front-end.screens.home-page.data :as data]
             [front-end.components.styled.text :refer [my-text]]
-            [front-end.components.styled.footer :refer [footer]]
-            [front-end.components.styled.header :refer [header]]
   ))
 
 (defn- body-text
@@ -19,12 +18,18 @@
   )
 
 (defn- render-work-experience
-  [{:keys [title company description achievements]}]
+  [{:keys [title company description achievements start end href]}]
 
   [:<>
     (body-text title "HomePage-Work-Title")
-    (body-text (str " @" company) "HomePage-Work-Company")
+    [:div {:class "HomePage-Work-Subtitle"}
+     (body-text company "HomePage-Work-Company")
+     (body-text (str start " \u2013 " end) "HomePage-Work-Dates")
+      ]
     (body-text description "HomePage-Work-Description")
+    [:a {:href href}
+      (body-text "Key accomplishments" "HomePage-Experience-Link")
+      ]
    ]
   )
 
@@ -47,38 +52,36 @@
    ]
   )
 
-(defn home-page []
+(defn home-page [{:keys [label]}]
   (let [work-experience (map render-work-experience (data/work-experience))
         clean-code (map render-clean-code (data/clean-code))
         projects (map render-project (data/projects))
         ]
-    [:div {:class "Body"}
-     [header ]
-     [ :article {:class "HomePage-Container" }
-      (body-text
-       "My name is Howard. I'm a full-stack developer who loves the backend!"
-       )
+    [layout {:label label}
+      [ :article {:class "HomePage-Container" }
+        (body-text
+        "My name is Howard. I'm a full-stack developer who loves the backend!"
+        )
 
-      [:h3 {:class "HomePage-WorkExperienceHeader"}
-       "Work experience"
-       ]
-      (into [ordered-list {:class "HomePage-WorkList"}] work-experience)
+        [:h3 {:class "HomePage-WorkExperienceHeader"}
+        "Work experience"
+        ]
+        (into [ordered-list {:class "HomePage-WorkList"}] work-experience)
 
-      [:h3 {:class "HomePage-CleanCodeHeader"}
-       "Approach to clean code" 
-       ]
-      (body-text
-       "To me, clean code has three major components:"
-       )
-      (into [ordered-list {:class "HomePage-CleanCodeList"}] clean-code)
+        [:h3 {:class "HomePage-CleanCodeHeader"}
+        "Approach to clean code" 
+        ]
+        (body-text
+        "To me, clean code has three major components:"
+        )
+        (into [ordered-list {:class "HomePage-CleanCodeList"}] clean-code)
 
-      [:h3 {:class "HomePage-ProjectsHeader"}
-       "Personal projects"
-       ]
-      (into [unordered-list {:class "HomePage-ProjectsList"}] projects)
+        [:h3 {:class "HomePage-ProjectsHeader"}
+        "Personal projects"
+        ]
+        (into [unordered-list {:class "HomePage-ProjectsList"}] projects)
 
-      ]
-      [footer]
+        ]
      ]
 
     ))

@@ -17,3 +17,12 @@
 
 (defroute blog-path "/blog" {}
   (core/put! render-chan "blog"))
+
+(defroute work-experience-path "/work/:topic" [topic]
+  (core/put! render-chan ["work" topic]))
+
+(defroute clean-code-path "/clean-code/:topic" [topic]
+  (core/put! render-chan ["clean-code" topic]))
+
+(defroute project-path "/projects/:topic" [topic]
+  (core/put! render-chan ["projects" topic]))

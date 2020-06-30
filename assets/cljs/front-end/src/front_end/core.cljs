@@ -13,7 +13,9 @@
       [front-end.routes :refer [render-chan root-path contact-path blog-path]]
       [secretary.core :as secretary]
       [cljs.core.async :as core]
+      [cljs.core.match :refer-macros [match]]
       [front-end.screens.home-page :refer [home-page]]
+      [front-end.screens.construction-page :refer [construction-page]]
       [front-end.screens.admin-login :refer [admin-login]]))
 
 ;; -------------------------
@@ -30,11 +32,15 @@
    ])
 
 (defn mount-root [target]
+  (js/console.log "Mounting new root")
   (let [node (.getElementById js/document "app")]
-    (case target
-      "home" (d/render [home-page] node)
-      "blog" (d/render [home-page] node)
-      "contact" (d/render [home-page] node )
+    (match target
+      "home" (d/render [home-page {:label "Home"}] node)
+      "blog" (d/render [construction-page {:label "Blog"}] node)
+      "contact" (d/render [construction-page {:label "Contact"}] node )
+      ["work" topic] (d/render [construction-page {:label "Work"}] node)
+      ["clean-code" topic] (d/render [construction-page {:label "Clean Code"}] node)
+      ["projects" topic] (d/render [construction-page {:label "Projects"}] node)
       (d/render [home-page] node)
       )
     ))
