@@ -17,6 +17,7 @@
       [front-end.screens.home-page :refer [home-page]]
       [front-end.screens.construction-page :refer [construction-page]]
       [front-end.screens.work-page :refer [work-page]]
+      [front-end.screens.clean-code-page :refer [clean-code-page]]
       [front-end.screens.admin-login :refer [admin-login]]))
 
 ;; -------------------------
@@ -32,7 +33,7 @@
    [projects-view]
    ])
 
-(defonce history
+(def history
   (r/atom (History.)))
 
 (def unknown-route
@@ -40,12 +41,13 @@
 
 (defn mount-root [target]
   (let [node (.getElementById js/document "app")]
+    (js/console.log "mounting root")
     (match target
           "home" (d/render [home-page {:label "Home"}] node)
           "blog" (d/render [construction-page {:label "Blog"}] node)
           "contact" (d/render [construction-page {:label "Contact"}] node )
           ["work" topic] (d/render [work-page {:label "Work", :topic topic}] node)
-          ["clean-code" topic] (d/render [construction-page {:label "Clean Code", :topic topic}] node)
+          ["clean-code" topic] (d/render [clean-code-page {:label "Clean Code", :topic topic}] node)
           ["projects" topic] (d/render [construction-page {:label "Projects", :topic topic}] node)
           :else ; If the route is unknown, we redirect to home. Otherwise
                 ; we retry the route
@@ -74,7 +76,10 @@
   (secretary/set-config! :prefix "#")
   (render-loop)
   (doto @history
-    (events/listen EventType.NAVIGATE #(secretary/dispatch! (.-token %)))
+    (events/listen EventType.NAVIGATE
+                   #(do
+                      (js/console.log "navigating")
+                      (secretary/dispatch! (.-token %))))
     (.setEnabled true))
   )
 

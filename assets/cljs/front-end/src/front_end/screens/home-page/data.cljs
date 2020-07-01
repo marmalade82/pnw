@@ -2,6 +2,7 @@
   (:require
      [front-end.routes :refer [work-experience-path clean-code-path project-path]]
      [front-end.screens.work-page.data :refer [cognizant-exp revature-exp]]
+     [front-end.screens.clean-code.data :refer [declarative service adts]]
    ))
 
 
@@ -14,15 +15,9 @@
 
 (defn clean-code []
   [
-   {:text "Literate/Declarative programming"
-    :href (clean-code-path {:topic "declarative"})
-   }
-   {:text "Organizing code as service layers"
-    :href (clean-code-path {:topic "layers"})
-    }
-   {:text "Using ADTs judiciously"
-    :href (clean-code-path {:topic "adts"})
-    }
+   declarative
+   service
+   adts
    ]
   )
 

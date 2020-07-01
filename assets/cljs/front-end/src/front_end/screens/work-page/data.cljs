@@ -5,11 +5,11 @@
 
    ))
 
-(def cognizant-topic
+(def ^:const cognizant-topic
   "cognizant"
   )
 
-(def revature-topic
+(def ^:const revature-topic
   "revature")
 
 (defn cognizant-exp []
@@ -40,8 +40,7 @@
   )
 
 (defn get-work-experience [topic]
-  (js/console.log (str "topic is: " topic ) )
-  (match topic
+  (case topic
          cognizant-topic (cognizant-exp)
          revature-topic  (revature-exp)
          nil
