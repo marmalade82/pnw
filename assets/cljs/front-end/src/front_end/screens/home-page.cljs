@@ -8,6 +8,7 @@
             [front-end.components.styled.text :refer [my-text]]
   ))
 
+
 (defn- body-text
   ([text class]
     [my-text {:class class
@@ -32,6 +33,7 @@
       ]
    ]
   )
+
 
 (defn- render-clean-code [{:keys [text href]}]
   [:<>

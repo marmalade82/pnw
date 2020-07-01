@@ -26,3 +26,6 @@
 
 (defroute project-path "/projects/:topic" [topic]
   (core/put! render-chan ["projects" topic]))
+
+(defroute "*" {}
+  (core/put! render-chan "unknown"))

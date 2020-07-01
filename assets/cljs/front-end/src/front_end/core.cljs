@@ -32,18 +32,31 @@
    [projects-view]
    ])
 
+(defonce history
+  (r/atom (History.)))
+
+(def unknown-route
+  (r/atom false))
+
 (defn mount-root [target]
-  (js/console.log "Mounting new root")
   (let [node (.getElementById js/document "app")]
     (match target
-      "home" (d/render [home-page {:label "Home"}] node)
-      "blog" (d/render [construction-page {:label "Blog"}] node)
-      "contact" (d/render [construction-page {:label "Contact"}] node )
-      ["work" topic] (d/render [work-page {:label "Work", :topic topic}] node)
-      ["clean-code" topic] (d/render [construction-page {:label "Clean Code", :topic topic}] node)
-      ["projects" topic] (d/render [construction-page {:label "Projects", :topic topic}] node)
-      (d/render [home-page] node)
-      )
+          "home" (d/render [home-page {:label "Home"}] node)
+          "blog" (d/render [construction-page {:label "Blog"}] node)
+          "contact" (d/render [construction-page {:label "Contact"}] node )
+          ["work" topic] (d/render [work-page {:label "Work", :topic topic}] node)
+          ["clean-code" topic] (d/render [construction-page {:label "Clean Code", :topic topic}] node)
+          ["projects" topic] (d/render [construction-page {:label "Projects", :topic topic}] node)
+          :else ; If the route is unknown, we redirect to home. Otherwise
+                ; we retry the route
+              (if @unknown-route
+                  (do
+                    (d/render [home-page {:label "Home"}] node)
+                    (reset! unknown-route false))
+                  (do 
+                    (reset! unknown-route true)
+                    (secretary/dispatch! (.getToken @history))))
+          )
     ))
 
 ;; -------------------------
@@ -52,23 +65,18 @@
 (defn render-loop []
   (core/take! render-chan
               (fn [target]
-                (js/console.log target)
                 (mount-root target)
                 (trampoline render-loop)
-                ))
-  )
+                )))
+
 
 (defn init-client-routing []
   (secretary/set-config! :prefix "#")
   (render-loop)
-  (doto (History.)
+  (doto @history
     (events/listen EventType.NAVIGATE #(secretary/dispatch! (.-token %)))
     (.setEnabled true))
   )
 
-
-
 (defn init! []
   (init-client-routing))
-
-
