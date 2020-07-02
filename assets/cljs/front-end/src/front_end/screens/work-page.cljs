@@ -6,6 +6,7 @@
    [front-end.screens.work-page.data :refer [get-work-experience]]
    [front-end.components.styled.unordered-list :refer [unordered-list]]
    [front-end.components.styled.text :refer [my-text]]
+   [front-end.components.styled.article :refer [article]]
    ))
 
 (defn render-achievement [achievement]
@@ -18,11 +19,12 @@
 (defn render-work-experience [{:keys [title company description achievements start end href]}]
   [:div {:class "WorkPage-Experience"}
    [:h2 {:class "WorkPage-Experience-Title"} title]
-   [:h3 {:class "WorkPage-Experience-Company"} company]
+   [:div {:class "WorkPage-Experience-Subheader"}
+    [:h3 {:class "WorkPage-Experience-Company"} company]
+    [my-text {:class "WorkPage-Experience-Dates",
+              :text  (str start " \u2013 " end)}]]
    [my-text {:class "WorkPage-Experience-Description",
              :text  description}]
-   [my-text {:class "WorkPage-Experience-Dates",
-             :text  (str start " \u2013 " end)}]
    (let [rendered (map render-achievement achievements)]
      (into [unordered-list {:class "WorkPage-Experience-Achievements"}]
            rendered)
@@ -35,7 +37,7 @@
   (let [work-experience (get-work-experience topic)]
     (fn [] 
       [layout {:label label}
-       [:article {:class "WorkPage-Container"}
+       [article {:class "WorkPage-Container"}
         [render-work-experience work-experience ]
         ]
        ]))

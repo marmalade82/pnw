@@ -1,0 +1,16 @@
+
+@use 'constants';
+
+/**
+ Contains styles that are reused 
+ across all pages, sections, etc.
+
+ Includes styles for globally reused 
+ JS components
+ */
+
+ .Article {
+    max-width: constants.$max-width;
+    margin: 0 auto;
+    padding: 10px 20px;
+ }

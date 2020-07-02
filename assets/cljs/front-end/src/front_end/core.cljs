@@ -75,7 +75,6 @@
 
 
 (defn init-client-routing []
-  (secretary/set-config! :prefix "#")
   (render-loop)
   (doto @history
     (events/listen EventType.NAVIGATE

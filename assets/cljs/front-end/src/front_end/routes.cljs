@@ -8,6 +8,9 @@
 
 (def render-chan (core/chan))
 
+; This call sets the prefix before the roots are defined.
+; This ensures all users of the -path functions will see the prefix
+(secretary/set-config! :prefix "#")
 
 (defroute root-path "/" {}
   (core/put! render-chan "home"))

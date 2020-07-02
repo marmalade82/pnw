@@ -64,7 +64,9 @@
    :subtitle "Getting comfy with JS"
    :description "A simple appointment e-calendar application written in pure JavaScript. The first application where was forced to ignore my distaste for weakly typed languages"
    :href (project-path {:topic calendar-topic})
-   :thoughts []
+   :thoughts [
+       "Welcome! This is a React/CSS calendar web application. It allows the user to perform the CRUD cycle on infinite web calendar (using Moment.js). There is currently no backend for the data."
+   ]
    :github_href "http://github.com"
    :live_href "http://www.google.com"
    })

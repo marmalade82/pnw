@@ -6,6 +6,7 @@
     [front-end.screens.project-page.data :refer [get-project]]
     [front-end.components.styled.unordered-list :refer [unordered-list]]
     [front-end.components.styled.text :refer [my-text]]
+    [front-end.components.styled.article :refer [article]]
    ))
 
 (defn render-thought [thought]
@@ -32,7 +33,8 @@
   (let [project (get-project topic)]
     (fn []
       [layout {:label label}
-       [:article {:class "ProjectPage-Article"}
+       [article {:class "ProjectPage-Article"
+                  }
           (render-project project)
         ]
        ]

@@ -6,6 +6,7 @@
     [front-end.screens.clean-code.data :refer [get-clean-code]]
     [front-end.components.styled.unordered-list :refer [unordered-list]]
     [front-end.components.styled.text :refer [my-text]]
+    [front-end.components.styled.article :refer [article]]
     ))
 
 (defn render-paragraph [p]
@@ -29,7 +30,7 @@
     (js/console.log clean)
     (fn [] 
       [layout {:label label}
-       [:article {:class "CleanCodePage-Container"}
+       [article {:class "CleanCodePage-Container"}
         [render-clean-code clean ]
         ]
        ]))

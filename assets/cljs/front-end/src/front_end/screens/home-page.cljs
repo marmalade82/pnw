@@ -6,6 +6,7 @@
             [front-end.components.styled.layout :refer [layout]]
             [front-end.screens.home-page.data :as data]
             [front-end.components.styled.text :refer [my-text]]
+            [front-end.components.styled.article :refer [article]]
   ))
 
 
@@ -60,7 +61,7 @@
         projects (map render-project (data/projects))
         ]
     [layout {:label label}
-      [ :article {:class "HomePage-Container" }
+      [ article {:class "HomePage-Container" }
         (body-text
         "My name is Howard. I'm a full-stack developer who loves the backend!"
         )
