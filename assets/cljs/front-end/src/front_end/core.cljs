@@ -18,7 +18,9 @@
       [front-end.screens.construction-page :refer [construction-page]]
       [front-end.screens.work-page :refer [work-page]]
       [front-end.screens.clean-code-page :refer [clean-code-page]]
-      [front-end.screens.admin-login :refer [admin-login]]))
+      [front-end.screens.admin-login :refer [admin-login]]
+      [front-end.screens.project-page :refer [project-page]]
+      ))
 
 ;; -------------------------
 ;; Views
@@ -48,7 +50,7 @@
           "contact" (d/render [construction-page {:label "Contact"}] node )
           ["work" topic] (d/render [work-page {:label "Work", :topic topic}] node)
           ["clean-code" topic] (d/render [clean-code-page {:label "Clean Code", :topic topic}] node)
-          ["projects" topic] (d/render [construction-page {:label "Projects", :topic topic}] node)
+          ["projects" topic] (d/render [project-page {:label "Projects", :topic topic}] node)
           :else ; If the route is unknown, we redirect to home. Otherwise
                 ; we retry the route
               (if @unknown-route
