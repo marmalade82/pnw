@@ -4,7 +4,6 @@
     [reagent.dom :as d]
     [front-end.components.styled.layout :refer [layout]]
     [front-end.screens.project-page.data :refer [get-project]]
-    [front-end.components.styled.unordered-list :refer [unordered-list]]
     [front-end.components.styled.text :refer [my-text]]
     [front-end.components.styled.article :refer [article]]
    ))
@@ -24,7 +23,7 @@
     [:a {:href live_href} "live"]]
    [:h3 {:class "Project-Description"} subtitle]
    (let [rendered (map render-thought thoughts)]
-     (into [unordered-list {:class "Project-Thoughts"}] rendered)
+     (into [:div {:class "Project-Thoughts"}] rendered)
      )
    ]
   )

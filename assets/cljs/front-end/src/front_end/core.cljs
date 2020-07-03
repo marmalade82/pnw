@@ -41,21 +41,29 @@
 (def unknown-route
   (r/atom false))
 
+(defn render [page attrs]
+  (let [node (.getElementById js/document "app")]
+    (do
+      (d/render [page attrs] node)
+      (.scrollTo js/window 0 0)
+      ))
+  )
+
 (defn mount-root [target]
   (let [node (.getElementById js/document "app")]
     (js/console.log "mounting root")
     (match target
-          "home" (d/render [home-page {:label "Home"}] node)
-          "blog" (d/render [construction-page {:label "Blog"}] node)
-          "contact" (d/render [construction-page {:label "Contact"}] node )
-          ["work" topic] (d/render [work-page {:label "Blog", :topic topic}] node)
-          ["clean-code" topic] (d/render [clean-code-page {:label "Blog", :topic topic}] node)
-          ["projects" topic] (d/render [project-page {:label "Blog", :topic topic}] node)
+          "home" (render home-page {:label "Home"})
+          "blog" (render construction-page {:label "Blog"})
+          "contact" (render construction-page {:label "Contact"})
+          ["work" topic] (render work-page {:label "Blog", :topic topic})
+          ["clean-code" topic] (render clean-code-page {:label "Blog", :topic topic} )
+          ["projects" topic] (render project-page {:label "Blog", :topic topic} )
           :else ; If the route is unknown, we redirect to home. Otherwise
                 ; we retry the route
               (if @unknown-route
                   (do
-                    (d/render [home-page {:label "Home"}] node)
+                    (render home-page {:label "Home"})
                     (reset! unknown-route false))
                   (do 
                     (reset! unknown-route true)
