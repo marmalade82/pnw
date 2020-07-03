@@ -6,10 +6,19 @@
   box-sizing: border-box;
 }
 
+html {
+  min-height: 100%;
+}
+
+#app {
+  height: 100vh;
+  display: block;
+}
+
 body {
+  min-height: 100%;
   font-family: "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;
   margin: 0 auto;
-  padding-top: 72px;
   -webkit-font-smoothing: antialiased;
   font-size: 1.125em;
   color: #333;
@@ -205,6 +214,9 @@ a.link-text:hover {
 .Footer-Container {
   background-color: darkblue;
   padding: 10px 20px 10px 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .Footer-Subcontainer {
@@ -217,7 +229,7 @@ a.link-text:hover {
 }
 
 .Footer-Text {
-  color: lightblue;
+  color: white;
 }
 
 .HomePage-WorkList .ListItemContainer {
@@ -274,17 +286,30 @@ a.link-text:hover {
  Includes styles for globally reused 
  JS components
  */
+.Article-Container {
+  padding: 40px 0px 175px 0px;
+}
+
 .Article {
   max-width: 1000px;
-  margin: 0 auto;
-  padding: 10px 20px;
+  margin: 0px auto;
+  padding: 20px 40px;
+  background-color: white;
+  box-shadow: 1px 1px 5px 1px lightgrey;
+  min-height: 100%;
+}
+
+.Body {
+  background-color: whitesmoke;
+  min-height: 100%;
+  position: relative;
 }
 
 .WorkPage-Experience-Subheader {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .WorkPage-Experience-Company {
@@ -308,6 +333,23 @@ a.link-text:hover {
   border-width: 1px;
   background-color: purple;
   color: white;
+}
+
+.WorkPage-Experience-Languages {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.WorkPage-Experience-Language {
+  padding: 10px 20px;
+  margin-right: 30px;
+  border-radius: 10px;
+  border-width: 1px;
+  background-color: darkblue;
+  color: white;
+  margin-bottom: 20px;
 }
 
 /*# sourceMappingURL=index.css.map */

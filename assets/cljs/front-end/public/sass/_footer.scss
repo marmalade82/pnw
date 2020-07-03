@@ -3,6 +3,9 @@
 .Footer-Container {
     background-color: darkblue;
     padding: 10px 20px 10px 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .Footer-Subcontainer {
@@ -15,5 +18,5 @@
 }
 
 .Footer-Text {
-    color: lightblue;
+    color: white;
 }

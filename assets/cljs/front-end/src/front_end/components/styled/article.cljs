@@ -5,7 +5,8 @@
    ))
 
 (defn article [{:keys [class] :or {class ""}}]
-  (into [:article {:class ["Article" class]}]
-        (r/children (r/current-component))
-        )
+  [:div {:class ["Article-Container"]}
+   (into [:article {:class ["Article" class]}]
+         (r/children (r/current-component))
+         )]
   )

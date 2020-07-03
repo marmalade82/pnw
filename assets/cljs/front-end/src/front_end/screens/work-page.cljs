@@ -16,11 +16,17 @@
 
   )
 
-(defn render-work-experience [{:keys [title company description achievements start end href]}]
+(defn render-main-language [lang]
+  [my-text {:class "WorkPage-Experience-Language"
+            :text lang}]
+  )
+
+(defn render-work-experience [{:keys [title company company_href description achievements start end main_languages]}]
   [:div {:class "WorkPage-Experience"}
    [:h2 {:class "WorkPage-Experience-Title"} title]
    [:div {:class "WorkPage-Experience-Subheader"}
-    [:h3 {:class "WorkPage-Experience-Company"} company]
+    [:a {:href company_href}
+     [:h3 {:class "WorkPage-Experience-Company"} company]]
     [my-text {:class "WorkPage-Experience-Dates",
               :text  (str start " \u2013 " end)}]]
    [my-text {:class "WorkPage-Experience-Description",
@@ -28,6 +34,9 @@
    (let [rendered (map render-achievement achievements)]
      (into [unordered-list {:class "WorkPage-Experience-Achievements"}]
            rendered)
+     )
+   (let [rendered (map render-main-language main_languages)]
+     (into [:div {:class "WorkPage-Experience-Languages"}] rendered)
      )
    ]
   )
