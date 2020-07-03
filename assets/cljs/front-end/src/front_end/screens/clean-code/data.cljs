@@ -10,13 +10,13 @@
 (def declarative 
   {:text "Literate/Declarative programming"
    :paragraphs
-    ["One of the challenges with working with large code bases is simply understanding them. Fundamentally, code bases are text, so they come with all the accompanying difficulties of reading comprehension, ranging from pulp fiction to 'classics' to philosophical tomes."
+   ["One of the challenges with working with large code bases is simply understanding them. Code bases are text, so they come with all the accompanying difficulties of reading comprehension. Literate/Declarative programming plays a large role in making code self-documenting and easy to read."
 
-     "Literate/Declarative programming plays a large role in making code self-documenting and easy to read."
+    "'Literate' means that, where possible, the code reads like well-written English. Variable and function names are words, not mysterious acronyms. Related statements are grouped together, and conceptually sequential operations are executed in that sequence."
 
-      "Of course, one can go too far in making code *too* literate:"
+    "'Declarative' means that the code describes *what* is done, but not *how* it is done, at the appropriate level of abstraction. This often means refactoring a set of related statements into a separate function or procedure with a declarative name. The trick, of course, is knowing the appropriate level of abstraction."
 
-      "Luckily, I've yet to come across any examples where declarative programming can be taken too far"
+    "But literate/declarative programming also extends to code organization. When directories and subdirectories are given appropriate names and nesting, viewing the directory structure makes it easy to understand how the code base is organized, which is another instance of self-documentation."
       ]
    :href (clean-code-path {:topic declarative-topic})
    }

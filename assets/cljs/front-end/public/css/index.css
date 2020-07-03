@@ -293,7 +293,7 @@ a.link-text:hover {
 .Article {
   max-width: 1000px;
   margin: 0px auto;
-  padding: 20px 40px;
+  padding: 20px 40px 40px 40px;
   background-color: white;
   box-shadow: 1px 1px 5px 1px lightgrey;
   min-height: 100%;

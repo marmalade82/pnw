@@ -16,9 +16,9 @@
 
 (defn clean-code []
   [
-   declarative
    service
    adts
+   declarative
    ]
   )
 

@@ -48,9 +48,9 @@
           "home" (d/render [home-page {:label "Home"}] node)
           "blog" (d/render [construction-page {:label "Blog"}] node)
           "contact" (d/render [construction-page {:label "Contact"}] node )
-          ["work" topic] (d/render [work-page {:label "Work", :topic topic}] node)
-          ["clean-code" topic] (d/render [clean-code-page {:label "Clean Code", :topic topic}] node)
-          ["projects" topic] (d/render [project-page {:label "Projects", :topic topic}] node)
+          ["work" topic] (d/render [work-page {:label "Blog", :topic topic}] node)
+          ["clean-code" topic] (d/render [clean-code-page {:label "Blog", :topic topic}] node)
+          ["projects" topic] (d/render [project-page {:label "Blog", :topic topic}] node)
           :else ; If the route is unknown, we redirect to home. Otherwise
                 ; we retry the route
               (if @unknown-route

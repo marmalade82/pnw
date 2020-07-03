@@ -20,7 +20,8 @@
    :achievements
     ["Refactored, developed, and maintained an internal prehire hardware procurement application."
      "Fixed multiple gaps and bugs in a project portfolio management application created by another team."
-     "Provided debugging and hotfixes for the team's biweekly deployments"
+     "Provided debugging and hotfixes for the team's biweekly deployments."
+     "Provided updates and tweaks to the AngularJS customer portals."
       ]
    :start "Aug 2019"
    :end "Dec 2019"
@@ -33,9 +34,12 @@
   {:title "ServiceNow Developer"
    :company "Revature"
    :company_href "http://www.revature.com"
-   :description "Responsible for business analysis, form development, workflow implementation, database configuration, and testing"
+   :description "Responsible for business analysis, form development, workflow implementation, database configuration, and testing."
    :achievements
-     ["End"]
+   ["Worked with clients to translate requirements to technical specs."
+    "Performed functional testing and unit testing for deployment."
+    "Configured tables in the single table inheritance database."
+    ]
    :start "Jun 2018"
    :end "Jul 2019"
    :main_languages ["JavaScript", "HTML", "CSS", "AngularJS"]
