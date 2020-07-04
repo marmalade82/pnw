@@ -259,14 +259,40 @@ a.link-text:hover {
   flex: 1;
 }
 
+.HomePage-ProjectsList {
+  padding-inline-start: 0;
+  background-color: whitesmoke;
+  padding: 20px 20px;
+  box-shadow: 1px 1px 3px 1px lightgrey;
+}
+.HomePage-ProjectsList li {
+  list-style: none;
+}
+
 .HomePage-ProjectsList .ListItemContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-bottom: 0.5em;
 }
 
 .HomePage-Project-Title {
   font-weight: bold;
+  width: 110px;
+}
+
+.HomePage-Project-Link {
+  text-align: right;
+  width: 110px;
+  display: inline-block;
+}
+.HomePage-Project-Link span {
+  display: inline-block;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.HomePage-Work-Separator {
+  margin: 0 10px;
 }
 
 .Construction-Container {

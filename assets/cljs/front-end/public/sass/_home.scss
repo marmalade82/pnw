@@ -27,12 +27,40 @@
     flex: 1;
 }
 
+.HomePage-ProjectsList {
+    padding-inline-start: 0;
+    background-color: rgb(245, 245, 245);
+    padding: 20px 20px;
+    box-shadow: 1px 1px 3px 1px lightgrey;
+
+    li {
+        list-style: none;
+    }
+}
+
 .HomePage-ProjectsList .ListItemContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-bottom: 0.5em;
 }
 
 .HomePage-Project-Title {
     font-weight: bold;
+    width: 110px;
+}
+
+.HomePage-Project-Link {
+    text-align: right;
+    width: 110px;
+    display: inline-block;
+
+    span {
+        display: inline-block;
+        text-decoration: underline;
+        text-decoration-style: dotted;
+    }
+}
+
+.HomePage-Work-Separator {
+    margin: 0 10px;
 }

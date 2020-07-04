@@ -47,10 +47,10 @@
 
 (defn- render-project [{:keys [title description href ]}]
   [:<>
-   [link-text {:href href}
+   [link-text {:href href, :class "HomePage-Project-Link"}
     (body-text title "HomePage-Project-Title")
     ]
-    
+    (body-text "\u2022" "HomePage-Work-Separator")
     (body-text description "HomePage-Project-Description")
    ]
   )
