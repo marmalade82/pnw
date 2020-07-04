@@ -293,7 +293,7 @@ a.link-text:hover {
 .Article {
   max-width: 1000px;
   margin: 0px auto;
-  padding: 20px 40px 40px 40px;
+  padding: 40px 60px 40px 60px;
   background-color: white;
   box-shadow: 1px 1px 5px 1px lightgrey;
   min-height: 100%;
@@ -303,6 +303,12 @@ a.link-text:hover {
   background-color: whitesmoke;
   min-height: 100%;
   position: relative;
+}
+
+.Icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .WorkPage-Experience-Subheader {
@@ -350,6 +356,59 @@ a.link-text:hover {
   background-color: darkblue;
   color: white;
   margin-bottom: 20px;
+}
+
+.Project-Header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 0 30px 0;
+}
+
+.Project-Title {
+  margin: 0;
+  margin-right: 40px;
+}
+
+.Project-Header a {
+  color: #323232;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Project-Github {
+  padding: 10px 20px;
+  border-width: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: transparent;
+  background-color: #f0f0f0;
+}
+.Project-Github:not([disabled]):hover {
+  border-color: black;
+  background-color: white;
+}
+
+.Project-Live-Container {
+  background-color: #f0f0f0;
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: row;
+  border-width: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: transparent;
+}
+.Project-Live-Container:not([disabled]):hover {
+  border-color: black;
+  background-color: white;
+}
+
+.Project-Live-Container span {
+  margin: 0 5px;
 }
 
 /*# sourceMappingURL=index.css.map */

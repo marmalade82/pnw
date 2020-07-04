@@ -6,13 +6,13 @@
    ))
 
 (defn github [{:keys [class] :or {class ""}}]
-  [:span {:class ["Icon-Github" class]}
+  [:span {:class ["Icon" "Icon-Github" class]}
     octicons/mark-github
    ]
   )
 
 (defn website [{:keys [class] :or {class ""}}]
-  [:span {:class ["Icon-Website" class]}
+  [:span {:class ["Icon" "Icon-Website" class]}
     octicons/device-desktop
    ]
   )

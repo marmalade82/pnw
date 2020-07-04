@@ -20,11 +20,18 @@
   [:div {:class "Project"}
    [:div {:class "Project-Header"}
     [:h2 {:class "Project-Title"} title]
-    [:a {:href github_href}
-      [icons/github]
+    [:a {:href github_href
+         :target "_blank"
+         }
+      [icons/github {:class "Project-Github"}]
      ]
-    [:a {:href live_href} "Live"
+    [:a {:href live_href, :target "_blank"
+         }
+     [:div {:class "Project-Live-Container"}
+      [my-text {:class "Project-Live", :text "Live"}
+       ]
       [icons/website]
+      ]
      ]
     ]
    [:h3 {:class "Project-Description"} subtitle]
