@@ -27,7 +27,7 @@
        "I suppose it illustrates that working with immutable data does not always yield better code."
               ]
    :github_href "http://github.com"
-   :live_href "http://www.google.com"
+   :live_href nil
    }
   )
 
@@ -40,7 +40,7 @@
    :href (project-path {:topic spice-topic})
    :thoughts []
    :github_href "http://github.com"
-   :live_href "http://www.google.com"
+   :live_href nil
    }
   )
 
@@ -65,7 +65,9 @@
    :description "A simple appointment e-calendar application written in pure JavaScript. The first application where was forced to ignore my distaste for weakly typed languages"
    :href (project-path {:topic calendar-topic})
    :thoughts [
-       "Welcome! This is a React/CSS calendar web application. It allows the user to perform the CRUD cycle on infinite web calendar (using Moment.js). There is currently no backend for the data."
+       "This is a React/JS/CSS calendar web application. It allows the user to perform the CRUD cycle on infinite web calendar (using Moment.js). There is currently no backend for the data."
+       "Prior to writing this, I had largely avoided writing projects in pure JavaScript, preferring TypeScript for the compile-time type checks. Writing this in only JavaScript was largely a challenge to myself."
+       "While I did miss compile-time type-checking, I found that a project on this small scale was manageable without it, since it's unlikely that types will need to change much while adding features. But I still wouldn't choose to write larger projects in JavaScript. I have too many past experiences at work where the lack of type checking in large codebases has lead to obscure errors."
    ]
    :github_href "http://github.com"
    :live_href "http://www.google.com"

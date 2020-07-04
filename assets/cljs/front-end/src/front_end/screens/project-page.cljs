@@ -25,14 +25,15 @@
          }
       [icons/github {:class "Project-Github"}]
      ]
-    [:a {:href live_href, :target "_blank"
-         }
-     [:div {:class "Project-Live-Container"}
-      [my-text {:class "Project-Live", :text "Live"}
-       ]
-      [icons/website]
-      ]
-     ]
+    (if live_href 
+      [:a {:href live_href, :target "_blank"
+           }
+       [:div {:class "Project-Live-Container"}
+        [my-text {:class "Project-Live", :text "Live"}
+         ]
+        [icons/website]
+        ]
+       ])
     ]
    [:h3 {:class "Project-Description"} subtitle]
    (let [rendered (map render-thought thoughts)]
