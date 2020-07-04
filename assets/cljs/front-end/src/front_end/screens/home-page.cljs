@@ -1,5 +1,6 @@
 (ns front-end.screens.home-page
-  (:require [reagent.core :as r]
+  (:require
+            [reagent.core :as r]
             [reagent.dom :as d]
             [front-end.components.styled.ordered-list :refer [ordered-list]]
             [front-end.components.styled.unordered-list :refer [unordered-list]]
@@ -7,6 +8,7 @@
             [front-end.screens.home-page.data :as data]
             [front-end.components.styled.text :refer [my-text]]
             [front-end.components.styled.article :refer [article]]
+            [front-end.components.styled.link-text :refer [link-text]]
   ))
 
 
@@ -23,35 +25,33 @@
   [{:keys [title company description achievements start end href]}]
 
   [:<>
+   [link-text {:href href}
     (body-text title "HomePage-Work-Title")
+    ]
     [:div {:class "HomePage-Work-Subtitle"}
      (body-text company "HomePage-Work-Company")
      (body-text (str start " \u2013 " end) "HomePage-Work-Dates")
       ]
     (body-text description "HomePage-Work-Description")
-    [:a {:href href}
-      (body-text "Key accomplishments" "HomePage-Experience-Link")
-      ]
    ]
   )
 
 
 (defn- render-clean-code [{:keys [text href]}]
   [:<>
+   [link-text {:href href}
     (body-text text "HomePage-Clean-Description")
-    [:a {:href href}
-     (body-text "here" "HomePage-Clean-Link")
-      ]
+    ]
    ]
   )
 
 (defn- render-project [{:keys [title description href ]}]
   [:<>
+   [link-text {:href href}
     (body-text title "HomePage-Project-Title")
+    ]
+    
     (body-text description "HomePage-Project-Description")
-    [:a {:href href}
-     (body-text "here" "HomePage-Project-Link")
-      ]
    ]
   )
 

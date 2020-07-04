@@ -1,5 +1,6 @@
 
 @use 'constants';
+@use 'mixins';
 
 /**
  Contains styles that are reused 
@@ -16,7 +17,7 @@
  .Article {
     max-width: constants.$max-width;
     margin: 0px auto;
-    padding: 40px 60px 40px 60px;
+    padding: 60px 90px 60px 90px;
     background-color: white;
     box-shadow: 1px 1px 5px 1px lightgrey;
     min-height: 100%;
@@ -32,4 +33,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+ }
+
+ .LinkText {
+     text-decoration: underline;
+     text-decoration-style: dotted;
+     text-decoration-color: black;
+
+     @include mixins.hover {
+        text-decoration-color: grey;
+     }
+
+     span {
+         @include mixins.hover {
+             color: grey;
+         }
+     }
  }

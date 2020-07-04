@@ -11,7 +11,7 @@
    :description "An lexer generator written in PureScript that uses LL1 parsing internally"
    :href (project-path {:topic lexer-topic})
    :thoughts
-      ["Welcome! This is a lexer generator I wrote as part of my continued learning in Computer Science. I wrote it in PureScript as a challenge to myself, as some other projects that I had tried writing in Haskell/PureScript ended up failing before I had become completely comfortable with writing reasonably clean code within the paradigm and type system."
+      ["This is a lexer generator I wrote as part of my continued learning in Computer Science. I wrote it in PureScript as a challenge to myself, as some other projects that I had tried writing in Haskell/PureScript ended up failing before I had become completely comfortable with writing reasonably clean code within the paradigm and type system."
 
        "This was challenging to write for two reasons."
 
