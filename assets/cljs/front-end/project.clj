@@ -9,6 +9,7 @@
                  [org.clojure/core.async "1.2.603"]
                  [org.clojure/core.match "1.0.0"]
                  [reagent "0.10.0"]
+                 [hiccup-icons "0.4.2"]
                  [clj-commons/secretary "1.2.5-SNAPSHOT"]
                  [cljs-http "0.1.46"]]
 

@@ -6,6 +6,7 @@
     [front-end.screens.project-page.data :refer [get-project]]
     [front-end.components.styled.text :refer [my-text]]
     [front-end.components.styled.article :refer [article]]
+    [front-end.components.styled.icons :as icons]
    ))
 
 (defn render-thought [thought]
@@ -19,8 +20,13 @@
   [:div {:class "Project"}
    [:div {:class "Project-Header"}
     [:h2 {:class "Project-Title"} title]
-    [:a {:href github_href} "github"]
-    [:a {:href live_href} "live"]]
+    [:a {:href github_href}
+      [icons/github]
+     ]
+    [:a {:href live_href} "Live"
+      [icons/website]
+     ]
+    ]
    [:h3 {:class "Project-Description"} subtitle]
    (let [rendered (map render-thought thoughts)]
      (into [:div {:class "Project-Thoughts"}] rendered)
