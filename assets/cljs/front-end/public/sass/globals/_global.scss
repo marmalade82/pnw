@@ -1,6 +1,6 @@
 
-@use 'constants';
-@use 'mixins';
+@use 'globals/abstract/constants';
+@use 'globals/abstract/mixins';
 
 /**
  Contains styles that are reused 
@@ -50,3 +50,26 @@
          }
      }
  }
+
+%Header {
+}
+
+.Header-One {
+    @extend %Header;
+}
+
+.Header-Two {
+    @extend %Header;
+}
+
+.Header-Three {
+    @extend %Header;
+}
+
+.Header-Four {
+    @extend %Header;
+}
+
+.Header-Five {
+    @extend %Header;
+}

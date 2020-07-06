@@ -1,0 +1,5 @@
+@use "globals/abstract/mixins";
+
+.CleanCode-Title {
+    @include mixins.first-vertical;
+}

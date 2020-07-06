@@ -1,3 +1,47 @@
+/**
+ Contains styles that are reused 
+ across all pages, sections, etc.
+
+ Includes styles for globally reused 
+ JS components
+ */
+.Article-Container {
+  padding: 40px 0px 175px 0px;
+}
+
+.Article {
+  max-width: 1000px;
+  margin: 0px auto;
+  padding: 60px 90px 60px 90px;
+  background-color: white;
+  box-shadow: 1px 1px 5px 1px lightgrey;
+  min-height: 100%;
+}
+
+.Body {
+  background-color: whitesmoke;
+  min-height: 100%;
+  position: relative;
+}
+
+.Icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LinkText {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: black;
+}
+.LinkText:not([disabled]):hover {
+  text-decoration-color: grey;
+}
+.LinkText span:not([disabled]):hover {
+  color: grey;
+}
+
 .WorkPage-Experience-Company:hover, .Header-UnselectedMenuItem:hover, .Header-SelectedMenuItem:hover, .clickable:hover {
   cursor: pointer;
 }
@@ -170,6 +214,27 @@ a.link-text:hover {
   padding-inline-start: 30px;
 }
 
+.Footer-Container {
+  background-color: darkblue;
+  padding: 10px 20px 10px 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.Footer-Subcontainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: auto;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.Footer-Text {
+  color: white;
+}
+
 .Header-Container {
   display: flex;
   flex-direction: row;
@@ -212,25 +277,23 @@ a.link-text:hover {
   display: contents;
 }
 
-.Footer-Container {
-  background-color: darkblue;
-  padding: 10px 20px 10px 20px;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+.CleanCode-Title {
+  margin-top: 0;
 }
 
-.Footer-Subcontainer {
+.Construction-Container {
+  text-align: center;
+  min-height: 75vh;
   display: flex;
   flex-direction: column;
-  max-width: 1000px;
-  margin: auto;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
+  font-size: 2em;
+  line-height: 1.25em;
 }
 
-.Footer-Text {
-  color: white;
+.HomePage-WorkExperienceHeader {
+  margin-top: 0;
 }
 
 .HomePage-WorkList .ListItemContainer {
@@ -294,59 +357,62 @@ a.link-text:hover {
   margin: 0 10px;
 }
 
-.Construction-Container {
-  text-align: center;
-  min-height: 75vh;
+.Project-Header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 0 30px 0;
+  margin-top: 0;
+}
+
+.Project-Title {
+  margin: 0;
+  margin-right: 40px;
+}
+
+.Project-Header a {
+  color: #323232;
+  margin-right: 20px;
+  display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2em;
-  line-height: 1.25em;
 }
 
-/**
- Contains styles that are reused 
- across all pages, sections, etc.
-
- Includes styles for globally reused 
- JS components
- */
-.Article-Container {
-  padding: 40px 0px 175px 0px;
+.Project-Github {
+  padding: 10px 20px;
+  border-width: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: transparent;
+  background-color: #f0f0f0;
 }
-
-.Article {
-  max-width: 1000px;
-  margin: 0px auto;
-  padding: 60px 90px 60px 90px;
+.Project-Github:not([disabled]):hover {
+  border-color: black;
   background-color: white;
-  box-shadow: 1px 1px 5px 1px lightgrey;
-  min-height: 100%;
 }
 
-.Body {
-  background-color: whitesmoke;
-  min-height: 100%;
-  position: relative;
-}
-
-.Icon {
+.Project-Live-Container {
+  background-color: #f0f0f0;
+  padding: 10px 15px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  border-width: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: transparent;
+}
+.Project-Live-Container:not([disabled]):hover {
+  border-color: black;
+  background-color: white;
 }
 
-.LinkText {
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  text-decoration-color: black;
+.Project-Live-Container span {
+  margin: 0 5px;
 }
-.LinkText:not([disabled]):hover {
-  text-decoration-color: grey;
-}
-.LinkText span:not([disabled]):hover {
-  color: grey;
+
+.WorkPage-Experience-Title {
+  margin-top: 0;
 }
 
 .WorkPage-Experience-Subheader {
@@ -394,59 +460,6 @@ a.link-text:hover {
   background-color: darkblue;
   color: white;
   margin-bottom: 20px;
-}
-
-.Project-Header {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 0 0 30px 0;
-}
-
-.Project-Title {
-  margin: 0;
-  margin-right: 40px;
-}
-
-.Project-Header a {
-  color: #323232;
-  margin-right: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.Project-Github {
-  padding: 10px 20px;
-  border-width: 1px;
-  border-radius: 5px;
-  border-style: solid;
-  border-color: transparent;
-  background-color: #f0f0f0;
-}
-.Project-Github:not([disabled]):hover {
-  border-color: black;
-  background-color: white;
-}
-
-.Project-Live-Container {
-  background-color: #f0f0f0;
-  padding: 10px 15px;
-  display: flex;
-  flex-direction: row;
-  border-width: 1px;
-  border-radius: 5px;
-  border-style: solid;
-  border-color: transparent;
-}
-.Project-Live-Container:not([disabled]):hover {
-  border-color: black;
-  background-color: white;
-}
-
-.Project-Live-Container span {
-  margin: 0 5px;
 }
 
 /*# sourceMappingURL=index.css.map */

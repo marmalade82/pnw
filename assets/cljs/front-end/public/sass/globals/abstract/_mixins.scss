@@ -5,3 +5,7 @@
         @content;
     }
 }
+
+@mixin first-vertical {
+    margin-top: 0;
+}

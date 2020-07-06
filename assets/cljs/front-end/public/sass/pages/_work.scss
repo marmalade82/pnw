@@ -1,5 +1,9 @@
-@use 'mixins';
-@use 'clickable';
+@use 'globals/abstract/mixins';
+@use 'globals/abstract/clickable';
+
+.WorkPage-Experience-Title {
+    @include mixins.first-vertical;
+}
 
 .WorkPage-Experience-Subheader {
     display: flex;

@@ -1,5 +1,10 @@
-@use 'constants';
+@use 'globals/abstract/constants';
+@use 'globals/abstract/mixins';
 
+
+.HomePage-WorkExperienceHeader {
+    @include mixins.first-vertical;
+}
 
 .HomePage-WorkList .ListItemContainer {
     color: black;
@@ -7,6 +12,7 @@
     flex-direction: column;
     margin-bottom: 1em;
 }
+
 
 .HomePage-Work-Title {
     font-weight: bold;

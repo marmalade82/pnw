@@ -1,6 +1,6 @@
-@use 'clickable';
-@use 'mixins';
-@use 'constants';
+@use 'globals/abstract/clickable';
+@use 'globals/abstract/mixins';
+@use 'globals/abstract/constants';
 
 .Header-Container {
     display: flex;
