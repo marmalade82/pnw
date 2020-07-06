@@ -19,7 +19,7 @@
                       ]
   [:div {:class "Project"}
    [:div {:class "Project-Header"}
-    [:h2 {:class "Project-Title"} title]
+    [my-text {:class "Project-Title", :type "2", :text  title}]
     [:a {:href github_href
          :target "_blank"
          }
@@ -35,7 +35,7 @@
         ]
        ])
     ]
-   [:h3 {:class "Project-Description"} subtitle]
+   [my-text {:class "Project-Description", :type "3", :text  subtitle}]
    (let [rendered (map render-thought thoughts)]
      (into [:div {:class "Project-Thoughts"}] rendered)
      )

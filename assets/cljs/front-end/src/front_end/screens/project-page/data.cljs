@@ -8,7 +8,7 @@
 (def lexer
   {:title "lexer-gen"
    :subtitle "Parsing in PureScript"
-   :description "An lexer generator written in PureScript that uses LL1 parsing internally"
+   :description "An lexer generator written in PureScript (uses LL1 parsing internally)."
    :href (project-path {:topic lexer-topic})
    :thoughts
       ["This is a lexer generator I wrote as part of my continued learning in Computer Science. I wrote it in PureScript as a challenge to myself, as some other projects that I had tried writing in Haskell/PureScript ended up failing before I had become completely comfortable with writing reasonably clean code within the paradigm and type system."
@@ -36,7 +36,7 @@
 (def spice
   {:title "spice"
    :subtitle "Task Management?"
-   :description "A task management application written in TypeScript/React Native for Android"
+   :description "A task management application written in TypeScript/React Native for Android."
    :href (project-path {:topic spice-topic})
    :thoughts []
    :github_href "http://github.com"
@@ -49,7 +49,7 @@
 (def devhub
   {:title "dev-hub"
    :subtitle "Team building and Git"
-   :description "A portfolio web application written with React and Ruby on Rails as part of a Chingu Voyage 19. A fun experience collaborating with fellow learners in a collaborative environment"
+   :description "A portfolio web application written with React and Ruby on Rails as part of a Chingu Voyage 19. A fun experience collaborating with fellow learners in a collaborative environment."
    :href (project-path {:topic devhub-topic})
    :thoughts []
    :github_href "http://github.com"
@@ -62,7 +62,7 @@
 (def calendar
   {:title "e-calendar"
    :subtitle "Getting comfy with JS"
-   :description "A simple appointment e-calendar application written in pure JavaScript. The first application where was forced to ignore my distaste for weakly typed languages"
+   :description "A simple appointment e-calendar application written in JavaScript/React."
    :href (project-path {:topic calendar-topic})
    :thoughts [
        "This is a React/JS/CSS calendar web application. It allows the user to perform the CRUD cycle on infinite web calendar (using Moment.js). There is currently no backend for the data."

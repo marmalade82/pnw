@@ -23,10 +23,10 @@
 
 (defn render-work-experience [{:keys [title company company_href description achievements start end main_languages]}]
   [:div {:class "WorkPage-Experience"}
-   [:h2 {:class "WorkPage-Experience-Title"} title]
+   [my-text {:class "WorkPage-Experience-Title", :type "2", :text title}]
    [:div {:class "WorkPage-Experience-Subheader"}
     [:a {:href company_href}
-     [:h3 {:class "WorkPage-Experience-Company"} company]]
+     [my-text {:class "WorkPage-Experience-Company", :type "3", :text  company}]]
     [my-text {:class "WorkPage-Experience-Dates",
               :text  (str start " \u2013 " end)}]]
    [my-text {:class "WorkPage-Experience-Description",

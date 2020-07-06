@@ -17,7 +17,7 @@
 
 (defn render-clean-code [{:keys [text paragraphs]}]
   [:div {:class "CleanCode"}
-    [:h2 {:class "CleanCode-Title"} text]
+    [my-text {:class "CleanCode-Title", :text text, :type "2"}]
    (let [rendered (map render-paragraph paragraphs)]
      (into [:div {:class "Clean-Code-Paragraphs"}] rendered)
      )
@@ -26,8 +26,6 @@
 
 (defn clean-code-page [{:keys [label topic]}]
   (let [clean (get-clean-code topic)]
-    (js/console.log topic)
-    (js/console.log clean)
     (fn [] 
       [layout {:label label}
        [article {:class "CleanCodePage-Container"}

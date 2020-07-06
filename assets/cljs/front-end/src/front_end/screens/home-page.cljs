@@ -62,25 +62,22 @@
         ]
     [layout {:label label}
       [ article {:class "HomePage-Container" }
-        (body-text
-        "My name is Howard. I'm a full-stack developer who loves the backend!"
-        )
 
-        [:h3 {:class "HomePage-WorkExperienceHeader"}
-        "Work experience"
+        [my-text {:class "HomePage-WorkExperienceHeader", 
+                :type "3", :text "Work Experience"}
         ]
         (into [ordered-list {:class "HomePage-WorkList"}] work-experience)
 
-        [:h3 {:class "HomePage-CleanCodeHeader"}
-        "Approach to clean code" 
+       [my-text {:class "HomePage-CleanCodeHeader" :type "3" 
+                 :text "Approach to clean code"} 
         ]
         (body-text
         "To me, clean code has three major components:"
         )
         (into [ordered-list {:class "HomePage-CleanCodeList"}] clean-code)
 
-        [:h3 {:class "HomePage-ProjectsHeader"}
-        "Personal projects"
+       [my-text {:class "HomePage-ProjectsHeader", :type "3",
+                 :text "Personal projects"}
         ]
         (into [unordered-list {:class "HomePage-ProjectsList"}] projects)
 

@@ -14,3 +14,14 @@
     "5" [:h5 {:class ["header-5"]} text]
     ))
 
+
+(defn my-header-text [{:keys [class type text] :or {class "", text ""}}]
+  (case type
+   "1" [:h1 {:class ["Header-One" class]} text]
+   "2" [:h2 {:class ["Header-Two" class]} text]
+   "3" [:h3 {:class ["Header-Three" class]} text]
+   "4" [:h4 {:class ["Header-Four" class]} text]
+   "5" [:h5 {:class ["Header-Five" class]} text]
+   [:span {:class "Not Found"}]
+  )
+)
