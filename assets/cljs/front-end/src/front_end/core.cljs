@@ -20,6 +20,7 @@
       [front-end.screens.clean-code-page :refer [clean-code-page]]
       [front-end.screens.admin-login :refer [admin-login]]
       [front-end.screens.project-page :refer [project-page]]
+      [front-end.screens.contact-page :refer [contact-page]]
       ))
 
 ;; -------------------------
@@ -55,7 +56,7 @@
     (match target
           "home" (render home-page {:label "Home"})
           "blog" (render construction-page {:label "Blog"})
-          "contact" (render construction-page {:label "Contact"})
+          "contact" (render contact-page {:label "Contact"})
           ["work" topic] (render work-page {:label "Blog", :topic topic})
           ["clean-code" topic] (render clean-code-page {:label "Blog", :topic topic} )
           ["projects" topic] (render project-page {:label "Blog", :topic topic} )

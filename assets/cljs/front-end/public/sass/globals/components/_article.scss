@@ -1,0 +1,14 @@
+@use 'globals/abstract/constants';
+
+ .Article-Container {
+    padding: 40px 0px 175px 0px;
+ }
+
+ .Article {
+    max-width: constants.$max-width;
+    margin: 0px auto;
+    padding: 90px 90px 60px 90px;
+    background-color: white;
+    box-shadow: 1px 1px 5px 1px lightgrey;
+    min-height: 100%;
+ }

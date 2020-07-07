@@ -1,0 +1,5 @@
+@use 'globals/abstract/mixins';
+
+.ContactPage-Title {
+    @include mixins.first-vertical;
+}

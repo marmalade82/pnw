@@ -5,19 +5,6 @@
  Includes styles for globally reused 
  JS components
  */
-.Article-Container {
-  padding: 40px 0px 175px 0px;
-}
-
-.Article {
-  max-width: 1000px;
-  margin: 0px auto;
-  padding: 60px 90px 60px 90px;
-  background-color: white;
-  box-shadow: 1px 1px 5px 1px lightgrey;
-  min-height: 100%;
-}
-
 .Body {
   background-color: whitesmoke;
   min-height: 100%;
@@ -277,6 +264,19 @@ a.link-text:hover {
   display: contents;
 }
 
+.Article-Container {
+  padding: 40px 0px 175px 0px;
+}
+
+.Article {
+  max-width: 1000px;
+  margin: 0px auto;
+  padding: 90px 90px 60px 90px;
+  background-color: white;
+  box-shadow: 1px 1px 5px 1px lightgrey;
+  min-height: 100%;
+}
+
 .CleanCode-Title {
   margin-top: 0;
 }
@@ -460,6 +460,10 @@ a.link-text:hover {
   background-color: darkblue;
   color: white;
   margin-bottom: 20px;
+}
+
+.ContactPage-Title {
+  margin-top: 0;
 }
 
 /*# sourceMappingURL=index.css.map */
