@@ -1,4 +1,4 @@
-(ns front-end.screens.contact-page.interface)
+(ns front-end.screens.contactpage.interface)
 
 
 (defprotocol IComposableForm
