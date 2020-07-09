@@ -115,31 +115,30 @@
     )
   )
 
-
-
 ; This macro should generate a class and implementation of 
 ; the form protocol
 (defmacro form "Defines a form and the hooks into it"
-  [name & rest] ; rest are a list of scopes and validations
+  [name ratom & forms] ; rest are a list of scopes and validations
   `(do
-     (defrecord ~name [values errors])
-     (defn ~(symbol (str "mk-" name))
-       (let [values (r/atom {})
-             errors (r/atom {})
+     (defrecord ~name [~'values ~'errors])
+     (defn ~(symbol (str "mk-" name)) []
+       (let [~'values (~ratom {})
+             ~'errors (~ratom {})
              ]
-         (~(symbol (str name ".")) values errors)
+         (~(symbol (str name ".")) 'values 'errors)
          )
        )
      ; When we initialize the form, we use the scopes and validations 
      ; to build a top level scope and then use that to generate the rest
      ; of the functions on the record
-     ~(let [global-scope-tree
+     ~(let [rest (map #(macroexpand %) forms)
+            global-scope-tree
             { :tag :scope
              :name "global"
              :id "global"
              :triggers (build-validator-map (get-validators rest))
-             :fields ~(get-fields rest)
-             :scopes ~(build-scope-map (get-child-scopes rest))
+             :fields (get-fields rest)
+             :scopes (build-scope-map (get-child-scopes rest))
              }
             ]
         `(extend-type ~name

@@ -1,6 +1,7 @@
 (ns front-end.screens.contactpage.form-macros-tests
   (:require
    [front-end.screens.contactpage.form-macros :refer [validate fields scope]]
+   [front-end.screens.contactpage.test-forms.top-level-form :as tlf]
    )
   )
 
@@ -62,5 +63,13 @@
     (is (= #{:first :second :third} (set (keys (:triggers s)))))
     (is (= 2 (count (:scopes s))))
     (is (= #{:banana :orange} (set (keys (:scopes s)))))
+    )
+  )
+
+
+(deftest test-toplevelform
+  (let [form (tlf/mk-TopLevelForm)]
+    (is {} (:errors form))
+    (is {} (:values form))
     )
   )

@@ -13,6 +13,6 @@
 
 
 (scope test id-test
-    (validate [fourth second] '(1) )
+       (validate [fourth second] '(1) )
        )
 
