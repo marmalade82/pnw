@@ -1,4 +1,7 @@
-(ns front-end.screens.contactpage.form-macros)
+(ns front-end.screens.contactpage.form-macros
+  (:require
+   [clojure.set :refer [difference]])
+  )
 
 
 (defmacro validate "Transforms a validation spec into a data structure"
@@ -16,6 +19,13 @@
     }
   )
 
+(defmacro fields "Declares a set of fields in the form or scope macros"
+  [first & rest]
+  `{ :tag :fields
+     :fields [~(keyword first) ~@(map #(keyword %) rest)] 
+     }
+  )
+
 (defn get-validators [rest]
   (filter #(= :validate (:tag %)) rest)
   )
@@ -31,9 +41,39 @@
     )
   )
 
-(defn get-fields [validators]
-  (let [all-fields (reduce #(into %1 (:fields %2)) [] validators)]
-    (into [] (distinct all-fields))
+(defn get-validator-fields
+  [rest]
+  (let [validators (get-validators rest)
+        fields (reduce #(into %1 (:fields %2)) [] validators)
+        ]
+    (distinct fields)
+    )
+  )
+
+(defn get-declared-fields
+  [rest]
+  (let [declarations (filter #(= :fields (:tag %)) rest)
+        fields (reduce #(into %1 (:fields %2)) [] declarations)
+        ]
+    (distinct fields)
+    )
+  )
+
+(defn get-fields "Gets set of fields in the top level of the scope. Throws error if one is not declared"
+  [rest]
+  (let [
+        validator-fields (set (get-validator-fields rest))
+        declared-fields (set (get-declared-fields rest))
+        undeclared-fields (difference validator-fields declared-fields)
+        ]
+    (if (empty? undeclared-fields)
+        (into [] declared-fields)
+        (throw
+         (ex-info "Undeclared fields in scope" {:tag :undeclared-fields
+                                                :fields undeclared-fields
+                                                })
+         )
+      )
     )
   )
 
