@@ -8,7 +8,7 @@
   [fields body]
   `{ :fields ~(into [] (map keyword fields))
      :validate (fn [~'errors ~'store] 
-                ~(let [
+                ~(let [ b body
                        l (into []
                                (mapcat #(identity [% (list (keyword %) 'store)]) fields))]
                    `(let ~l
@@ -20,9 +20,9 @@
   )
 
 (defmacro fields "Declares a set of fields in the form or scope macros"
-  [first & rest]
+  [fields]
   `{ :tag :fields
-     :fields [~(keyword first) ~@(map #(keyword %) rest)] 
+    :fields ~(into [] (map #(keyword %) fields))
      }
   )
 
@@ -59,6 +59,10 @@
     )
   )
 
+(defn resty [a & rest]
+  `~rest
+  )
+
 (defn get-fields "Gets set of fields in the top level of the scope. Throws error if one is not declared"
   [rest]
   (let [
@@ -69,7 +73,7 @@
     (if (empty? undeclared-fields)
         (into [] declared-fields)
         (throw
-         (ex-info "Undeclared fields in scope" {:tag :undeclared-fields
+         (ex-info (str "Undeclared fields in scope: " undeclared-fields) {:tag :undeclared-fields
                                                 :fields undeclared-fields
                                                 })
          )
@@ -98,15 +102,17 @@
   )
 
 (defmacro scope "Declares a scope for a given set of fields, for access purposes"
-  [name id & rest]
-  `{ :tag :scope
-    :name ~(keyword name)
-    :id ~(keyword id) 
-     ; map from keywords to validator functions that must run
-    :triggers ~(build-validator-map (get-validators rest))
-    :fields ~(get-fields rest)
-    :scopes ~(build-scope-map (get-child-scopes rest))
-    }
+  [name id & forms]
+  (let [rest (map #(macroexpand %) forms)]
+    `{ :tag :scope
+      :name ~(keyword name)
+      :id ~(keyword id) 
+                                        ; map from keywords to validator functions that must run
+      :triggers ~(build-validator-map (get-validators rest))
+      :fields ~(get-fields rest)
+      :scopes ~(build-scope-map (get-child-scopes rest))
+      }
+    )
   )
 
 
