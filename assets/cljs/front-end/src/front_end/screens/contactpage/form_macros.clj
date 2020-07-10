@@ -1,6 +1,8 @@
 (ns front-end.screens.contactpage.form-macros
   (:require
-   [clojure.set :refer [difference]])
+   [clojure.set :refer [difference]]
+   [front-end.screens.contactpage.interface :refer [IComposableForm]]
+   )
   )
 
 
@@ -8,8 +10,7 @@
   [fields body]
   `{ :fields ~(into [] (map keyword fields))
      :validate (fn [~'errors ~'store] 
-                ~(let [ b body
-                       l (into []
+                ~(let [l (into []
                                (mapcat #(identity [% (list (keyword %) 'store)]) fields))]
                    `(let ~l
                       ~body
@@ -115,51 +116,111 @@
     )
   )
 
+(defn errors-map [scope-tree]
+  (into {} (for [[field values] scope-tree] [field (:error values)]))
+  )
+
+(defn values-map [scope-tree]
+  (into {} (for [[field values] scope-tree] [field (:value values)]))
+  )
+
+(defn build-state* [scope-tree state-tree]
+  ;TODO need to check that scopes don't share names as fields or other scopes
+  (if (and (nil? (:fields scope-tree)) (nil? (:scopes scope-tree)))
+    state-tree
+    (let [
+          add-field (fn [acc field]
+                        (assoc acc field { :value nil
+                                          :error nil 
+                                          :triggers (field (:triggers scope-tree))
+                                          })
+                      )
+          new-tree (reduce add-field {} (:fields scope-tree))]
+       ; TODO This also needs to merge in the scopes
+       (assoc state-tree (:name scope-tree) new-tree )
+      )
+    )
+  
+  )
+
+
+(defn build-state [scope-tree]
+  (let [initial-build (build-state* scope-tree {})
+        final-build (get initial-build "global" {})
+        ]
+       final-build
+    )
+  )
+
+
 ; This macro should generate a class and implementation of 
 ; the form protocol
 (defmacro form "Defines a form and the hooks into it"
   [name ratom & forms] ; rest are a list of scopes and validations
-  `(do
-     (defrecord ~name [~'values ~'errors])
-     (defn ~(symbol (str "mk-" name)) []
-       (let [~'values (~ratom {})
-             ~'errors (~ratom {})
-             ]
-         (~(symbol (str name ".")) 'values 'errors)
-         )
-       )
-     ; When we initialize the form, we use the scopes and validations 
-     ; to build a top level scope and then use that to generate the rest
-     ; of the functions on the record
-     ~(let [rest (map #(macroexpand %) forms)
-            global-scope-tree
-            { :tag :scope
-             :name "global"
-             :id "global"
-             :triggers (build-validator-map (get-validators rest))
-             :fields (get-fields rest)
-             :scopes (build-scope-map (get-child-scopes rest))
-             }
-            ]
-        `(extend-type ~name
-            IComposableForm
-            (my-input [this field new-val]
-              (let [values (:values this)]
-                (if (contains? @values field) (swap! values #(assoc % field new-val)))
+  (let [rest (map #(macroexpand %) forms)
+         global-scope-tree
+         { :tag :scope
+          :name "global"
+          :id "global"
+          :triggers (build-validator-map (get-validators rest))
+          :fields (get-fields rest)
+          :scopes (build-scope-map (get-child-scopes rest))
+          }
+         initial_state (build-state global-scope-tree)
+         ]
+     `(do
+        (defrecord ~name [~'values ~'errors])
+        (defn ~(symbol (str "mk-" name)) [{:keys [~'initial] :or {~'initial {}}}]
+          (let [~'values (~ratom (merge-with #(assoc %1 :value %2)
+                                  ~initial_state ~'initial))
+                ~'errors (~ratom {})
+                ~'form (~(symbol (str name ".")) ~'values ~'errors)
+                ]
+                ~'form
+            )
+          )
+        (defn ~'refresh-validate [~'values]
+          ~'values
+          )
+          (extend-type ~name
+              ~'IComposableForm
+              (my-input [~'this ~'field ~'new-val]
+                (let [~'values (:values ~'this)]
+                  (if (contains? @~'values ~'field) (swap! ~'values #(assoc % ~'field ~'new-val)))
+                  ))
+              (my-error [~'this ~'field]
+                (let [~'values @(:values ~'this)]
+                  (if (contains? ~'values ~'field)
+                    (:error (~'field ~'values))
+                    "banana"
+                    )
+                  )
+                )
+              (my-value ;TODO: Would like to add field name checking here
+                [~'this ~'field ~'default]
+                (let [~'values (:values ~'this)
+                      ~'val (:value (~'field @~'values))
+                      ]
+                  (if (nil? ~'val)
+                     ~'default 
+                     ~'val
+                    )
                 ))
-            (my-error [this field]
-              (let [errors (:errors this)]
-                (if (contains? @errors field) (field @errors))
+              (all-data [~'this]
+                (let [~'values @(:values ~'this)]
+                  (into {} (for [[~'k ~'v] ~'values] [~'k (:value ~'v)]))
+                  )
+                )
+              (revalidate [~'this ~'field]
+                ~'nil
+                )
+              (refresh [~'this]
+                (let [~'values-atom (:values ~'this)
+                      ~'values @~'values-atom
+                      ]
+                   (reset! ~'values-atom (~'refresh-validate ~'values))
+                  )
                 )
               )
-            (my-value [this field]
-              (let [values (:values this)]
-                (field @values))
-              )
-            (all-data [this field]
-              (let [values (:values this)]
-                values)
-              )
-            ))
-    )
+        ))
   )

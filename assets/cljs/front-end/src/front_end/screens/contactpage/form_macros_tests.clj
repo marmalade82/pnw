@@ -1,7 +1,10 @@
 (ns front-end.screens.contactpage.form-macros-tests
   (:require
-   [front-end.screens.contactpage.form-macros :refer [validate fields scope]]
+   [front-end.screens.contactpage.form-macros :refer
+    [validate fields scope]]
    [front-end.screens.contactpage.test-forms.top-level-form :as tlf]
+   [front-end.screens.contactpage.interface :refer
+    [IComposableForm my-input my-value all-data my-error]]
    )
   )
 
@@ -68,8 +71,12 @@
 
 
 (deftest test-toplevelform
-  (let [form (tlf/mk-TopLevelForm)]
-    (is {} (:errors form))
-    (is {} (:values form))
+  (let [form (tlf/mk-TopLevelForm {:initial {:first 1}})]
+    (is (= 0  (count @(:errors form))))
+    (is (= 3 (count @(:values form))))
+    (is (= 1 (my-value form :first 2)))
+    (is (= 2 (my-value form :second 2)))
+    (is (= {:first 1, :second nil, :third nil} (all-data form)))
+    (is (= "Oops" (my-error form :first)))
     )
   )
