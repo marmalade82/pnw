@@ -55,28 +55,45 @@
   )
 
 
-(defn contact-page []
-  [layout {:label "Contact"}
-   [:div]
-   [article {:class "ContactPage-Container"}
-      [my-text {:class "ContactPage-Title", :type "3", :text "Contact Me"}]
-    [f/form { :prevent-default? true
-              :clean-on-unmount? true
-              :path :contact-form
-              :on-submit (fn [{:keys [state path values dirty reset]}]
-                           (swap! state #(assoc-in % [path :submitting?] true))
-                           (go
-                             (let [r-chan (request/send-contact values)
-                                   resp (<! r-chan)
-                                   ]
-                                (swap! state #(assoc-in % [path :submitting?] false))
-                               )
-                             )
+(defn render-form [stage]
+  [f/form { :prevent-default? true
+           :clean-on-unmount? true
+           :path :contact-form
+           :on-submit (fn [{:keys [state path values dirty reset]}]
+                        (js/console.log reset)
+                        (js/console.log values)
+                        (swap! state #(assoc-in % [path :submitting?] true))
+                        (go
+                          (let [r-chan (request/send-contact values)
+                                resp (<! r-chan)
+                                ]
+                            (swap! state #(assoc-in % [path :submitting?] false))
+                            (reset! stage :thanks)
+                            )
                           )
-             }
-      contact-form
-     ]
-    ]
+                        )
+           }
+   contact-form
    ]
+  )
+
+(defn render-thanks [stage]
+  [my-text {:class "ContactPage-ThanksMessage" :text "Your message has been sent :)"}]
+  )
+
+(defn contact-page []
+  (let [stage (r/atom :form)]
+    (fn [] 
+      [layout {:label "Contact"}
+       [article {:class "ContactPage-Container"}
+        [my-text {:class "ContactPage-Title", :type "3", :text "Contact Me"}]
+        (cond
+          (= @stage :form) [render-form stage]
+          (= @stage :sent) [render-thanks stage]
+          :else [render-thanks stage]
+          )
+        ]
+       ])
+    )
   )
 

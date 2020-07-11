@@ -1,23 +1,32 @@
 (ns front-end.components.styled.header
   (:require [reagent.core :as r]
             [reagent.dom :as d]
-            [front-end.routes :refer [root-path blog-path contact-path] ]
+            [front-end.components.styled.header.menu-items :refer [menu-items]]
             ))
 
-(defn- menu-items []
-  [{:label "Home", :href (root-path)}
-   {:label "Blog", :href (blog-path)}
-   {:label "Contact", :href (contact-path)}
+
+(defn- render-submenu-item [item]
+  [:a {:href (:href item)
+       :class "Header-SubmenuItemLink"
+       }
+   [:span {:class ["Header-SubmenuItem"]}
+    (:label item)
+    ]
    ]
   )
 
 ; A simple component for menu items
 (defn- render-menu-item [{:keys [label item]}]
-  [:a {:href (:href item)
-       :class "Header-MenuItemLink"}
-   [:span {:class [(if (= label (:label item)) "Header-SelectedMenuItem" "Header-UnselectedMenuItem")]}
-    (:label item)
+  [:div {:class "Header-MenuItemContainer"}
+   [:a {:href (:href item)
+        :class "Header-MenuItemLink"}
+    [:span {:class [(if (= label (:label item)) "Header-SelectedMenuItem" "Header-UnselectedMenuItem")]}
+     (:label item)
+     ]
     ]
+   (into [:div {:class "Header-SubmenuContainer"}]
+         (map render-submenu-item (:children item))
+         )
    ]
   )
 

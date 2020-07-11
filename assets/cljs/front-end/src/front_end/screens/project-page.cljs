@@ -44,7 +44,6 @@
 
 (defn project-page [{:keys [label topic]}]
   (let [project (get-project topic)]
-    (fn []
       [layout {:label label}
        [article {:class "ProjectPage-Article"
                   }
@@ -52,6 +51,5 @@
         ]
        ]
       )
-    )
   )
 

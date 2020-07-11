@@ -14,7 +14,7 @@
       (cond
         (nil? target) (js/setTimeout (fn []
                                        (go (>! res-chan {:tag :ignore}))
-                                       ) 3000)
+                                       ) 1000)
         :else (>! res-chan {:tag :ignore})
         ))
       res-chan

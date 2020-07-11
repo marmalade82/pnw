@@ -29,7 +29,7 @@
   color: grey;
 }
 
-.WorkPage-Experience-Company:hover, .Header-UnselectedMenuItem:hover, .Header-SelectedMenuItem:hover, .clickable:hover {
+.WorkPage-Experience-Company:hover, .Header-UnselectedMenuItem:hover, .Header-SelectedMenuItem:hover, .Header-SubmenuItem:hover, .clickable:hover {
   cursor: pointer;
 }
 
@@ -238,13 +238,15 @@ a.link-text:hover {
 }
 
 .Header-SelectedMenuItem, .Header-UnselectedMenuItem {
-  width: 100px;
+  min-width: 100px;
+  height: auto;
   padding: 10px 20px;
   text-align: center;
   background-color: transparent;
   border-width: 7px 0 7px 0;
   border-style: solid;
   border-color: transparent;
+  white-space: nowrap;
 }
 
 .Header-SelectedMenuItem:not([disabled]):hover, .Header-UnselectedMenuItem:not([disabled]):hover {
@@ -260,8 +262,52 @@ a.link-text:hover {
   font-weight: bold;
 }
 
-.Header-MenuItemLink {
+.Header-MenuItemLink, .Header-SubmenuItemLink {
   display: contents;
+}
+
+.Header-MenuItemContainer {
+  position: relative;
+  display: flex;
+}
+.Header-MenuItemContainer:not([disabled]):hover .Header-SubmenuContainer {
+  transition: opacity 0.2s;
+  display: block;
+  opacity: 1;
+}
+
+.Header-SubmenuContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  background-color: #7d7d7d;
+  top: 100%;
+  left: 0;
+  display: none;
+  opacity: 0;
+}
+
+.Header-SubmenuItem:not([disabled]):hover {
+  background-color: #646464;
+}
+
+.Header-SubmenuItem {
+  min-width: 100px;
+  height: auto;
+  padding: 10px 20px;
+  text-align: center;
+  background-color: transparent;
+  border-style: solid;
+  border-color: transparent;
+  text-align: left;
+  color: white;
+  z-index: 1;
+  border: 0;
+  display: flex;
+  font-size: 0.9em;
+  white-space: nowrap;
 }
 
 .Article-Container {

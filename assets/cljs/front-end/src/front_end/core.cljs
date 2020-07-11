@@ -46,6 +46,7 @@
   (let [node (.getElementById js/document "app")]
     (do
       (d/render [page attrs] node)
+      (js/console.log (-> attrs (clj->js) (js/JSON.stringify)))
       (.scrollTo js/window 0 0)
       ))
   )
@@ -59,7 +60,7 @@
           "contact" (render contact-page {:label "Contact"})
           ["work" topic] (render work-page {:label "Blog", :topic topic})
           ["clean-code" topic] (render clean-code-page {:label "Blog", :topic topic} )
-          ["projects" topic] (render project-page {:label "Blog", :topic topic} )
+          ["projects" topic] (render project-page {:label "Projects", :topic topic} )
           :else ; If the route is unknown, we redirect
                 ; to home. Otherwise
                 ; we retry the route

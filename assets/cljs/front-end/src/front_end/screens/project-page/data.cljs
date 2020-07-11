@@ -82,3 +82,8 @@
     nil
     )
   )
+
+(defn get-all-projects []
+  [lexer spice devhub calendar
+   ]
+  )
