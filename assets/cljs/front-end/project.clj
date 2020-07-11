@@ -11,6 +11,8 @@
                  [reagent "0.10.0"]
                  [hiccup-icons "0.4.2"]
                  [clj-commons/secretary "1.2.5-SNAPSHOT"]
+                 [fork "2.0.0"]
+                 [environ "1.2.0"]
                  [cljs-http "0.1.46"]]
 
   :plugins [[lein-cljsbuild "1.1.7"]
@@ -60,8 +62,20 @@
 
   :aliases {"package" ["do" "clean" ["cljsbuild" "once" "release"]]}
 
-  :profiles {:dev {:source-paths ["src" "env/dev/clj"]
+  :profiles {:project/dev {:source-paths ["src" "env/dev/clj"]
                    :dependencies [[binaryage/devtools "1.0.0"]
                                   [figwheel-sidecar "0.5.19"]
                                   [nrepl "0.6.0"]
-                                  [cider/piggieback "0.4.2"]]}})
+                                  [cider/piggieback "0.4.2"]]}
+              :project/test {}
+
+
+              :profiles/dev {}
+              :profiles/test {}
+              :profiles/prod {}
+
+              :dev [:project/dev :profiles/dev]
+              :test [:project/test :profiles/test]
+                            }
+                                  )
+
