@@ -31,11 +31,36 @@ module.exports = (env, options) => ({
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      { 
+        test: /\.scss$/i,
+        use: [
+          //MiniCssExtractPlugin.loader, 
+          'style-loader',
+          'css-loader',
+          { loader: 'sass-loader',
+            options: {
+              webpackImporter: false,
+              sassOptions: {
+                includePaths: [
+                  ".",
+                  "../cljs/front-end/public/sass"
+                ]
+              }
+            }
+
+          }
+        ]
       }
+
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: '../css/app.css' }),
+    new MiniCssExtractPlugin(
+      [
+        { filename: '../css/app.css' },
+        { filename: "../cljs/front-end/public/sass/index.scss"},
+      ]),
     new CopyWebpackPlugin([
       { from: 'static/', to: '../' },
       { from: './js/reagent.js', to: '.'},

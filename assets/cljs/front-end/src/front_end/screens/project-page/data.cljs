@@ -42,7 +42,7 @@
    :thoughts
    [ "This is a mobile app for task management. During the development process, I encountered problems in three areas."
 
-    "The first was in feature selection: I didn't establish what the MVP feature set was. I knew that I wanted to write a task-management app with some sort of twist, but the many of the features I originally chose to implement were either too complex to implement in React Native (physics-based animations) or out-of-place in a task management app (an arcade within the app). I wasted time trying to implement these things before eventually cutting them out."
+    "The first was in feature selection: I didn't establish what the MVP feature set was. I knew that I wanted to write a task-management app with some sort of twist, but many of the features I originally chose to implement were either too complex to implement in React Native (physics-based animations) or out-of-place in a task management app (an arcade within the app). I wasted time trying to implement these things before eventually cutting them out."
 
     "The second was in selecting implementation complexity. In the process of implementing recurring tasks, I had to decide what to do if the phone was off for weeks at a time. When the application was started again, what would happen to all the recurring tasks that never had a chance to recur, since the phone was off? I decided on a solution that had a lot of corner cases. I wanted complete correctness: No matter how long or how frequently the phone was off, I wanted to app to repair all missing recurring tasks."
 

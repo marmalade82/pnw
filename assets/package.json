@@ -20,6 +20,9 @@
     "css-loader": "^2.1.1",
     "mini-css-extract-plugin": "^0.4.0",
     "optimize-css-assets-webpack-plugin": "^4.0.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^7.3.1",
+    "style-loader": "^1.2.1",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack": "4.4.0",
     "webpack-cli": "^2.0.10"
