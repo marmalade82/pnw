@@ -13,9 +13,14 @@
   [:p {:class "Project-Thought"} thought]
   )
 
+(defn render-skill [lang]
+  [my-text {:class "Project-Skill"
+            :text lang}]
+  )
+
 (defn render-project [
                       {:keys [title subtitle thoughts
-                              github_href live_href]}
+                              github_href live_href skills]}
                       ]
   [:div {:class "Project"}
    [:div {:class "Project-Header"}
@@ -23,7 +28,10 @@
     [:a {:href github_href
          :target "_blank"
          }
-      [icons/github {:class "Project-Github"}]
+     [:div {:class "Project-Live-Container"}
+      [my-text {:class "Project-Live", :text "GitHub"}]
+      [icons/github {:class "Project-Live"}]
+      ]
      ]
     (if live_href 
       [:a {:href live_href, :target "_blank"
@@ -38,6 +46,9 @@
    [my-text {:class "Project-Description", :type "3", :text  subtitle}]
    (let [rendered (map render-thought thoughts)]
      (into [:div {:class "Project-Thoughts"}] rendered)
+     )
+   (let [rendered (map render-skill skills)]
+     (into [:div {:class "Project-Skills"}] rendered)
      )
    ]
   )

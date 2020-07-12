@@ -12,7 +12,7 @@
    :paragraphs
    ["One of the challenges with working with large code bases is simply understanding them. Code bases are text, so they come with all the accompanying difficulties of reading comprehension. Literate/Declarative programming plays a large role in making code self-documenting and easy to read."
 
-    "'Literate' means that, where possible, the code reads like well-written English. Variable and function names are words, not mysterious acronyms. Related statements are grouped together, and conceptually sequential operations are executed in that sequence."
+    "'Literate' means that, where possible, the code reads like well-written English. Variable and function names are words, not mysterious acronyms. Related statements are grouped together, and conceptually sequential operations are executed in that sequence. Where possible, unrelated code is physically separated by namespaces, scopes, or file boundaries."
 
     "'Declarative' means that the code describes *what* is done, but not *how* it is done, at the appropriate level of abstraction. This often means refactoring a set of related statements into a separate function or procedure with a declarative name. The trick, of course, is knowing the appropriate level of abstraction."
 

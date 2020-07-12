@@ -25,7 +25,9 @@
   [:div {:class "WorkPage-Experience"}
    [my-text {:class "WorkPage-Experience-Title", :type "2", :text title}]
    [:div {:class "WorkPage-Experience-Subheader"}
-    [:a {:href company_href}
+    [:a {:href company_href
+         :target "_blank"
+         }
      [my-text {:class "WorkPage-Experience-Company", :type "3", :text  company}]]
     [my-text {:class "WorkPage-Experience-Dates",
               :text  (str start " \u2013 " end)}]]
