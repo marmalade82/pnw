@@ -29,7 +29,7 @@
   color: grey;
 }
 
-.WorkPage-Experience-Company:hover, .Header-UnselectedMenuItem:hover, .Header-SelectedMenuItem:hover, .Header-SubmenuItem:hover, .clickable:hover {
+.ContactPage-SubmitButton:hover, .WorkPage-Experience-Company:hover, .Header-UnselectedMenuItem:hover, .Header-SelectedMenuItem:hover, .Header-SubmenuItem:hover, .clickable:hover {
   cursor: pointer;
 }
 
@@ -510,6 +510,58 @@ a.link-text:hover {
 
 .ContactPage-Title {
   margin-top: 0;
+}
+
+.ContactPage-Form {
+  display: flex;
+  flex-direction: column;
+}
+
+.ContactPage-InputGroup {
+  margin: 0 0 20px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ContactPage-InputGroup label {
+  min-width: 100px;
+  display: inline-block;
+}
+
+.ContactPage-InputGroup input {
+  display: inline-block;
+  min-width: 500px;
+  border-color: lightgrey;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.ContactPage-InputGroup textarea {
+  display: inline-block;
+  min-width: 500px;
+  border-color: lightgrey;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 10px;
+  font-family: sans-serif;
+  font-size: 0.9em;
+}
+
+.ContactPage-SubmitButton {
+  padding: 7px 14px;
+  align-self: flex-start;
+  border-radius: 5px;
+  border-style: solid;
+  background-color: #bebebe;
+  border-color: transparent;
+  font-size: 0.9em;
+}
+.ContactPage-SubmitButton:not([disabled]):active {
+  background-color: #d2d2d2;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -20,36 +20,43 @@
   (let [name "name"
         email "email"
         message "message"
+        max-length-single 100
+        max-length-multi 1000
         ]
     [:form { :on-submit handle-submit
              :id form-id
+             :class "ContactPage-Form"
             }
      
-     [:div {:class "ContactPage-NameGroup"}
+     [:div {:class "ContactPage-InputGroup"}
       [:label {:for name} "Name"]
       [:input {:type "text", :id name, :name name
                :on-change handle-change
                :value (values name)
+               :max-length max-length-single
                }]
       ]
-     [:div {:class "ContactPage-EmailGroup"}
+     [:div {:class "ContactPage-InputGroup"}
       [:label {:for email} "Email"]
       [:input {:type "text", :id email, :name email
                :on-change handle-change
                :value (values email)
+               :max-length max-length-single
                }]
       ]
-     [:div {:class "ContactPage-MessageGroup"}
+     [:div {:class "ContactPage-InputGroup"}
       [:label {:for message} "Message"]
-      [:input {:type "text", :id message, :name message
+      [:textarea {:type "text", :id message, :name message
                :on-change handle-change
                :value (values message)
+               :max-length max-length-multi
                }]
       ]
      [:button {:type "submit"
                :disabled submitting?
+               :class "ContactPage-SubmitButton"
                }
-       "Submit!"
+       "Send"
       ]
      ])
   )

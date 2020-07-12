@@ -1,0 +1,4 @@
+
+@function gray($level) {
+    @return rgb($level, $level, $level);
+}

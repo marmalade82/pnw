@@ -9,3 +9,13 @@
 @mixin first-vertical {
     margin-top: 0;
 }
+
+@mixin namespace($parent-selector) {
+
+}
+
+@mixin active {
+    &:not([disabled]):active {
+        @content;
+    }
+}
