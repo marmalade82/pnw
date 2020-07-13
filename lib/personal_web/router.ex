@@ -36,8 +36,13 @@ defmodule PersonalWeb.Router do
     get "/", PageController, :index
     get "/projects", PageController, :projects
 
+    scope "api", API do
+      resources "/posts", PostsController
+    end
+
   end
 
+  @doc """
   scope "/admin", PersonalWeb do
     pipe_through :browser
     pipe_through :authenticate_admin
@@ -45,7 +50,14 @@ defmodule PersonalWeb.Router do
     get "/", AdminController, :index
     get "/login", AdminController, :login
     get "/:message", AdminController, :show
+  end
+  """
 
+  scope "/admin", PersonalWeb.Admin do
+    scope "api", API do
+      pipe_through :api
+      resources "/posts", PostsController
+    end
   end
 
   # Other scopes may use custom stacks.
