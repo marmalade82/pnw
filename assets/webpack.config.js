@@ -35,9 +35,13 @@ module.exports = (env, options) => ({
       { 
         test: /\.scss$/i,
         use: [
-          //MiniCssExtractPlugin.loader, 
-          'style-loader',
-          'css-loader',
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: '../css/',
+              name: '[name].css'
+            }
+          },
           { loader: 'sass-loader',
             options: {
               webpackImporter: false,
@@ -57,10 +61,8 @@ module.exports = (env, options) => ({
   },
   plugins: [
     new MiniCssExtractPlugin(
-      [
-        { filename: '../css/app.css' },
-        { filename: "../cljs/front-end/public/sass/index.scss"},
-      ]),
+        { filename: '../css/[name].css' }
+    ),
     new CopyWebpackPlugin([
       { from: 'static/', to: '../' },
       { from: './js/reagent.js', to: '.'},
