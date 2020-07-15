@@ -5,7 +5,7 @@
   [first & rest]
   (let [all (cons first rest)]
     `(do
-       (def ~'unknown-route (reagent.core/atom false))
+       (def ~'unknown-route (reagent.core/atom 0))
        (def ~'history
           (reagent.core/atom (goog.History.)))
        (def ~'render-chan (cljs.core.async/chan))
@@ -31,13 +31,15 @@
            (~'.setEnabled true))
          )
        (defn ~'retry-route-or [~'render-fn]
-         (if @~'unknown-route
+         (if (> @~'unknown-route 50)
            (do 
              (~'render-fn)
-             (reset! ~'unknown-route false))
+             (reset! ~'unknown-route 0))
            (do
-             (reset! ~'unknown-route true)
-             (secretary.core/dispatch! (~'.getToken @~'history))
+             (swap! ~'unknown-route #(+ % 1))
+             (let [~'token (~'.getToken @~'history)]
+               (secretary.core/dispatch! ~'token)
+               )
              )
            )
          )

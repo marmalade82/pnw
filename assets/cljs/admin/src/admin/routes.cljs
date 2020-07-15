@@ -7,5 +7,6 @@
 (routing
   [root-path "/" "root"]
   [edit-path "/edit" "edit"]
+  [timeline-path "/timeline" "timeline"]
   )
 

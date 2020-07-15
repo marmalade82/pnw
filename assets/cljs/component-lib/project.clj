@@ -8,6 +8,7 @@
                  [org.clojure/clojurescript "1.10.597"]
                  [clj-commons/secretary "1.2.4"]
                  [org.clojure/core.async "1.2.603"]
+                 [hiccup-icons "0.4.2"]
                  [reagent "0.10.0"]
             ]
 

@@ -4,8 +4,9 @@
       [reagent.dom :as d]
       [admin.screens.home-page :refer [home-page]]
       [admin.screens.edit-page :refer [edit-page]]
+      [admin.screens.timeline-page :refer [timeline-page]]
       [admin.routes :refer
-       [init-client-routing root-path edit-path
+       [init-client-routing root-path edit-path timeline-path
         retry-route-or
                             ]]
       [cljs.core.match :refer-macros [match]]
@@ -23,10 +24,10 @@
    (into [:ul]
          (map render-link [ ["Login" (root-path)]
                             ["Blog Editor" (edit-path)]
+                            ["Blog Timeline" (timeline-path)]
                            ]))
    [:div
     [target]
-    "hellos"
     ]
    ]
   )
@@ -39,6 +40,7 @@
   (match target
     "root" (render home-page)
     "edit" (render edit-page)
+    "timeline" (render timeline-page)
     :else (retry-route-or (fn [] (render home-page)))
     )
   )

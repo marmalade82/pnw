@@ -4,6 +4,7 @@
    [reagent.dom :as d]
    [component-lib.core :as c]
    [fork.reagent :as f]
+   [clojure.string :as str]
    [mde]
    )
   )
@@ -42,6 +43,24 @@
             :class "Login-Form"
             :on-submit handle-submit
             }
+     [c/input-group {:label "Title",
+                     :type "text"
+                     :id "title"
+                     :on-change handle-change
+                     :value (values "title")
+                     }]
+     [c/input-group {:label "Subtitle",
+                     :type "text"
+                     :id "subtitle"
+                     :on-change handle-change
+                     :value (values "subtitle")
+                     }]
+     [c/input-group {:label "Date",
+                     :type "date"
+                     :id "edit-date"
+                     :on-change handle-change
+                     :value (values "edit-date")
+                     }]
      [markdown-editor {:id "blog-markdown-editor"
                        :on-change #(set-values %)
                        }]
@@ -56,6 +75,10 @@
 (defn render-blog-form []
   [f/form {:prevent-default? true
            :clean-on-unmount? true
+           :initial-values
+           { "edit-date" (-> (js/Date.) (.toISOString) (str/split #"T") (first))
+            
+            }
            :path :login-form 
            :on-submit #(identity %)
            } blog-form
