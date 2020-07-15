@@ -5,9 +5,10 @@
       [admin.screens.home-page :refer [home-page]]
       [admin.screens.edit-page :refer [edit-page]]
       [admin.screens.timeline-page :refer [timeline-page]]
+      [admin.screens.project-edit-page :refer [project-edit-page]]
       [admin.routes :refer
        [init-client-routing root-path edit-path timeline-path
-        retry-route-or
+        retry-route-or project-edit-path project-timeline-path
                             ]]
       [cljs.core.match :refer-macros [match]]
      ))
@@ -25,6 +26,8 @@
          (map render-link [ ["Login" (root-path)]
                             ["Blog Editor" (edit-path)]
                             ["Blog Timeline" (timeline-path)]
+                            ["Project Editor" (project-edit-path)]
+                            ["Project Timeline" (project-timeline-path)]
                            ]))
    [:div
     [target]
@@ -41,6 +44,8 @@
     "root" (render home-page)
     "edit" (render edit-page)
     "timeline" (render timeline-page)
+    "project-edit" (render project-edit-page)
+    "project-timeline" (render home-page)
     :else (retry-route-or (fn [] (render home-page)))
     )
   )
