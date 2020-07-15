@@ -1,21 +1,15 @@
-(defproject admin "0.1.0-SNAPSHOT"
+(defproject component-lib "0.1.6"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-
-  :dependencies [[org.clojure/clojure "1.10.1"]
-                 [org.clojure/clojurescript "1.10.773"]
+  :dependencies [
+                 [org.clojure/clojure "1.10.1"]
+                 [org.clojure/clojurescript "1.10.597"]
+                 [clj-commons/secretary "1.2.4"]
+                 [org.clojure/core.async "1.2.603"]
                  [reagent "0.10.0"]
-                 [component-lib "0.1.6"]
-                 [fork "2.0.0"]
-                 ]
-  
-  :compiler {
-    :foreign-libs [{:file "simplemde.min.js"
-                    :provides ["mde"]
-                    }]
-    }
+            ]
 
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-figwheel "0.5.20"]]
@@ -31,8 +25,7 @@
   :figwheel {:http-server-root "."
              :nrepl-port 7002
              :nrepl-middleware [cider.piggieback/wrap-cljs-repl]
-             :css-dirs ["public/css"]
-             }
+             :css-dirs ["public/css"]}
 
   :cljsbuild {:builds {:app
                        {:source-paths ["src" "env/dev/cljs"]
@@ -43,12 +36,9 @@
                          :asset-path   "js/out"
                          :source-map true
                          :optimizations :none
-                         :foreign-libs [{:file "admin/foreign/simplemde.min.js"
-                                          :provides ["mde"]
-                                          }]
                          :pretty-print  true}
                         :figwheel
-                        {:on-jsload "admin.core/render-target"
+                        {:on-jsload "admin.core/mount-root"
                          :open-urls ["http://localhost:3449/index.html"]}}
                        :release
                        {:source-paths ["src" "env/prod/cljs"]
@@ -66,4 +56,5 @@
                                   [figwheel-sidecar "0.5.20"]
                                   [nrepl "0.7.0"]
                                   [cider/piggieback "0.5.0"]]}}
-                                  )
+
+            )
