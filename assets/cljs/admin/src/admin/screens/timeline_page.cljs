@@ -33,14 +33,28 @@
    ]
   )
 
-(defn render-blog [{:keys [title created_at updated_at views]}]
+(defn render-blog [{:keys [title created_at updated_at views edit-href]}]
   [:div {:class "TimelinePage-Blog"
          }
-    [:span title]
-    [:span created_at]
-    [:span updated_at]
-    [:span views]
-    [i/preview]
+    [:div {:class "TimelinePage-Blog-Main"}
+      [:span {:class "TimelinePage-Blog-Title"} title]
+      [:span {:class "TimelinePage-Blog-Created"} created_at]
+      [:span {:class "TimelinePage-Blog-Updated"} updated_at]
+      [:span {:class "TimelinePage-Blog-Views"} views]
+    ]
+   [:div {:class "Timeline-Blog-Side"}
+    [:button {:href edit-href
+         :class "Link"
+         }
+     [i/edit]
+     ]
+    [:button
+     [i/preview]
+     ]
+    [:button
+     [i/delete]
+     ]
+    ]
    ]
   )
 

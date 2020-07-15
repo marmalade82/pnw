@@ -71,3 +71,5 @@
 (deficon down octicons/triangle-down)
 
 (deficon left octicons/triangle-left)
+
+(deficon delete octicons/trashcan)
