@@ -9,6 +9,7 @@
                  [reagent "0.10.0"]
                  [component-lib "0.1.6"]
                  [fork "2.0.0"]
+                 [org.clojure/core.match "1.0.0"]
                  ]
   
   :compiler {
@@ -48,7 +49,7 @@
                                           }]
                          :pretty-print  true}
                         :figwheel
-                        {:on-jsload "admin.core/render-target"
+                        {:on-jsload "admin.core/mount-root"
                          :open-urls ["http://localhost:3449/index.html"]}}
                        :release
                        {:source-paths ["src" "env/prod/cljs"]

@@ -31,7 +31,7 @@
                    :on-change handle-change
                    :class "Login-Input"
                    }]
-   [c/submit-button {:type "submit"
+   [c/submit-button {
               :disabled submitting?
               :class "Login-Submit"
               } "Submit!"]
@@ -50,6 +50,7 @@
 
 (defn home-page []
   [:div {:class "Login-Container"}
+   "hi"
    ]
   [render-login-form]
   )
