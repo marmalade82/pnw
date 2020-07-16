@@ -80,6 +80,7 @@
   (let [blog-data (get-grouped-blog-data)
         ]
     [:div {:class "TimelinePage"}
+      [c/text {:type 1} "Posts"]
       (into [:div {:class "TimelinePage-Timeline"}] (map render-month blog-data))
      ]
     )

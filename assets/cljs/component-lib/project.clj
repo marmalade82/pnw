@@ -37,6 +37,9 @@
                          :asset-path   "js/out"
                          :source-map true
                          :optimizations :none
+                         :foreign-libs [{:file "component_lib/foreign/simplemde.min.js"
+                                          :provides ["mde"]
+                                          }]
                          :pretty-print  true}
                         :figwheel
                         {:on-jsload "admin.core/mount-root"

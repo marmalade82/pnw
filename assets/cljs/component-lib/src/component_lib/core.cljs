@@ -3,7 +3,12 @@
    [reagent.core :as r]
    [reagent.dom :as d]
    [clojure.string :refer (capitalize)]
+   [mde]
    )
+  )
+
+(defn- children []
+  (r/children (r/current-component))
   )
 
 (defn- default-input-group [{:keys [label, type, class,
@@ -45,6 +50,10 @@
     (default-input-group all)
     )
 
+  )
+
+(defn label [{:keys [for class] :or {for nil, class ""}}]
+  (into [:label {:for for, :class ["Label" class]}] (children))
   )
 
 (defn submit-button [{:keys [disabled class]}]
@@ -94,4 +103,38 @@
       children  
      )
     )
+  )
+
+(defn markdown-editor [{:keys [on-change id]
+                        :or {on-change #(js/console.log %)
+                             id "md-editor"
+                             }}]
+  (r/create-class
+   {:display-name "markdown-editor"
+    :component-did-mount
+    (fn [this]
+      (let [editor (js/SimpleMDE. (clj->js { :element (.getElementById js/document id)}))
+            ]
+        (doto editor
+          (-> (.-codemirror) (.on "change" #(on-change (.value editor))))
+          ))
+      )
+    :component-will-unmount (fn [] 1)
+    :reagent-render
+    (fn []
+
+      [:textarea {:id id}]
+      )
+    })
+  )
+
+(defn badge [{:keys [color class] :or {color "white", class ""}}]
+  (into [:span {:class ["Badge" class]
+                :style {:background-color color
+                        
+                        }
+                }
+         ]
+        (children )
+        )
   )

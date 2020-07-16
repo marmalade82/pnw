@@ -37,10 +37,15 @@
                     :id "description"
                     }
      ]
-    [c/input-group {:label "Extended Thoughts (\"MARKDOWN\")"
-                    :type "textarea"
-                    :id "thoughts"
-                    }]
+    [:div {:class "ProjectEditPage-Skills"}
+     [c/label {:class "ProejctEditPage-Label", :for "skills"} "Skills"]
+     [:input {:type "text" :class "TypeAheadSearch" :id "skills"}]
+     [:div {:class "TypeaAheadSearch-Display"} "Display selected skills here"]
+     ]
+    [c/label {:class "ProjectEditPage-Label", :for "thoughts"} "Extended Thoughts"]
+    [c/markdown-editor { :on-change identity
+                         :id "thoughts" 
+                        }]
     
     ]
    ]

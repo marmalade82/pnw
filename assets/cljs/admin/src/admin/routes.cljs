@@ -11,5 +11,6 @@
   [project-edit-path "/project-edit" "project-edit"]
   [project-timeline-path "/project-timeline" "project-timeline"]
   [admin-dashboard-path "/dashboard" "dashboard"]
+  [skills-path "/skills" "skills"]
   )
 
