@@ -4,6 +4,7 @@
    [reagent.dom :as d]
    [component-lib.icons :as i]
    [component-lib.core :as c]
+   [component-lib.containers :refer [mk-modal]]
    )
   )
 
@@ -35,36 +36,42 @@
   )
 
 (defn render-blog [{:keys [title created_at updated_at views edit-href]}]
-  (let [stage (r/atom :view)]
-    [:div {:class "TimelinePage-Blog"
-           }
-     [:div {:class "TimelinePage-Blog-Main"}
-      [c/text {:class "TimelinePage-Blog-Title"} title]
-      [c/text {:class "TimelinePage-Blog-Created"} created_at]
-      [c/text {:class "TimelinePage-Blog-Updated"} updated_at]
-      [c/text {:class "TimelinePage-Blog-Views"} views]
-      ]
-     [:div {:class "Timeline-Blog-Side"}
-      [c/button {:href edit-href
-                 :class "Link"
-                 }
-       [c/text "Edit"]
-       [i/edit]
-       ]
-      [c/button {:on-click #(reset! stage :preview)
-                 ; will popup preview modal
-                 }
-       [c/text "Preview"]
-       [i/preview]
-       ]
-      [c/button {:on-click #(reset! stage :delete)
-                 ; will popup a delete confirmation modal
-                 }
-       [c/text "Delete"]
-       [i/delete]
-       ]
-      ]
-     ])
+  (let [stage (r/atom :view)
+        {:keys [modal toggle! disable-unless?]} (mk-modal)
+        ]
+    (fn [] 
+      [:div {:class "TimelinePage-Blog"
+             }
+       [:div {:class "TimelinePage-Blog-Main"}
+        [c/text {:class "TimelinePage-Blog-Title"} title]
+        [c/text {:class "TimelinePage-Blog-Created"} created_at]
+        [c/text {:class "TimelinePage-Blog-Updated"} updated_at]
+        [c/text {:class "TimelinePage-Blog-Views"} views]
+        ]
+       [:div {:class "Timeline-Blog-Side"}
+        [c/button {:href edit-href
+                   :class "Link"
+                   }
+         [c/text "Edit"]
+         [i/edit]
+         ]
+        [c/button {:on-click #(toggle! :preview)
+                   :disabled (disable-unless? :preview)
+                   }
+         [c/text "Preview"]
+         [i/preview]
+         ]
+        [c/button {:on-click #(toggle! :delete)
+                   :disabled (disable-unless? :delete)
+                   }
+         [c/text "Delete"]
+         [i/delete]
+         ]
+        ]
+        [modal {} {:preview [:div "Preview"]
+                   :delete [:div "Delete"]
+                    }]
+       ]))
   )
 
 (defn render-month [{:keys [month posts]}]
@@ -73,7 +80,7 @@
          [c/text {:class "TimelinePage-Month-Header"
                   :type 2
                   } month]
-         ] (map render-blog posts))
+         ] (map #(into [] [(render-blog %)]) posts))
   )
 
 (defn timeline-page []

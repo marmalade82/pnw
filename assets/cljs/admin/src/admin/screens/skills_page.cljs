@@ -25,7 +25,7 @@
                      :or {name "", abbr "", color "white"}}]
   (let [{:keys [toggle! close! stage modal disable-unless?]} (mk-modal)
         ]
-    [(fn []  
+    (fn []  
        [:div {:class "SkillsPage-Skill"}
         [:div {:class "SkillsPage-Skill-Main"}
          [c/text {:class "SkillsPage-Skill-Name"} name]
@@ -44,12 +44,12 @@
         [modal {} {:edit [:div "edit form"]
                    :delete [:div "delete form"]
                    }]
-        ])])
+        ]))
   )
 
 (defn render-skills [skills]
   (into [:div {:class "SkillsPage-Skills"}]
-        (map render-skill skills)
+        (map #(into [] [(render-skill %)]) skills)
         )
   )
 
