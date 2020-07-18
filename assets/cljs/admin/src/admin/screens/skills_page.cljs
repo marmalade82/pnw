@@ -6,9 +6,13 @@
    [component-lib.buttons :as b]
    [component-lib.containers :refer [mk-modal]]
    [admin.components.header :refer [header]]
-   [fork.reagent :as f]
+   [admin.screens.skills-page.delete-form :refer [render-delete-form]]
+   [admin.screens.skills-page.skills-form
+       :refer [render-edit-form render-skill-form]]
    )
   )
+
+
 
 (defn get-skills []
   [{:name "JavaScript"
@@ -21,6 +25,7 @@
     }
    ]
   )
+
 
 (defn render-skill [{:keys [name abbr color]
                      :or {name "", abbr "", color "white"}}]
@@ -44,9 +49,9 @@
                     :class "SkillsPage-Delete"
                     }]
          ]
-        [modal {:title {:edit "Edit", :delete "Delete"}}
-            {:edit [:div "edit form"]
-                   :delete [:div "delete form"]
+        [modal {:title {:edit "Edit", :delete "Are you sure?"}}
+            {:edit [render-edit-form]
+                   :delete [render-delete-form {:close! close!}]
                    }]
         ]))
   )
@@ -64,49 +69,7 @@
    ]
   )
 
-(defn skill-form [{:keys [values
-                          set-values
-                          handle-change
-                          handle-submit
-                          submitting?
-                          form-id]}]
-  [:form {:class "SkillsPage-Form"
-          :id form-id
-          :on-submit handle-submit
-          }
-   [c/input-group {:label "Name"
-                   :id "name"
-                   :on-change handle-change
-                   :value (values "name")
-                   }]
-   [c/input-group {:label "Abbreviation"
-                   :id "abbr"
-                   :value (values "abbr")
-                   :on-change handle-change
-                   }]
-   [c/input-group {:label "Color"
-                   :type "color"
-                   :id "color"
-                   :value (values "color")
-                   :on-change handle-change
-                   }]
-   [c/submit-button { :disabled submitting?
-                      :class "SkillsPage-Modal-Submit"
-                     }
-     "add"]
-   ]
-  )
 
-(defn render-skill-form []
-  [f/form {:prevent-default? true
-           :clean-on-unmount? true
-           :path :skill-form 
-           :on-submit #(identity %)
-           
-           }
-          skill-form
-          ]
-  )
 
 
 (defn skills-page []
