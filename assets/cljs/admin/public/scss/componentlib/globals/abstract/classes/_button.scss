@@ -15,6 +15,11 @@
         display: flex;
         padding: 0.2em;
     }
+
+    @include mixins.active {
+        opacity: 0.5;
+    }
+
 }
 
 %TextIconButton {
@@ -31,10 +36,6 @@
     background-color: transparent;
     background-image: linear-gradient(functions.gray(240), functions.gray(210));
     border-radius: 3px;
-
-    @include mixins.active {
-        opacity: 0.8;
-    }
 
     .Icon {
         margin-left: 10px;

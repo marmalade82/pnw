@@ -15,9 +15,12 @@ $blur-radius: 1px;
     padding: 0.5em 0.7em;
     border-radius: 5px;
     border-color: silver;
-    color: white;
     font-weight: bold;
     border-style: outset;
     display: inline-block;
     text-align: center;
+
+    .Text {
+        color: white;
+    }
 }

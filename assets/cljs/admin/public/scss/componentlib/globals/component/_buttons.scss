@@ -21,15 +21,9 @@
     height: 2em;
     border-style: solid;
     border-width: 0.13em;
-    border-color: black;
-    color: black;
-
-    @include mixins.hover {
-        opacity: 0.5;
-    }
-    @include mixins.active {
-        opacity: 0.3;
-    }
+    background-color: constants.$accent;
+    border-color: transparent;
+    color: white;
 }
 
 .CloseButton {
@@ -37,12 +31,6 @@
     width: 2em;
     height: 2em;
     color: functions.gray(70);
-    @include mixins.hover {
-        color: functions.gray(100);
-    }
-    @include mixins.active {
-        color: functions.gray(150);
-    }
     border-color: transparent;
 }
 

@@ -5,6 +5,7 @@
    [component-lib.core :as c]
    [component-lib.buttons :as b]
    [component-lib.containers :refer [mk-modal]]
+   [admin.components.header :refer [header]]
    [fork.reagent :as f]
    )
   )
@@ -28,17 +29,19 @@
     (fn []  
        [:div {:class "SkillsPage-Skill"}
         [:div {:class "SkillsPage-Skill-Main"}
-         [c/text {:class "SkillsPage-Skill-Name"} name]
          [c/badge {:class "SkillsPage-Skill-Badge"
                    :color color
                    } [c/text {:class "SkillsPage-Skill-Abbr"} abbr]]
+         [c/text {:class "SkillsPage-Skill-Name"} name]
          ]
         [:div {:class "SkillsPage-Skill-Side"}
          [b/edit {:on-click #(toggle! :edit)
                   :disabled (disable-unless? :edit)
+                  :class "SkillsPage-Edit"
                   }]
          [b/delete {:on-click #(toggle! :delete)
                     :disabled (disable-unless? :delete)
+                    :class "SkillsPage-Delete"
                     }]
          ]
         [modal {:title {:edit "Edit", :delete "Delete"}}
@@ -88,8 +91,9 @@
                    :on-change handle-change
                    }]
    [c/submit-button { :disabled submitting?
+                      :class "SkillsPage-Modal-Submit"
                      }
-     "Add"]
+     "add"]
    ]
   )
 
@@ -110,16 +114,22 @@
         {:keys [modal open! close! toggle!]} (mk-modal)
         ]
     (fn []
-      [:div {:class "SkillsPage"}
-       [:div {:class "SkillsPage-Header"}
-        [c/text {:type 1} "Skills"]
-        [b/add {:class "SkillsPage-Header-Add"
-                :on-click #(toggle! :add)
-                }]
+      [c/page {:class "SkillsPage"}
+       [header {:class "SkillsPage-TopHeader"}
         ]
-       [modal {:title {:add "Add Skill"}} {:add [render-skill-form]}]
-       [search-bar]
-       (render-skills skills)
+       [c/body
+        [c/surface {:class "SkillsPage-Main"}
+         [:div {:class "SkillsPage-Header"}
+          [c/text {:type 1} "Skills"]
+          [b/add {:class "SkillsPage-Header-Add"
+                  :on-click #(toggle! :add)
+                  }]
+          ]
+         [modal {:title {:add "Add Skill"}} {:add [render-skill-form]}]
+         [search-bar]
+         (render-skills skills)
+         ]
+        ]
        ])
     )
   )

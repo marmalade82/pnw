@@ -1,3 +1,5 @@
+@use "componentlib/globals/abstract/constants";
+
 .SkillsPage-Header {
     display: flex;
     flex-direction: row;
@@ -11,28 +13,67 @@
 }
 
 .SkillsPage-Skills {
-    padding: 20px 40px;
+    padding: 20px 0;
+    & > * + * {
+        border-top-width: 1px;
+        border-top-style: solid;
+        border-top-color: constants.$divider;
+    }
+
+    & > *:first-child {
+        border-top-width: 1px;
+        border-top-style: solid;
+        border-top-color: constants.$divider;
+    }
+
+    & > *:last-child {
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: constants.$divider;
+    }
 }
 
 .SkillsPage-Skill {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 10px;
+    padding: 20px 20px;
+
 }
 
 .SkillsPage-Skill-Name {
-    min-width: 150px;
+    min-width: 300px;
     display: inline-block;
+    font-size: 1.3rem;
 }
 
 .SkillsPage-Skill-Main {
     width: 500px;
+
+    & > *:first-child {
+        margin-right: 20px;
+    }
 }
 
 .SkillsPage-Skill-Side {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 200px;
+
+    & > * + * {
+        margin-left: 20px;
+    }
+}
+
+.SkillsPage-Modal-Submit {
+    width: 100%;
+}
+
+.SkillsPage-Form {
+    display: flex;
+    flex-direction: column;
+
+    & > * + * {
+        margin-top: 20px;
+    }
 }

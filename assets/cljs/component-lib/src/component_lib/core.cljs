@@ -157,3 +157,11 @@
    (into [text] (r/children (r/current-component)))
    ]
   )
+
+(defn body [{:keys [class] :or {class ""}}]
+  (into [:main {:class ["Body" class]}] (children))
+  )
+
+(defn surface [{:keys [class] :or {class ""}}]
+  (into [:div {:class ["Surface" class]}] (children))
+  )

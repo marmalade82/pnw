@@ -53,3 +53,9 @@
         color: constants.$dark-primary;
     }
 }
+
+.Login-Form {
+    & > * + * {
+        margin-top: 20px;
+    }
+}

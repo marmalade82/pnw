@@ -4,6 +4,8 @@
    [reagent.dom :as d]
    [component-lib.core :as c]
    [fork.reagent :as f]
+   [admin.routes :refer [root-path]]
+   [admin.components.header :refer [header]]
    )
   )
 
@@ -51,7 +53,7 @@
 (defn home-page []
   [c/page 
    [c/header {:class "LoginPage-Header"}
-    [c/logo {:class "LoginPage-Logo", :href "http://www.google.com"}
+    [c/logo {:class "LoginPage-Logo", :href (root-path)}
      [c/text {:class "LoginPage-LogoText"} "admin"]
      [c/text {:class "LoginPage-LogoTagline"} "one step at a time."]
      ]

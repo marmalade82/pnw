@@ -14,6 +14,9 @@
   display: flex;
   padding: 0.2em;
 }
+.Button:not([disabled]):active, .SubmitButton:not([disabled]):active {
+  opacity: 0.5;
+}
 
 .EditButton, .DeleteButton, .PreviewButton, .SubmitButton {
   letter-spacing: 0.12em;
@@ -29,9 +32,6 @@
   background-color: transparent;
   background-image: linear-gradient(#f0f0f0, #d2d2d2);
   border-radius: 3px;
-}
-.EditButton:not([disabled]):active, .DeleteButton:not([disabled]):active, .PreviewButton:not([disabled]):active, .SubmitButton:not([disabled]):active {
-  opacity: 0.8;
 }
 .EditButton .Icon, .DeleteButton .Icon, .PreviewButton .Icon, .SubmitButton .Icon {
   margin-left: 10px;
@@ -63,14 +63,9 @@
   height: 2em;
   border-style: solid;
   border-width: 0.13em;
-  border-color: black;
-  color: black;
-}
-.AddButton:not([disabled]):hover {
-  opacity: 0.5;
-}
-.AddButton:not([disabled]):active {
-  opacity: 0.3;
+  background-color: #4CAF50;
+  border-color: transparent;
+  color: white;
 }
 
 .CloseButton {
@@ -79,12 +74,6 @@
   height: 2em;
   color: #464646;
   border-color: transparent;
-}
-.CloseButton:not([disabled]):hover {
-  color: #646464;
-}
-.CloseButton:not([disabled]):active {
-  color: #969696;
 }
 
 .SearchButton {
@@ -125,7 +114,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 1em;
 }
 
 .InputGroup-Label {
@@ -160,11 +148,13 @@
   padding: 0.5em 0.7em;
   border-radius: 5px;
   border-color: silver;
-  color: white;
   font-weight: bold;
   border-style: outset;
   display: inline-block;
   text-align: center;
+}
+.Badge .Text {
+  color: white;
 }
 
 a {
@@ -199,10 +189,10 @@ a {
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: whitesmoke;
   min-width: 100px;
   border-radius: 5px;
-  padding: 10px 10px;
+  padding: 20px 30px;
 }
 
 .ModalHeader {
@@ -218,11 +208,38 @@ a {
 
 .Page {
   position: relative;
-  min-height: 100vh;
-  min-width: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  height: 100vh;
+  width: 100vw;
   margin: 0;
   padding: 0;
   background-color: #FFC107;
+}
+
+.Body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: #FFC107;
+  padding: 4rem 4rem;
+}
+
+.Surface {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  background-color: whitesmoke;
+  padding: 20px 50px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px 0.5px darkgray;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 Header {
@@ -235,12 +252,19 @@ Header {
 Header .Logo {
   position: relative;
   height: 100%;
-  width: unset;
-  background-color: blue;
+  width: 200px;
   white-space: nowrap;
 }
 Header .Logo > .LogoLink {
   display: contents;
+}
+
+.My-Header .My-LogoText {
+  top: 1rem;
+  left: 3rem;
+  position: absolute;
+  font-size: 8rem;
+  color: #FFECB3;
 }
 
 .SkillsPage-Header {
@@ -256,30 +280,63 @@ Header .Logo > .LogoLink {
 }
 
 .SkillsPage-Skills {
-  padding: 20px 40px;
+  padding: 20px 0;
+}
+.SkillsPage-Skills > * + * {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #BDBDBD;
+}
+.SkillsPage-Skills > *:first-child {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #BDBDBD;
+}
+.SkillsPage-Skills > *:last-child {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #BDBDBD;
 }
 
 .SkillsPage-Skill {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 10px;
+  padding: 20px 20px;
 }
 
 .SkillsPage-Skill-Name {
-  min-width: 150px;
+  min-width: 300px;
   display: inline-block;
+  font-size: 1.3rem;
 }
 
 .SkillsPage-Skill-Main {
   width: 500px;
+}
+.SkillsPage-Skill-Main > *:first-child {
+  margin-right: 20px;
 }
 
 .SkillsPage-Skill-Side {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 200px;
+}
+.SkillsPage-Skill-Side > * + * {
+  margin-left: 20px;
+}
+
+.SkillsPage-Modal-Submit {
+  width: 100%;
+}
+
+.SkillsPage-Form {
+  display: flex;
+  flex-direction: column;
+}
+.SkillsPage-Form > * + * {
+  margin-top: 20px;
 }
 
 .TimelinePage-Blog {
@@ -424,6 +481,10 @@ Header .Logo > .LogoLink {
   font-size: 4rem;
   font-weight: bold;
   color: #FFA000;
+}
+
+.Login-Form > * + * {
+  margin-top: 20px;
 }
 
 /*# sourceMappingURL=index.css.map */

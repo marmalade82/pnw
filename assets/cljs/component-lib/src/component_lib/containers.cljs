@@ -28,7 +28,11 @@
                    [:div {:class ["Modal" class]
                           :on-click #(close!)
                           }
-                      [:div {:class ["ModalContent"]}
+                      [:div {:class ["ModalContent"]
+                             :on-click #(do
+                                                    (.stopPropagation %)
+                                                    )
+                           }
                        [:div {:class "ModalHeader"}
                         [c/text {:type 1, :class "ModalHeaderTitle"} title]
                         [b/close {:on-click #(close!)}]
