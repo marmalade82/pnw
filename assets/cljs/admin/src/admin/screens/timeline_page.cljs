@@ -4,6 +4,7 @@
    [reagent.dom :as d]
    [component-lib.icons :as i]
    [component-lib.core :as c]
+   [component-lib.buttons :as b]
    [component-lib.containers :refer [mk-modal]]
    )
   )
@@ -42,33 +43,29 @@
     (fn [] 
       [:div {:class "TimelinePage-Blog"
              }
-       [:div {:class "TimelinePage-Blog-Main"}
-        [c/text {:class "TimelinePage-Blog-Title"} title]
-        [c/text {:class "TimelinePage-Blog-Created"} created_at]
-        [c/text {:class "TimelinePage-Blog-Updated"} updated_at]
-        [c/text {:class "TimelinePage-Blog-Views"} views]
-        ]
-       [:div {:class "Timeline-Blog-Side"}
-        [c/button {:href edit-href
-                   :class "Link"
-                   }
-         [c/text "Edit"]
-         [i/edit]
+       [:div {:class "TimelinePage-Blog-Content"}
+        [:div {:class "TimelinePage-Blog-Main"}
+         [c/text {:class "TimelinePage-Blog-Title"} title]
+         [c/text {:class "TimelinePage-Blog-Created"} created_at]
+         [c/text {:class "TimelinePage-Blog-Updated"} updated_at]
+         [c/text {:class "TimelinePage-Blog-Views"} views]
          ]
-        [c/button {:on-click #(toggle! :preview)
-                   :disabled (disable-unless? :preview)
-                   }
-         [c/text "Preview"]
-         [i/preview]
-         ]
-        [c/button {:on-click #(toggle! :delete)
-                   :disabled (disable-unless? :delete)
-                   }
-         [c/text "Delete"]
-         [i/delete]
+        [:div {:class "Timeline-Blog-Side"}
+         [b/edit {:href edit-href
+                  :class "Link"
+                  }
+          ]
+         [b/preview {:on-click #(toggle! :preview)
+                     :disabled (disable-unless? :preview)
+                     }
+          ]
+         [b/delete {:on-click #(toggle! :delete)
+                    :disabled (disable-unless? :delete)
+                    }
+          ]
          ]
         ]
-        [modal {} {:preview [:div "Preview"]
+       [modal {:title {:preview "Preview" :delete "Delete"}} {:preview [:div "Preview"]
                    :delete [:div "Delete"]
                     }]
        ]))

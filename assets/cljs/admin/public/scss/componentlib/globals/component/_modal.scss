@@ -1,0 +1,37 @@
+@use "globals/abstract/mixins";
+
+$background-gray: 50;
+
+.Modal {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    background-color: rgba($background-gray, $background-gray, $background-gray, 0.7);
+}
+
+
+
+.ModalContent {
+    @include mixins.absolute-centered;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    min-width: 100px;
+    border-radius: 5px;
+    padding: 10px 10px;
+}
+
+.ModalHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    & > .Header1 {
+        margin: 0;
+    }
+}

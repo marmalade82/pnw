@@ -1,0 +1,24 @@
+.TimelinePage-Blog {
+    display: flex;
+    flex-direction: column;
+}
+
+.TimelinePage-Blog-Content {
+    display: flex;
+    flex-direction: row;
+}
+
+.Timeline-Blog-Side {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 350px;
+}
+
+.TimelinePage-Blog-Main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+}

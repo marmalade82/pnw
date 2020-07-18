@@ -1,0 +1,88 @@
+@use "globals/abstract/mixins";
+@use "globals/abstract/functions";
+@use "globals/abstract/constants";
+@use "globals/abstract/classes/button";
+
+.Button {
+    @extend %Button;
+}
+
+.ButtonText {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.AddButton {
+    border-radius: 50%;
+    font-size: 1.5em;
+    width: 2em;
+    height: 2em;
+    border-style: solid;
+    border-width: 0.13em;
+    border-color: black;
+    color: black;
+
+    @include mixins.hover {
+        opacity: 0.5;
+    }
+    @include mixins.active {
+        opacity: 0.3;
+    }
+}
+
+.CloseButton {
+    font-size: 1.5em;
+    width: 2em;
+    height: 2em;
+    color: functions.gray(70);
+    @include mixins.hover {
+        color: functions.gray(100);
+    }
+    @include mixins.active {
+        color: functions.gray(150);
+    }
+    border-color: transparent;
+}
+
+
+.SearchButton {
+    width: 2.2em;
+    height: 2.2em;
+    font-size: 1em;
+    background-image: linear-gradient(functions.gray(240), functions.gray(210))
+}
+
+.Icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.EditButton {
+    @extend %TextIconButton;
+    color: white;
+    background-image: linear-gradient(purple, purple);
+}
+
+.DeleteButton {
+    @extend %TextIconButton;
+    background-image: linear-gradient(rgb(220, 0, 0), rgb(200, 0, 0));
+    color: white;
+}
+
+.PreviewButton {
+    @extend %TextIconButton;
+    color: white;
+    background-image: linear-gradient(rgb(0, 100, 200), rgb(0, 100, 180));
+}
+
+
+.SubmitButton {
+    color: white;
+    @extend %Button;
+    @extend %TextIconButton;
+    background-image: unset;
+    background-color: constants.$accent;
+}

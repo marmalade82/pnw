@@ -1,0 +1,58 @@
+@use "globals/abstract/functions";
+@use "globals/abstract/mixins";
+@use "globals/abstract/constants";
+
+%Button {
+    white-space: nowrap;
+    background-color: transparent;
+    @include mixins.clickable;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    & > a, & > span {
+        display: flex;
+        padding: 0.2em;
+    }
+}
+
+%TextIconButton {
+    letter-spacing: 0.12em;
+    display: flex;
+    flex-direction: row;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 1.2em;
+    border-style: solid;
+    border-color: functions.gray(170);
+    border-width: 1px;
+    border-color: transparent;
+    background-color: transparent;
+    background-image: linear-gradient(functions.gray(240), functions.gray(210));
+    border-radius: 3px;
+
+    @include mixins.active {
+        opacity: 0.8;
+    }
+
+    .Icon {
+        margin-left: 10px;
+        margin-top: -0.1rem;
+        font-size: 1rem;
+    }
+
+    .Text {
+        color: constants.$button-text;
+    }
+
+
+    @include mixins.disabled {
+        background-image: linear-gradient(gray, gray);
+    }
+
+    & > a, & > span {
+        display: flex;
+        padding: 0.7em 0.9em;
+    }
+}

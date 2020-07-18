@@ -3,6 +3,7 @@
    [reagent.core :as r]
    [reagent.dom :as d]
    [component-lib.buttons :as b]
+   [component-lib.core :as c]
    )
   )
 
@@ -23,18 +24,23 @@
         ]
     { :modal
      (let [
-           modal (fn [{:keys [class] :or {class ""}} hiccup]
-                     [:div {:class ["Modal" class]}
-                      [:div {:class ["Modal-Content"]}
-                       [b/close {:on-click #(close!)}]
+           modal (fn [{:keys [class title] :or {class "", title ""}} hiccup]
+                   [:div {:class ["Modal" class]
+                          :on-click #(close!)
+                          }
+                      [:div {:class ["ModalContent"]}
+                       [:div {:class "ModalHeader"}
+                        [c/text {:type 1, :class "ModalHeaderTitle"} title]
+                        [b/close {:on-click #(close!)}]
+                        ]
                        hiccup
                        ]
                       ]
                    )
            ]
-       (fn [attrs render]
+       (fn [{:keys [title] :or {title {}} :as attrs} render]
          (if @stage?
-           [modal attrs (@stage? render)]
+           [modal (assoc attrs :title (@stage? title)) (@stage? render)]
            )
          ))
      :open! open!

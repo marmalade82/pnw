@@ -1,0 +1,55 @@
+@use "componentlib/globals/abstract/mixins";
+@use "componentlib/globals/abstract/constants";
+
+.Login-Form {
+    @include mixins.no-border;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 60px;
+    width: fit-content;
+    position: absolute;
+    @include mixins.absolute-centered;
+    @include mixins.elevation(1);
+    background-color: constants.$bg-gray;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+    animation-name: fadein;
+}
+
+.Login-Submit {
+    margin-top: 10px;
+    width: 100%;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -200%);
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+.LoginPage-Header {
+    .LoginPage-LogoText {
+        top: 1rem;
+        left: 3rem;
+        position: absolute;
+        font-size: 8rem;
+        color: constants.$light-primary;
+    }
+
+    .LoginPage-LogoTagline {
+        position: absolute; 
+        top: 8rem;
+        left: 8rem;
+        font-size: 4rem;
+        font-weight: bold;
+        color: constants.$dark-primary;
+    }
+}

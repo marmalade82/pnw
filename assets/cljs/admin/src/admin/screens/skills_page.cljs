@@ -41,7 +41,8 @@
                     :disabled (disable-unless? :delete)
                     }]
          ]
-        [modal {} {:edit [:div "edit form"]
+        [modal {:title {:edit "Edit", :delete "Delete"}}
+            {:edit [:div "edit form"]
                    :delete [:div "delete form"]
                    }]
         ]))
@@ -113,10 +114,10 @@
        [:div {:class "SkillsPage-Header"}
         [c/text {:type 1} "Skills"]
         [b/add {:class "SkillsPage-Header-Add"
-                :on-click #(toggle! :all)
+                :on-click #(toggle! :add)
                 }]
         ]
-       [modal {} {:all [render-skill-form]}]
+       [modal {:title {:add "Add Skill"}} {:add [render-skill-form]}]
        [search-bar]
        (render-skills skills)
        ])

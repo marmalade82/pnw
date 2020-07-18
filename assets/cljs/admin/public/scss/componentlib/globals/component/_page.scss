@@ -1,0 +1,10 @@
+@use "globals/abstract/constants";
+
+.Page {
+    position: relative;
+    min-height: 100vh;
+    min-width: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: constants.$primary;
+}

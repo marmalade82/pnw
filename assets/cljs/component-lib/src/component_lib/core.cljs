@@ -56,14 +56,6 @@
   (into [:label {:for for, :class ["Label" class]}] (children))
   )
 
-(defn submit-button [{:keys [disabled class]}]
-  (into [:button {:type "submit"
-                 :disabled disabled
-                 :class ["SubmitButton" class]
-                 }]
-        (r/children (r/current-component))
-        )
-  )
 
 (defn button [{:keys [class disabled href on-click]
                :or {class "", disabled false, href nil, on-click identity }}]
@@ -74,12 +66,12 @@
                         on-click
                         )
             }
-   (let [inner (into [:span {:class "Button-Text"}
+   (let [inner (into [:span {:class "ButtonText"}
                  ] (r/children (r/current-component)))
          ]
      (if href
        [:a {:href href
-            :class ["Button-Link"]
+            :class ["ButtonLink"]
             } inner]
        inner
        )
@@ -89,16 +81,17 @@
 
 
 (defn text [{:keys [class type] :or {class "", type "nil"}}]
-  (let [children (r/children (r/current-component))]
+  (let [children (r/children (r/current-component))
+        ]
     (into
      (case (str type)
-       "1" [:h1 {:class "Header1"}]
-       "2" [:h2 {:class "Header2"}]
-       "3" [:h3 {:class "Header3"}]
-       "4" [:h4 {:class "Header4"}]
-       "5" [:h5 {:class "Header5"}]
-       "6" [:h6 {:class "Header6"}]
-       [:span {:class "Text"}]
+       "1" [:h1 {:class ["Header1" class]}]
+       "2" [:h2 {:class ["Header2" class]}]
+       "3" [:h3 {:class ["Header3" class]}]
+       "4" [:h4 {:class ["Header4" class]}]
+       "5" [:h5 {:class ["Header5" class]}]
+       "6" [:h6 {:class ["Header6" class]}]
+       [:span {:class ["Text" class]}]
        )
       children  
      )
@@ -131,10 +124,36 @@
 (defn badge [{:keys [color class] :or {color "white", class ""}}]
   (into [:span {:class ["Badge" class]
                 :style {:background-color color
-                        
+                        :border-color color
                         }
                 }
          ]
         (children )
         )
+  )
+
+(defn page [{:keys [class] :or {class ""}}]
+  (into [:div {:class ["Page" class]}
+         ] (children))
+  )
+
+(defn header [{:keys [class] :or {class ""}}]
+  (into [:header {:class ["Header" class]}]
+        (children)
+        )
+  )
+
+(defn logo [{:keys [class href] :or {class "", href nil}}]
+  [:div {:class ["Logo" class]}
+     (into [:a {:class "LogoLink" :href href}] (children))
+         ]
+  )
+
+(defn submit-button [{:keys [disabled class]}]
+  [:button {:type "submit"
+            :disabled disabled
+            :class ["SubmitButton" class]
+            }
+   (into [text] (r/children (r/current-component)))
+   ]
   )

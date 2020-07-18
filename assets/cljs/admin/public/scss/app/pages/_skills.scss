@@ -1,0 +1,38 @@
+.SkillsPage-Header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.SkillsPage-Search {
+    display: flex;
+    flex-direction: row;
+}
+
+.SkillsPage-Skills {
+    padding: 20px 40px;
+}
+
+.SkillsPage-Skill {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.SkillsPage-Skill-Name {
+    min-width: 150px;
+    display: inline-block;
+}
+
+.SkillsPage-Skill-Main {
+    width: 500px;
+}
+
+.SkillsPage-Skill-Side {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 200px;
+}

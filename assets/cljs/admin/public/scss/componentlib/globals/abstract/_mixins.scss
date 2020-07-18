@@ -1,0 +1,48 @@
+
+
+@mixin hover {
+    &:not([disabled]):hover {
+        @content;
+    }
+}
+
+@mixin first-vertical {
+    margin-top: 0;
+}
+
+@mixin namespace($parent-selector) {
+
+}
+
+@mixin active {
+    &:not([disabled]):active {
+        @content;
+    }
+}
+
+@mixin clickable {
+    &:not([disabled]):hover {
+        cursor: pointer;
+    }
+}
+
+@mixin disabled {
+    &:disabled {
+        @content;
+    }
+}
+
+@mixin absolute-centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin elevation($height) {
+    box-shadow: (1px*$height) (1px*$height) (3px*$height) 0.5px darkgray;
+}
+
+@mixin no-border {
+    border-width: 0;
+}

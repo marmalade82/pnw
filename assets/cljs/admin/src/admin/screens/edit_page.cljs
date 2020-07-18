@@ -40,7 +40,7 @@
                          submitting?
                          form-id]}]
     [:form { :id form-id
-            :class "Login-Form"
+            :class "Blog-Form"
             :on-submit handle-submit
             }
      [c/input-group {:label "Title",
@@ -67,7 +67,7 @@
 
      [c/submit-button {
                       :disabled submitting?
-                      :class "Login-Submit"
+                      :class "Blog-Submit"
                        } "Submit"]
      ]
   )

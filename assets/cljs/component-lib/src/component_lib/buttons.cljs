@@ -8,19 +8,19 @@
    ))
 
 (defbutton edit
-    [c/text "Edit"]
+    [c/text "edit"]
     [i/edit]
   )
 
 
 (defbutton preview
-   [c/text "Preview"]
+   [c/text "preview"]
    [i/preview]
   )
 
 (defbutton delete
-   [c/text "Delete"]
-   [i/edit]
+   [c/text "delete"]
+   [i/delete]
   )
 
 (defbutton add
@@ -34,3 +34,4 @@
 (defbutton close
    [i/x]
   )
+

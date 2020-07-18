@@ -1,0 +1,7 @@
+@use "sass:selector";
+
+%clickable {
+  @at-root #{selector.append(&, ":hover")} {
+      cursor: pointer;
+  }
+}

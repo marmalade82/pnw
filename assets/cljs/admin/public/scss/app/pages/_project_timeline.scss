@@ -1,0 +1,71 @@
+@use "globals/abstract/functions";
+
+.ProjectTimelinePage-Projects {
+    display: flex;
+    flex-direction: column;
+}
+
+.ProjectTimelinePage-Project {
+    display: flex;
+    flex-direction: column;
+}
+
+.ProjectTimelinePage-Content {
+    display: flex;
+    flex-direction: row;
+}
+
+.ProjectTimelinePage-Main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.ProjectTimelinePage-Details {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.ProjectTimelinePage-Project-Title {
+    font-size: 1.5em;
+    font-weight: bold;
+    min-width: 150px;
+}
+
+.ProjectTimelinePage-Project-Subtitle {
+    font-size: 1.2em;
+    font-style: italic;
+    flex: 1;
+    min-width: 150px;
+}
+
+.ProjectTimelinePage-Project-Updated {
+    font-size: 1em;
+    color: functions.gray(100);
+    min-width: 150px;
+    margin-right: 20px;
+}
+
+.ProjectTimelinePage-Project-Skills {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    & > .Badge {
+        margin-right: 10px;
+        font-size: 0.7em;
+    }
+}
+
+.ProjectTimelinePage-Side {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 350px;
+}

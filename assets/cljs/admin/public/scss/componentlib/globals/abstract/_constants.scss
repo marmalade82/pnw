@@ -1,0 +1,17 @@
+@use "functions";
+
+$max-width: 1000px;
+
+$border-gray: functions.gray(150);
+$bg-gray: functions.gray(245);
+
+$primary: #FFC107;
+$light-primary: #FFECB3;
+$dark-primary: #FFA000;
+$accent: #4CAF50;
+
+$icon: #212121;
+$text-primary: #212121;
+$text-secondary: #757575;
+$button-text: white;
+$divider: #BDBDBD;

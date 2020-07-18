@@ -1,0 +1,23 @@
+@use "globals/abstract/functions";
+@use "globals/abstract/constants";
+
+.Text {
+    font-size: 1em;
+    color: constants.$text-primary;
+}
+
+
+$stroke-color: functions.gray(30);
+$blur-radius: 1px;
+
+.Badge {
+    letter-spacing: 0.05em;
+    padding: 0.5em 0.7em;
+    border-radius: 5px;
+    border-color: silver;
+    color: white;
+    font-weight: bold;
+    border-style: outset;
+    display: inline-block;
+    text-align: center;
+}
