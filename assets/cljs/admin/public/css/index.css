@@ -287,6 +287,8 @@ section {
 .Surface {
   display: flex;
   flex: 1;
+  animation-name: grow;
+  animation-duration: 5s;
   flex-basis: 0;
   flex-direction: column;
   justify-content: flex-start;
@@ -298,22 +300,70 @@ section {
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
 }
 
-Header {
+.Header {
   width: 100%;
   height: 7rem;
   background-color: #FFA000;
   display: flex;
   flex-direction: row;
 }
-Header .Logo {
+.Header .Logo {
   position: relative;
   height: 100%;
   white-space: nowrap;
 }
-Header .Logo > .LogoLink {
+.Header .Logo > .LogoLink {
   display: contents;
+}
+
+.Menu {
+  display: flex;
+  flex-direction: row;
+}
+.Menu .MenuItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.Menu .MenuItem > a {
+  padding: 1rem 1.5rem;
+  position: relative;
+}
+@keyframes expand {
+  from {
+    width: 1px;
+    left: 50%;
+  }
+  to {
+    width: 100%;
+    left: 0;
+  }
+}
+.Menu .MenuItem > a:not([disabled]):hover .Text {
+  color: white;
+}
+.Menu .MenuItem > a:not([disabled]):hover::after {
+  content: "";
+  height: 0.6rem;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  animation-name: expand;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-in-out;
+  background-color: white;
+}
+.Menu .Text {
+  color: #FFECB3;
+  font-size: 1.7rem;
+  font-weight: bold;
+  font-variant: small-caps;
 }
 
 .My-Header .My-Logo {
@@ -324,6 +374,9 @@ Header .Logo > .LogoLink {
   position: relative;
   font-size: 8rem;
   color: #FFECB3;
+}
+.My-Header .My-Header-Menu {
+  margin-left: 3rem;
 }
 
 .SkillsPage-Header {

@@ -25,6 +25,8 @@
 .Surface {
     display: flex;
     flex: 1;
+    animation-name: grow;
+    animation-duration: 5s;
     flex-basis: 0;
     flex-direction: column;
     justify-content: flex-start;
@@ -36,6 +38,6 @@
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    //overflow-y: scroll;
-    //overscroll-behavior: contain;
+    overflow-y: scroll;
+    overscroll-behavior: contain;
 }

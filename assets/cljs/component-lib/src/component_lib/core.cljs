@@ -165,3 +165,19 @@
 (defn surface [{:keys [class] :or {class ""}}]
   (into [:div {:class ["Surface" class]}] (children))
   )
+
+(defn- render-menu-item [{:keys [label href] :or {label "", href nil}}]
+  [:nav {:class "MenuItem"}
+   [:a {:href href}
+    [text label]
+    ]
+   ]
+  )
+
+(defn menu [{:keys [items class] :or {items [] class ""}}]
+  (into [:navbar {:class ["Menu" class]}
+         
+         ]
+        (map render-menu-item items)
+        )
+  )
