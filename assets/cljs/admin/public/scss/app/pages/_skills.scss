@@ -5,11 +5,25 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    .SkillsPage-Header-Left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        & > * + * {
+            margin-left: 20px;
+        }
+    }
 }
 
 .SkillsPage-Search {
     display: flex;
     flex-direction: row;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .SkillsPage-Skills {

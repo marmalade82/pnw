@@ -25,14 +25,17 @@
 .Surface {
     display: flex;
     flex: 1;
+    flex-basis: 0;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
     background-color: constants.$bg-gray;
-    padding: 20px 50px;
+    padding: 20px 50px 60px 50px;
     border-radius: 5px;
     @include mixins.elevation(1);
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
+    //overflow-y: scroll;
+    //overscroll-behavior: contain;
 }

@@ -7,19 +7,26 @@
    [component-lib.icons :as i]
    ))
 
+(defn sep []
+  [:span {:class "Separator"}]
+  )
+
 (defbutton edit
     [c/text "edit"]
+    [sep]
     [i/edit]
   )
 
 
 (defbutton preview
    [c/text "preview"]
+   [sep]
    [i/preview]
   )
 
 (defbutton delete
    [c/text "delete"]
+   [sep]
    [i/delete]
   )
 

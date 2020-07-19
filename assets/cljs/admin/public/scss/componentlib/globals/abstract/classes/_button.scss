@@ -37,10 +37,13 @@
     background-image: linear-gradient(functions.gray(240), functions.gray(210));
     border-radius: 3px;
 
-    .Icon {
-        margin-left: 10px;
+    & .Icon {
         margin-top: -0.1rem;
         font-size: 1rem;
+    }
+
+    & * + .Separator {
+        margin-left: 10px;
     }
 
     .Text {
@@ -52,7 +55,7 @@
         background-image: linear-gradient(gray, gray);
     }
 
-    & > a, & > span {
+    & > a, & > .ButtonText {
         display: flex;
         padding: 0.7em 0.9em;
     }

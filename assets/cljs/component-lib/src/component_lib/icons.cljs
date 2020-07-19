@@ -8,68 +8,72 @@
   [hiccup-icons.octicons :as octicons]
   ))
 
-(deficon github octicons/mark-github)
 
-(deficon website octicons/device-desktop)
+(deficon adjustments octicons/settings)
 
-(deficon edit octicons/pencil)
-
-(deficon preview octicons/eye)
+(deficon alert octicons/stop)
 
 (deficon check octicons/check)
 
-(deficon plus octicons/plus)
+(deficon contract octicons/fold)
+
+(deficon chat-comment octicons/comment)
+
+(deficon delete octicons/trashcan)
+
+(deficon discussion octicons/comment-discussion)
+
+(deficon dislike octicons/thumbsdown)
+
+(deficon down octicons/triangle-down)
+
+(deficon edit octicons/pencil)
 
 (deficon email octicons/mail)
+
+(deficon expand octicons/unfold)
+
+(deficon folder octicons/file-directory)
+
+(deficon github octicons/mark-github)
+
+(deficon graph octicons/graph)
+
+(deficon hot octicons/flame)
+
+(deficon left octicons/triangle-left)
+
+(deficon like octicons/thumbsup)
+
+(deficon location octicons/location)
+
+(deficon plus octicons/plus)
+
+(deficon pin octicons/pin)
+
+(deficon preview octicons/eye)
 
 (deficon more-info octicons/info)
 
 (deficon question octicons/question)
 
-(deficon x octicons/x)
-
-(deficon sync octicons/sync)
-
 (deficon reply octicons/reply)
-
-(deficon like octicons/thumbsup)
-
-(deficon dislike octicons/thumbsdown)
-
-(deficon expand octicons/unfold)
-
-(deficon contract octicons/fold)
-
-(deficon discussion octicons/comment-discussion)
-
-(deficon chat-comment octicons/comment)
-
-(deficon settings octicons/gear)
-
-(deficon location octicons/location)
-
-(deficon adjustments octicons/settings)
-
-(deficon search octicons/search)
 
 (deficon report octicons/report)
 
-(deficon alert octicons/stop)
+(deficon right octicons/triangle-right)
 
-(deficon pin octicons/pin)
+(deficon search octicons/search)
 
-(deficon graph octicons/graph)
+(deficon settings octicons/gear)
 
-(deficon unpermitted octicons/circle-slash)
-
-(deficon hot octicons/flame)
+(deficon sync octicons/sync)
 
 (deficon top octicons/triangle-up)
 
-(deficon right octicons/triangle-right)
+(deficon unpermitted octicons/circle-slash)
 
-(deficon down octicons/triangle-down)
+(deficon website octicons/device-desktop)
 
-(deficon left octicons/triangle-left)
+(deficon x octicons/x)
 
-(deficon delete octicons/trashcan)

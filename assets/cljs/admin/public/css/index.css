@@ -34,9 +34,11 @@
   border-radius: 3px;
 }
 .EditButton .Icon, .DeleteButton .Icon, .PreviewButton .Icon, .SubmitButton .Icon, .CancelButton .Icon {
-  margin-left: 10px;
   margin-top: -0.1rem;
   font-size: 1rem;
+}
+.EditButton * + .Separator, .DeleteButton * + .Separator, .PreviewButton * + .Separator, .SubmitButton * + .Separator, .CancelButton * + .Separator {
+  margin-left: 10px;
 }
 .EditButton .Text, .DeleteButton .Text, .PreviewButton .Text, .SubmitButton .Text, .CancelButton .Text {
   color: white;
@@ -44,7 +46,7 @@
 .EditButton:disabled, .DeleteButton:disabled, .PreviewButton:disabled, .SubmitButton:disabled, .CancelButton:disabled {
   background-image: linear-gradient(gray, gray);
 }
-.EditButton > a, .DeleteButton > a, .PreviewButton > a, .SubmitButton > a, .CancelButton > a, .EditButton > span, .DeleteButton > span, .PreviewButton > span, .SubmitButton > span, .CancelButton > span {
+.EditButton > a, .DeleteButton > a, .PreviewButton > a, .SubmitButton > a, .CancelButton > a, .EditButton > .ButtonText, .DeleteButton > .ButtonText, .PreviewButton > .ButtonText, .SubmitButton > .ButtonText, .CancelButton > .ButtonText {
   display: flex;
   padding: 0.7em 0.9em;
 }
@@ -108,6 +110,10 @@
   color: white;
   background-image: unset;
   background-color: #4CAF50;
+  padding: 0.5rem 2rem;
+}
+.SubmitButton .Text {
+  font-size: 1.2rem;
 }
 
 .CancelButton {
@@ -144,8 +150,46 @@
 }
 
 .Text {
-  font-size: 1em;
+  font-size: 1rem;
   color: #212121;
+}
+
+.Header1 {
+  font-size: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.Header2 {
+  font-size: 1.75rem;
+  margin-top: 1.125rem;
+  margin-bottom: 1.125rem;
+}
+
+.Header3 {
+  font-size: 1.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.Header4 {
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: normal;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.Header5 {
+  font-size: 1.25rem;
+  margin-top: 0.375rem;
+  margin-bottom: 0.375rem;
+}
+
+.Header6 {
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .Badge {
@@ -175,6 +219,14 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+div {
+  margin: 0;
+}
+
+section {
+  margin: 0;
 }
 
 .Modal {
@@ -235,11 +287,12 @@ a {
 .Surface {
   display: flex;
   flex: 1;
+  flex-basis: 0;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
   background-color: whitesmoke;
-  padding: 20px 50px;
+  padding: 20px 50px 60px 50px;
   border-radius: 5px;
   box-shadow: 1px 1px 3px 0.5px darkgray;
   width: fit-content;
@@ -278,11 +331,23 @@ Header .Logo > .LogoLink {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.SkillsPage-Header .SkillsPage-Header-Left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.SkillsPage-Header .SkillsPage-Header-Left > * + * {
+  margin-left: 20px;
 }
 
 .SkillsPage-Search {
   display: flex;
   flex-direction: row;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .SkillsPage-Skills {
@@ -362,14 +427,53 @@ Header .Logo > .LogoLink {
   margin-left: 20px;
 }
 
+.TimelinePage-Surface > h1, .TimelinePage-Surface > h2, .TimelinePage-Surface > h3, .TimelinePage-Surface > h4, .TimelinePage-Surface > h5, .TimelinePage-Surface > h6, .TimelinePage-Surface > .Header1, .TimelinePage-Surface > .Header2, .TimelinePage-Surface > .Header3, .TimelinePage-Surface > .Header4, .TimelinePage-Surface > .Header5, .TimelinePage-Surface > .Header6 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.TimelinePage-Surface .TimelinePage-Timeline > * + section {
+  margin-top: 1.5rem;
+}
+.TimelinePage-Surface .TimelinePage-Timeline > section > h1, .TimelinePage-Surface .TimelinePage-Timeline > section > h2, .TimelinePage-Surface .TimelinePage-Timeline > section > h3, .TimelinePage-Surface .TimelinePage-Timeline > section > h4, .TimelinePage-Surface .TimelinePage-Timeline > section > h5, .TimelinePage-Surface .TimelinePage-Timeline > section > h6, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header1, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header2, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header3, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header4, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header5, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.TimelinePage-Surface .TimelinePage-Timeline > section > h1, .TimelinePage-Surface .TimelinePage-Timeline > section > h2, .TimelinePage-Surface .TimelinePage-Timeline > section > h3, .TimelinePage-Surface .TimelinePage-Timeline > section > h4, .TimelinePage-Surface .TimelinePage-Timeline > section > h5, .TimelinePage-Surface .TimelinePage-Timeline > section > h6, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header1, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header2, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header3, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header4, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header5, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header6 {
+  padding-left: 15px;
+  padding-right: 15px;
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-style: solid;
+  border-bottom-color: #BDBDBD;
+}
+
 .TimelinePage-Blog {
   display: flex;
   flex-direction: column;
 }
 
+.TimelinePage-Month .TimelinePage-Blog-Content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 .TimelinePage-Blog-Content {
   display: flex;
   flex-direction: row;
+  flex: 1;
+}
+.TimelinePage-Blog-Content:not([disabled]):hover {
+  background-color: #e6e6e6;
+}
+
+.TimelinePage-Blog-Main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: 500px;
+  flex: 1;
 }
 
 .Timeline-Blog-Side {
@@ -377,35 +481,114 @@ Header .Logo > .LogoLink {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 350px;
+  /*
+  .Button {
+      border-radius: 50%;
+  }
+
+
+  .Button .ButtonText {
+      text-align: center;
+  }
+  .Button > a, .Button > .ButtonText {
+      padding: 1em;
+      width: 1em;
+      height: 1em;
+  }
+
+  a > .ButtonText {
+      display: contents;
+  }
+
+  .Button .Icon {
+      width: 1em;
+      height: 1em;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+  */
+}
+.Timeline-Blog-Side > * + * {
+  margin-left: 10px;
+}
+.Timeline-Blog-Side .Button span.Text {
+  display: none;
+}
+.Timeline-Blog-Side .Button .Separator {
+  display: none;
 }
 
-.TimelinePage-Blog-Main {
+.ProjectTimelinePage-Surface > section + section {
+  margin-top: 3rem;
+}
+.ProjectTimelinePage-Surface > section > h2 {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-color: #BDBDBD;
+  border-style: solid;
+  padding-bottom: 2px;
+}
+.ProjectTimelinePage-Surface section > h1, .ProjectTimelinePage-Surface section > h2, .ProjectTimelinePage-Surface section > h3, .ProjectTimelinePage-Surface section > h4, .ProjectTimelinePage-Surface section > h5, .ProjectTimelinePage-Surface section > h6, .ProjectTimelinePage-Surface section > .Header1, .ProjectTimelinePage-Surface section > .Header2, .ProjectTimelinePage-Surface section > .Header3, .ProjectTimelinePage-Surface section > .Header4, .ProjectTimelinePage-Surface section > .Header5, .ProjectTimelinePage-Surface section > .Header6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.ProjectTimelinePage-Surface section > h1, .ProjectTimelinePage-Surface section > h2, .ProjectTimelinePage-Surface section > h3, .ProjectTimelinePage-Surface section > h4, .ProjectTimelinePage-Surface section > h5, .ProjectTimelinePage-Surface section > h6, .ProjectTimelinePage-Surface section > .Header1, .ProjectTimelinePage-Surface section > .Header2, .ProjectTimelinePage-Surface section > .Header3, .ProjectTimelinePage-Surface section > .Header4, .ProjectTimelinePage-Surface section > .Header5, .ProjectTimelinePage-Surface section > .Header6 {
+  padding-left: 10px;
+}
+.ProjectTimelinePage-Surface .ProjectTimelinePage-Summary {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 3rem;
+}
+
+.ProjectTimelinePage-TopHeader {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  flex: 1;
+  padding-left: 10px;
+}
+.ProjectTimelinePage-TopHeader > * + * {
+  margin-left: 20px;
 }
 
 .ProjectTimelinePage-Projects {
   display: flex;
   flex-direction: column;
 }
+.ProjectTimelinePage-Projects > * {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
 
 .ProjectTimelinePage-Project {
   display: flex;
   flex-direction: column;
 }
+.ProjectTimelinePage-Project:not([disabled]):hover {
+  background-color: #e6e6e6;
+}
+@keyframes ripple {}
 
 .ProjectTimelinePage-Content {
   display: flex;
   flex-direction: row;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.ProjectTimelinePage-Content > * + * {
+  margin-left: 50px;
 }
 
 .ProjectTimelinePage-Main {
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-width: 600px;
+}
+.ProjectTimelinePage-Main > * + * {
+  margin-top: 10px;
 }
 
 .ProjectTimelinePage-Details {
@@ -413,7 +596,6 @@ Header .Logo > .LogoLink {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 10px;
   flex-wrap: wrap;
 }
 
@@ -423,18 +605,10 @@ Header .Logo > .LogoLink {
   min-width: 150px;
 }
 
-.ProjectTimelinePage-Project-Subtitle {
-  font-size: 1.2em;
-  font-style: italic;
-  flex: 1;
-  min-width: 150px;
-}
-
 .ProjectTimelinePage-Project-Updated {
   font-size: 1em;
   color: #646464;
-  min-width: 150px;
-  margin-right: 20px;
+  min-width: 300px;
 }
 
 .ProjectTimelinePage-Project-Skills {
@@ -453,7 +627,44 @@ Header .Logo > .LogoLink {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 350px;
+  /*
+  .Button {
+      border-radius: 50%;
+  }
+
+
+  .Button .ButtonText {
+      text-align: center;
+  }
+  .Button > a, .Button > .ButtonText {
+      padding: 1em;
+      width: 1em;
+      height: 1em;
+  }
+
+  a > .ButtonText {
+      display: contents;
+  }
+
+  .Button .Icon {
+      width: 1em;
+      height: 1em;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+  */
+}
+.ProjectTimelinePage-Side .Button span.Text {
+  display: none;
+}
+.ProjectTimelinePage-Side .Button .Separator {
+  display: none;
+}
+.ProjectTimelinePage-Side > * + * {
+  margin-left: 10px;
 }
 
 .Login-Form {

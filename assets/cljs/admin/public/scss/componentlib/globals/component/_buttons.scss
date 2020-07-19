@@ -73,6 +73,11 @@
     @extend %TextIconButton;
     background-image: unset;
     background-color: constants.$accent;
+    padding: 0.5rem 2rem;
+
+    .Text {
+        font-size: 1.2rem;
+    }
 }
 
 .CancelButton {

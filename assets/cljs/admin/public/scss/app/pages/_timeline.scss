@@ -1,11 +1,63 @@
+@use "componentlib/globals/abstract/mixins";
+@use "componentlib/globals/abstract/functions";
+@use "componentlib/globals/abstract/constants";
+
+$horizontal-padding: 15px;
+
+.TimelinePage-Surface {
+    @include mixins.style-headers {
+        @include mixins.padding-h($horizontal-padding);
+    }
+
+    & .TimelinePage-Timeline > * + section {
+        margin-top: 1.5rem;
+    }
+
+    & .TimelinePage-Timeline {
+        @include mixins.style-headers {
+        }
+    }
+
+    & .TimelinePage-Timeline > section {
+        @include mixins.no-margin-headers;
+
+        @include mixins.style-headers {
+            @include mixins.padding-h($horizontal-padding);
+            border-width: 0;
+            border-bottom-width: 1px;
+            border-style: solid;
+            border-bottom-color: constants.$divider;
+        }
+    }
+}
+
 .TimelinePage-Blog {
     display: flex;
     flex-direction: column;
 }
 
+.TimelinePage-Month {
+    .TimelinePage-Blog-Content {
+        @include mixins.padding-v(20px);
+        @include mixins.padding-h($horizontal-padding);
+    }
+}
+
 .TimelinePage-Blog-Content {
     display: flex;
     flex-direction: row;
+    flex: 1;
+    @include mixins.highlight(functions.gray(230));
+
+}
+
+
+.TimelinePage-Blog-Main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 500px;
+    flex: 1;
 }
 
 .Timeline-Blog-Side {
@@ -13,12 +65,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 350px;
-}
+    & > * + * {
+        margin-left: 10px;
+    }
 
-.TimelinePage-Blog-Main {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex: 1;
+    @include mixins.hide-icon-text;
 }

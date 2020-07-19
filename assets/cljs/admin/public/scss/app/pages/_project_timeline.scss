@@ -1,24 +1,92 @@
-@use "globals/abstract/functions";
+@use "componentlib/globals/abstract/functions";
+@use "componentlib/globals/abstract/constants";
+@use "componentlib/globals/abstract/mixins";
+
+.ProjectTimelinePage-Surface {
+
+    & > section + section {
+        margin-top: 3rem;
+    }
+
+    & > section > h2 {
+        border-width: 0;
+        border-bottom-width: 1px;
+        border-color: constants.$divider;
+        border-style: solid;
+        padding-bottom: 2px;
+    }
+
+    & section {
+        @include mixins.no-margin-headers;
+        @include mixins.style-headers {
+            padding-left: 10px;
+        }
+    }
+
+    .ProjectTimelinePage-Summary {
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-bottom: 3rem;
+    }
+
+}
+
+.ProjectTimelinePage-TopHeader {
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
+
+    & > * + * {
+        margin-left: 20px;
+    }
+}
 
 .ProjectTimelinePage-Projects {
     display: flex;
     flex-direction: column;
+
+    & > * {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
 }
 
+
+ 
 .ProjectTimelinePage-Project {
     display: flex;
     flex-direction: column;
+
+    @include mixins.hover {
+        background-color: functions.gray(230);
+
+        @keyframes ripple {
+
+        }
+    }
 }
 
 .ProjectTimelinePage-Content {
     display: flex;
     flex-direction: row;
+    padding-left: 10px;
+    padding-right: 10px;
+
+
+    & > * + * {
+        margin-left: 50px;
+    }
 }
 
 .ProjectTimelinePage-Main {
     display: flex;
     flex-direction: column;
     flex: 1;
+    min-width: 600px;
+
+    & > * + * {
+        margin-top: 10px;
+    }
 }
 
 .ProjectTimelinePage-Details {
@@ -26,7 +94,6 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 10px;
     flex-wrap: wrap;
 }
 
@@ -36,18 +103,10 @@
     min-width: 150px;
 }
 
-.ProjectTimelinePage-Project-Subtitle {
-    font-size: 1.2em;
-    font-style: italic;
-    flex: 1;
-    min-width: 150px;
-}
-
 .ProjectTimelinePage-Project-Updated {
     font-size: 1em;
     color: functions.gray(100);
-    min-width: 150px;
-    margin-right: 20px;
+    min-width: 300px;
 }
 
 .ProjectTimelinePage-Project-Skills {
@@ -67,5 +126,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 350px;
+    @include mixins.hide-icon-text;
+    & > * + * {
+        margin-left: 10px;
+    }
 }
+

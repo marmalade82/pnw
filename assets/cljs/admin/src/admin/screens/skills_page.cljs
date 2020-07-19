@@ -4,6 +4,7 @@
    [reagent.dom :as d]
    [component-lib.core :as c]
    [component-lib.buttons :as b]
+   [component-lib.icons :as i]
    [component-lib.containers :refer [mk-modal]]
    [admin.components.header :refer [header]]
    [admin.screens.skills-page.delete-form :refer [render-delete-form]]
@@ -86,7 +87,9 @@
        [c/body
         [c/surface {:class "SkillsPage-Main"}
          [:div {:class "SkillsPage-Header"}
-          [c/text {:type 1} "Skills"]
+          [:div {:class "SkillsPage-Header-Left"}
+           [c/text {:type 1} "Skills"]
+           ]
           [b/add {:class "SkillsPage-Header-Add"
                   :on-click #(toggle! :add)
                   }]

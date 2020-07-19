@@ -2,8 +2,52 @@
 @use "globals/abstract/constants";
 
 .Text {
-    font-size: 1em;
+    font-size: 1rem;
     color: constants.$text-primary;
+}
+
+.Header1 {
+    font-size: 2rem;
+    $margin: 3rem/2;
+    margin-top: $margin;
+    margin-bottom: $margin;
+}
+
+.Header2 {
+    font-size: 1.75rem;
+    $margin: 2.25rem/2;
+    margin-top: $margin;
+    margin-bottom: $margin;
+}
+
+.Header3 {
+    font-size: 1.5rem;
+    $margin: 1.5rem/2;
+    margin-top: $margin;
+    margin-bottom: $margin;
+}
+
+.Header4 {
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: normal;
+    $margin: 1.5rem/2;
+    margin-top: $margin;
+    margin-bottom: $margin;
+}
+
+.Header5 {
+    font-size: 1.25rem;
+    $margin: 0.75rem/2;
+    margin-top: $margin;
+    margin-bottom: $margin;
+}
+
+.Header6 {
+    font-size: 1rem;
+    $margin: 0;
+    margin-top: $margin;
+    margin-bottom: $margin;
 }
 
 

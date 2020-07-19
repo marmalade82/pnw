@@ -6,8 +6,8 @@
    [component-lib.core :as c]
    [component-lib.buttons :as b]
    [component-lib.containers :refer [mk-modal]]
-   )
-  )
+   [admin.components.header :refer [header]]
+   ))
 
 (defn get-grouped-blog-data []
   [
@@ -20,10 +20,45 @@
              :id 7
              :edit-href "#/edit"
              }
+            {:title "Title 1"
+             :created_at "Oct 1"
+             :updated_at "Oct 3"
+             :views 30
+             :id 7
+             :edit-href "#/edit"
+             }
+            {:title "Title 1"
+             :created_at "Oct 1"
+             :updated_at "Oct 3"
+             :views 30
+             :id 7
+             :edit-href "#/edit"
+             }
             ]
     }
    {:month "August 2020"
     :posts [
+            {:title "Title 1"
+             :created_at "Aug 1"
+             :updated_at "Aug 3"
+             :views 30
+             :id 3
+             :edit-href "#/edit"
+             }
+            {:title "Title 1"
+             :created_at "Aug 1"
+             :updated_at "Aug 3"
+             :views 30
+             :id 3
+             :edit-href "#/edit"
+             }
+            {:title "Title 1"
+             :created_at "Aug 1"
+             :updated_at "Aug 3"
+             :views 30
+             :id 3
+             :edit-href "#/edit"
+             }
             {:title "Title 1"
              :created_at "Aug 1"
              :updated_at "Aug 3"
@@ -72,7 +107,7 @@
   )
 
 (defn render-month [{:keys [month posts]}]
-  (into [:div {:class "TimelinePage-Month"
+  (into [:section {:class "TimelinePage-Month"
                }
          [c/text {:class "TimelinePage-Month-Header"
                   :type 2
@@ -83,9 +118,15 @@
 (defn timeline-page []
   (let [blog-data (get-grouped-blog-data)
         ]
-    [:div {:class "TimelinePage"}
-      [c/text {:type 1} "Posts"]
-      (into [:div {:class "TimelinePage-Timeline"}] (map render-month blog-data))
+    [c/page {:class "TimelinePage"}
+      [header]
+     [c/body
+      [c/surface {:class "TimelinePage-Surface"}
+       [c/text {:type 1} "Posts"]
+       (into [:div {:class "TimelinePage-Timeline"}]
+             (map render-month blog-data))
+       ]
+      ]
      ]
     )
   )
