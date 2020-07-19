@@ -74,3 +74,10 @@
     background-image: unset;
     background-color: constants.$accent;
 }
+
+.CancelButton {
+    @extend %TextIconButton;
+    color: white;
+    $red: rgb(200, 0, 0);
+    background-image: linear-gradient($red, $red);
+}

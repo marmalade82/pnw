@@ -36,10 +36,12 @@
 
 
 .LoginPage-Header {
+    .LoginPage-Logo {
+        margin-left: 3rem;
+    }
     .LoginPage-LogoText {
         top: 1rem;
-        left: 3rem;
-        position: absolute;
+        position: relative;
         font-size: 8rem;
         color: constants.$light-primary;
     }

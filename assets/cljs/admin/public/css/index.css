@@ -18,7 +18,7 @@
   opacity: 0.5;
 }
 
-.EditButton, .DeleteButton, .PreviewButton, .SubmitButton {
+.EditButton, .DeleteButton, .PreviewButton, .SubmitButton, .CancelButton {
   letter-spacing: 0.12em;
   display: flex;
   flex-direction: row;
@@ -33,18 +33,18 @@
   background-image: linear-gradient(#f0f0f0, #d2d2d2);
   border-radius: 3px;
 }
-.EditButton .Icon, .DeleteButton .Icon, .PreviewButton .Icon, .SubmitButton .Icon {
+.EditButton .Icon, .DeleteButton .Icon, .PreviewButton .Icon, .SubmitButton .Icon, .CancelButton .Icon {
   margin-left: 10px;
   margin-top: -0.1rem;
   font-size: 1rem;
 }
-.EditButton .Text, .DeleteButton .Text, .PreviewButton .Text, .SubmitButton .Text {
+.EditButton .Text, .DeleteButton .Text, .PreviewButton .Text, .SubmitButton .Text, .CancelButton .Text {
   color: white;
 }
-.EditButton:disabled, .DeleteButton:disabled, .PreviewButton:disabled, .SubmitButton:disabled {
+.EditButton:disabled, .DeleteButton:disabled, .PreviewButton:disabled, .SubmitButton:disabled, .CancelButton:disabled {
   background-image: linear-gradient(gray, gray);
 }
-.EditButton > a, .DeleteButton > a, .PreviewButton > a, .SubmitButton > a, .EditButton > span, .DeleteButton > span, .PreviewButton > span, .SubmitButton > span {
+.EditButton > a, .DeleteButton > a, .PreviewButton > a, .SubmitButton > a, .CancelButton > a, .EditButton > span, .DeleteButton > span, .PreviewButton > span, .SubmitButton > span, .CancelButton > span {
   display: flex;
   padding: 0.7em 0.9em;
 }
@@ -108,6 +108,11 @@
   color: white;
   background-image: unset;
   background-color: #4CAF50;
+}
+
+.CancelButton {
+  color: white;
+  background-image: linear-gradient(#c80000, #c80000);
 }
 
 .InputGroup {
@@ -252,17 +257,18 @@ Header {
 Header .Logo {
   position: relative;
   height: 100%;
-  width: 200px;
   white-space: nowrap;
 }
 Header .Logo > .LogoLink {
   display: contents;
 }
 
+.My-Header .My-Logo {
+  margin-left: 3rem;
+}
 .My-Header .My-LogoText {
   top: 1rem;
-  left: 3rem;
-  position: absolute;
+  position: relative;
   font-size: 8rem;
   color: #FFECB3;
 }
@@ -337,6 +343,23 @@ Header .Logo > .LogoLink {
 }
 .SkillsPage-Form > * + * {
   margin-top: 20px;
+}
+
+.SkillsPage-DeleteForm {
+  display: flex;
+  flex-direction: column;
+}
+.SkillsPage-DeleteForm > * + * {
+  margin-top: 30px;
+}
+
+.SkillsPage-DeleteForm-Footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.SkillsPage-DeleteForm-Footer > * + * {
+  margin-left: 20px;
 }
 
 .TimelinePage-Blog {
@@ -467,10 +490,12 @@ Header .Logo > .LogoLink {
     opacity: 1;
   }
 }
+.LoginPage-Header .LoginPage-Logo {
+  margin-left: 3rem;
+}
 .LoginPage-Header .LoginPage-LogoText {
   top: 1rem;
-  left: 3rem;
-  position: absolute;
+  position: relative;
   font-size: 8rem;
   color: #FFECB3;
 }

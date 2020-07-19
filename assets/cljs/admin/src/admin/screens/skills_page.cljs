@@ -51,7 +51,10 @@
          ]
         [modal {:title {:edit "Edit", :delete "Are you sure?"}}
             {:edit [render-edit-form]
-                   :delete [render-delete-form {:close! close!}]
+             :delete [render-delete-form
+                      {:close! close!
+                       :text (str "Please confirm that you want to delete " name ".")
+                       }]
                    }]
         ]))
   )

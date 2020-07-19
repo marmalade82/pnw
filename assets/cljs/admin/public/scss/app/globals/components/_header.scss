@@ -1,10 +1,12 @@
 @use "componentlib/globals/abstract/constants";
 
 .My-Header {
+    .My-Logo {
+        margin-left: 3rem;
+    }
     .My-LogoText {
         top: 1rem;
-        left: 3rem;
-        position: absolute;
+        position: relative;
         font-size: 8rem;
         color: constants.$light-primary;
     }

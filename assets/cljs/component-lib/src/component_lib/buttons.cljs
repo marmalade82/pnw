@@ -35,3 +35,6 @@
    [i/x]
   )
 
+(defbutton cancel
+  [c/text "cancel"]
+  )

@@ -77,3 +77,21 @@
         margin-top: 20px;
     }
 }
+
+.SkillsPage-DeleteForm {
+    display: flex;
+    flex-direction: column;
+    & > * + * {
+        margin-top: 30px;
+    }
+}
+
+.SkillsPage-DeleteForm-Footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    & > * + * {
+        margin-left: 20px;
+    }
+}

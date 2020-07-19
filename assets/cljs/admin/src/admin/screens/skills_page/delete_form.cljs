@@ -19,25 +19,27 @@
           :id form-id
           :on-submit handle-submit
           }
-   [c/text {:class "SkillsPage-DeleteForm-Text"} "Are you sure?"]
-   [c/button {:disabled submitting?
-              :class "SkillsPage-Modal-Cancel"
-              :on-click (:close! props)
-              } "no, cancel"]
+   [c/text {:class "SkillsPage-DeleteForm-Text"} (:text props)]
+   [:div {:class "SkillsPage-DeleteForm-Footer"}
+    [b/cancel {:disabled submitting?
+               :class "SkillsPage-Modal-Cancel"
+               :on-click (:close! props)
+               }]
 
-   [c/submit-button { :disabled submitting?
+    [c/submit-button { :disabled submitting?
                       :class "SkillsPage-Modal-Delete"
-                     }
-    "yes, delete"]
+                      }
+     "yes, delete"]
+    ]
    ]
   )
 
-(defn render-delete-form [{:keys [close!]}]
+(defn render-delete-form [{:keys [close! text] :or {text ""} :as props}]
   [f/form {:prevent-default? true
            :clean-on-unmount? true
            :path :delete-form 
            :on-submit #(identity %)
-           :props { :close! close! }
+           :props props
            }
    delete-form]
-  )
+   )
