@@ -167,3 +167,19 @@
         width: calc(100% + #{$t}*2);
     }
 }
+
+@mixin overline($t: 0px) {
+    & {
+        position: relative;
+    }
+
+    &::before {
+        position: absolute;
+        content: "";
+        height: 1px;
+        top: 0;
+        left: 0 - $t;
+        background-color: constants.$divider;
+        width: calc(100% + #{$t}*2);
+    }
+}

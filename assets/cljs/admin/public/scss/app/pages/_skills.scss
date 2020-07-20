@@ -1,12 +1,12 @@
 @use "componentlib/globals/abstract/constants";
+@use "componentlib/globals/abstract/mixins";
+@use "componentlib/globals/abstract/functions";
 
 .SkillsPage-Header {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-left: 20px;
-    padding-right: 20px;
 
     .SkillsPage-Header-Left {
         display: flex;
@@ -22,38 +22,39 @@
 .SkillsPage-Search {
     display: flex;
     flex-direction: row;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
 .SkillsPage-Skills {
     padding: 20px 0;
+    $horizontal-padding: 10px;
+    /*
     & > * + * {
         border-top-width: 1px;
         border-top-style: solid;
         border-top-color: constants.$divider;
     }
+    */
 
     & > *:first-child {
-        border-top-width: 1px;
-        border-top-style: solid;
-        border-top-color: constants.$divider;
+        @include mixins.overline($horizontal-padding);
     }
 
+    /*
     & > *:last-child {
         border-bottom-width: 1px;
         border-bottom-style: solid;
         border-bottom-color: constants.$divider;
     }
+    */
+    .SkillsPage-Skill {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        @include mixins.padding-v(20px);
+        @include mixins.highlight(functions.gray(230), $horizontal-padding);
+    }
 }
 
-.SkillsPage-Skill {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 20px 20px;
-
-}
 
 .SkillsPage-Skill-Name {
     min-width: 300px;

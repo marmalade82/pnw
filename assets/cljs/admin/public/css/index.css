@@ -392,8 +392,6 @@ section {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 .SkillsPage-Header .SkillsPage-Header-Left {
   display: flex;
@@ -407,34 +405,61 @@ section {
 .SkillsPage-Search {
   display: flex;
   flex-direction: row;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .SkillsPage-Skills {
   padding: 20px 0;
-}
-.SkillsPage-Skills > * + * {
-  border-top-width: 1px;
-  border-top-style: solid;
-  border-top-color: #BDBDBD;
+  /*
+  & > * + * {
+      border-top-width: 1px;
+      border-top-style: solid;
+      border-top-color: constants.$divider;
+  }
+  */
+  /*
+  & > *:last-child {
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: constants.$divider;
+  }
+  */
 }
 .SkillsPage-Skills > *:first-child {
-  border-top-width: 1px;
-  border-top-style: solid;
-  border-top-color: #BDBDBD;
+  position: relative;
 }
-.SkillsPage-Skills > *:last-child {
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: #BDBDBD;
+.SkillsPage-Skills > *:first-child::before {
+  position: absolute;
+  content: "";
+  height: 1px;
+  top: 0;
+  left: -10px;
+  background-color: #BDBDBD;
+  width: calc(100% + 10px*2);
 }
-
-.SkillsPage-Skill {
+.SkillsPage-Skills .SkillsPage-Skill {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 20px 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.SkillsPage-Skills .SkillsPage-Skill:not([disabled]):hover {
+  background-color: #e6e6e6;
+}
+.SkillsPage-Skills .SkillsPage-Skill:not([disabled]):hover {
+  position: relative;
+  background-color: transparent;
+  z-index: 0;
+}
+.SkillsPage-Skills .SkillsPage-Skill:not([disabled]):hover::after {
+  content: "";
+  height: 100%;
+  background-color: #e6e6e6;
+  position: absolute;
+  left: -10px;
+  bottom: 0;
+  width: calc(100% + 10px*2);
+  z-index: -1;
 }
 
 .SkillsPage-Skill-Name {
