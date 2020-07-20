@@ -1,9 +1,9 @@
 .EditPage-Surface {
     min-width: 800px;
-}
 
-.Blog-Form {
-   & > * + * {
-       margin-top: 1.5rem;
-   } 
+    .Blog-Form {
+    & > * + * {
+        margin-top: 1.5rem;
+    } 
+    }
 }

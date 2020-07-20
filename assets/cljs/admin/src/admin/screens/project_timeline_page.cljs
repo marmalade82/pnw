@@ -6,7 +6,7 @@
    [component-lib.buttons :as b]
    [component-lib.containers :refer [mk-modal]]
    [component-lib.icons :as i]
-   [admin.routes :refer [project-edit-path]]
+   [admin.routes :refer [project-edit-path project-add-path]]
    [admin.components.header :refer [header]]
    ))
 
@@ -112,8 +112,11 @@
      [c/body
       [c/surface {:class "ProjectTimelinePage-Surface"}
        [:div {:class "ProjectTimelinePage-TopHeader"}
-        [i/folder]
-        [c/text {:type 1} "Projects"]
+        [:div {:class "ProjectTimelinePage-TopHeader-First"}
+         [i/folder]
+         [c/text {:type 1} "Projects"]
+         ]
+        [b/add {:class "ProjectTimelinePage-Add", :href (project-add-path)}]
         ]
        [c/text {:class "ProjectTimelinePage-Summary"} "A timeline of everything you've done so far."]
 

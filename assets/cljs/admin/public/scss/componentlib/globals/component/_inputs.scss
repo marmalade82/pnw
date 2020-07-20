@@ -12,7 +12,7 @@
 
 .InputGroup-Label {
     width: 170px;
-    font-size: 1.1em;
+    font-size: 1.1rem;
 }
 
 .InputGroup input {
@@ -20,15 +20,18 @@
     border-style: solid;
     border-color: constants.$border-gray;
     border-width: 1px;
-    padding: 0.5em 0.5em;
-    font-size: 1em;
+    padding: 0.5rem 0.5rem;
+    font-size: 1rem;
     min-width: 250px;
-    flex: 1;
+
+    &:not(.InputGroup-ColorInput) {
+        flex: 1;
+    }
 }
 
 .InputGroup input[type="color"] {
     padding: 0;
-    width: 3em;
-    height: 2em;
+    width: 3rem;
+    height: 2rem;
     min-width: 0;
 }

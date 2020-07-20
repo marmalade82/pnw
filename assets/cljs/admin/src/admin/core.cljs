@@ -7,6 +7,8 @@
       [admin.screens.timeline-page :refer [timeline-page]]
       [admin.screens.project-edit-page :refer [project-edit-page]]
       [admin.screens.project-timeline-page :refer [project-timeline-page]]
+      [admin.screens.new-page :refer [new-page]]
+      [admin.screens.project-new-page :refer [project-new-page]]
       [admin.screens.skills-page :refer [skills-page]]
       [admin.routes :refer
        [init-client-routing root-path edit-path timeline-path
@@ -47,7 +49,9 @@
   (match target
     "root" (render home-page)
     "edit" (render edit-page)
+    "new" (render new-page)
     "timeline" (render timeline-page)
+    "project-new" (render project-new-page)
     "project-edit" (render project-edit-page)
     "project-timeline" (render project-timeline-page)
     "skills" (render skills-page)

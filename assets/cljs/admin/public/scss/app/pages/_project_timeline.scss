@@ -32,13 +32,19 @@
 }
 
 .ProjectTimelinePage-TopHeader {
-    display: flex;
-    flex-direction: row;
+    @include mixins.left-right-items;
     padding-left: 10px;
 
-    & > * + * {
-        margin-left: 20px;
+    & .ProjectTimelinePage-TopHeader-First {
+        display: flex;
+        flex-direction: row;
+        & > * + * {
+            margin-left: 20px;
+        }
     }
+
+
+
 }
 
 .ProjectTimelinePage-Projects {

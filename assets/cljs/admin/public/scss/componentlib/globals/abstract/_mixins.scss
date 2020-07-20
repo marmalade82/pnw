@@ -148,7 +148,7 @@
 
 @mixin space-children-v {
     & > * + * {
-        margin-top: 20px;
+        margin-top: 1.5rem;
     }
 }
 
@@ -156,4 +156,11 @@
     & > * + * {
         margin-left: 10px;
     }
+}
+
+@mixin left-right-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }

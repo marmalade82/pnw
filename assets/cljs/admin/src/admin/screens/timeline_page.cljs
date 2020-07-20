@@ -7,6 +7,7 @@
    [component-lib.buttons :as b]
    [component-lib.containers :refer [mk-modal]]
    [admin.components.header :refer [header]]
+   [admin.routes :refer [add-post-path]]
    ))
 
 (defn get-grouped-blog-data []
@@ -122,7 +123,10 @@
       [header]
      [c/body
       [c/surface {:class "TimelinePage-Surface"}
-       [c/text {:type 1} "Posts"]
+       [:div {:class "TimelinePage-Header"}
+        [c/text {:type 1} "Posts"]
+        [b/add {:href (add-post-path)}]
+        ]
        (into [:div {:class "TimelinePage-Timeline"}]
              (map render-month blog-data))
        ]

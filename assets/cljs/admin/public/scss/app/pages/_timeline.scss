@@ -9,6 +9,10 @@ $horizontal-padding: 15px;
         @include mixins.padding-h($horizontal-padding);
     }
 
+    & .TimelinePage-Header {
+        @include mixins.left-right-items;
+    }
+
     & .TimelinePage-Timeline > * + section {
         margin-top: 1.5rem;
     }

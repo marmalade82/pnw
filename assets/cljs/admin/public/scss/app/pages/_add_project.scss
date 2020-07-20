@@ -1,0 +1,9 @@
+@use "globals/abstract/mixins";
+
+.ProjectAddPage-Surface {
+    min-width: 800px;
+
+    .ProjectEditPage-Form {
+        @include mixins.space-children-v;
+    }
+}

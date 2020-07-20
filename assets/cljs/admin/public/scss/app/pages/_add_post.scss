@@ -1,0 +1,9 @@
+@use "componentlib/globals/abstract/mixins";
+
+.AddPage-Surface {
+    min-width: 800px;
+
+    .Blog-Form {
+        @include mixins.space-children-v;
+    }
+}
