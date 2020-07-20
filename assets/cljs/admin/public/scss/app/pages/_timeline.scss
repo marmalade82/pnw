@@ -2,13 +2,9 @@
 @use "componentlib/globals/abstract/functions";
 @use "componentlib/globals/abstract/constants";
 
-$horizontal-padding: 15px;
+$horizontal-padding: 10px;
 
 .TimelinePage-Surface {
-    @include mixins.style-headers {
-        @include mixins.padding-h($horizontal-padding);
-    }
-
     & .TimelinePage-Header {
         @include mixins.left-right-items;
     }
@@ -26,11 +22,7 @@ $horizontal-padding: 15px;
         @include mixins.no-margin-headers;
 
         @include mixins.style-headers {
-            @include mixins.padding-h($horizontal-padding);
-            border-width: 0;
-            border-bottom-width: 1px;
-            border-style: solid;
-            border-bottom-color: constants.$divider;
+            @include mixins.underline($horizontal-padding);
         }
     }
 }
@@ -43,7 +35,6 @@ $horizontal-padding: 15px;
 .TimelinePage-Month {
     .TimelinePage-Blog-Content {
         @include mixins.padding-v(20px);
-        @include mixins.padding-h($horizontal-padding);
     }
 }
 
@@ -51,7 +42,7 @@ $horizontal-padding: 15px;
     display: flex;
     flex-direction: row;
     flex: 1;
-    @include mixins.highlight(functions.gray(230));
+    @include mixins.highlight(functions.gray(230), $horizontal-padding);
 
 }
 

@@ -488,10 +488,6 @@ section {
   margin-left: 20px;
 }
 
-.TimelinePage-Surface > h1, .TimelinePage-Surface > h2, .TimelinePage-Surface > h3, .TimelinePage-Surface > h4, .TimelinePage-Surface > h5, .TimelinePage-Surface > h6, .TimelinePage-Surface > .Header1, .TimelinePage-Surface > .Header2, .TimelinePage-Surface > .Header3, .TimelinePage-Surface > .Header4, .TimelinePage-Surface > .Header5, .TimelinePage-Surface > .Header6 {
-  padding-left: 15px;
-  padding-right: 15px;
-}
 .TimelinePage-Surface .TimelinePage-Header {
   display: flex;
   flex-direction: row;
@@ -506,12 +502,16 @@ section {
   margin-bottom: 0;
 }
 .TimelinePage-Surface .TimelinePage-Timeline > section > h1, .TimelinePage-Surface .TimelinePage-Timeline > section > h2, .TimelinePage-Surface .TimelinePage-Timeline > section > h3, .TimelinePage-Surface .TimelinePage-Timeline > section > h4, .TimelinePage-Surface .TimelinePage-Timeline > section > h5, .TimelinePage-Surface .TimelinePage-Timeline > section > h6, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header1, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header2, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header3, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header4, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header5, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header6 {
-  padding-left: 15px;
-  padding-right: 15px;
-  border-width: 0;
-  border-bottom-width: 1px;
-  border-style: solid;
-  border-bottom-color: #BDBDBD;
+  position: relative;
+}
+.TimelinePage-Surface .TimelinePage-Timeline > section > h1::after, .TimelinePage-Surface .TimelinePage-Timeline > section > h2::after, .TimelinePage-Surface .TimelinePage-Timeline > section > h3::after, .TimelinePage-Surface .TimelinePage-Timeline > section > h4::after, .TimelinePage-Surface .TimelinePage-Timeline > section > h5::after, .TimelinePage-Surface .TimelinePage-Timeline > section > h6::after, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header1::after, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header2::after, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header3::after, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header4::after, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header5::after, .TimelinePage-Surface .TimelinePage-Timeline > section > .Header6::after {
+  position: absolute;
+  content: "";
+  height: 1px;
+  bottom: 0;
+  left: -10px;
+  background-color: #BDBDBD;
+  width: calc(100% + 10px*2);
 }
 
 .TimelinePage-Blog {
@@ -522,8 +522,6 @@ section {
 .TimelinePage-Month .TimelinePage-Blog-Content {
   padding-top: 20px;
   padding-bottom: 20px;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 
 .TimelinePage-Blog-Content {
@@ -533,6 +531,21 @@ section {
 }
 .TimelinePage-Blog-Content:not([disabled]):hover {
   background-color: #e6e6e6;
+}
+.TimelinePage-Blog-Content:not([disabled]):hover {
+  position: relative;
+  background-color: transparent;
+  z-index: 0;
+}
+.TimelinePage-Blog-Content:not([disabled]):hover::after {
+  content: "";
+  height: 100%;
+  background-color: #e6e6e6;
+  position: absolute;
+  left: -10px;
+  bottom: 0;
+  width: calc(100% + 10px*2);
+  z-index: -1;
 }
 
 .TimelinePage-Blog-Main {
@@ -548,35 +561,6 @@ section {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /*
-  .Button {
-      border-radius: 50%;
-  }
-
-
-  .Button .ButtonText {
-      text-align: center;
-  }
-  .Button > a, .Button > .ButtonText {
-      padding: 1em;
-      width: 1em;
-      height: 1em;
-  }
-
-  a > .ButtonText {
-      display: contents;
-  }
-
-  .Button .Icon {
-      width: 1em;
-      height: 1em;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-  }
-  */
 }
 .Timeline-Blog-Side > * + * {
   margin-left: 10px;
@@ -592,23 +576,48 @@ section {
   margin-top: 3rem;
 }
 .ProjectTimelinePage-Surface > section > h2 {
-  border-width: 0;
-  border-bottom-width: 1px;
-  border-color: #BDBDBD;
-  border-style: solid;
   padding-bottom: 2px;
+}
+.ProjectTimelinePage-Surface > section > h2 {
+  position: relative;
+}
+.ProjectTimelinePage-Surface > section > h2::after {
+  position: absolute;
+  content: "";
+  height: 1px;
+  bottom: 0;
+  left: -10px;
+  background-color: #BDBDBD;
+  width: calc(100% + 10px*2);
 }
 .ProjectTimelinePage-Surface section > h1, .ProjectTimelinePage-Surface section > h2, .ProjectTimelinePage-Surface section > h3, .ProjectTimelinePage-Surface section > h4, .ProjectTimelinePage-Surface section > h5, .ProjectTimelinePage-Surface section > h6, .ProjectTimelinePage-Surface section > .Header1, .ProjectTimelinePage-Surface section > .Header2, .ProjectTimelinePage-Surface section > .Header3, .ProjectTimelinePage-Surface section > .Header4, .ProjectTimelinePage-Surface section > .Header5, .ProjectTimelinePage-Surface section > .Header6 {
   margin-top: 0;
   margin-bottom: 0;
 }
-.ProjectTimelinePage-Surface section > h1, .ProjectTimelinePage-Surface section > h2, .ProjectTimelinePage-Surface section > h3, .ProjectTimelinePage-Surface section > h4, .ProjectTimelinePage-Surface section > h5, .ProjectTimelinePage-Surface section > h6, .ProjectTimelinePage-Surface section > .Header1, .ProjectTimelinePage-Surface section > .Header2, .ProjectTimelinePage-Surface section > .Header3, .ProjectTimelinePage-Surface section > .Header4, .ProjectTimelinePage-Surface section > .Header5, .ProjectTimelinePage-Surface section > .Header6 {
-  padding-left: 10px;
-}
 .ProjectTimelinePage-Surface .ProjectTimelinePage-Summary {
-  padding-left: 10px;
-  padding-right: 10px;
   margin-bottom: 3rem;
+}
+.ProjectTimelinePage-Surface .ProjectTimelinePage-Project {
+  display: flex;
+  flex-direction: column;
+}
+.ProjectTimelinePage-Surface .ProjectTimelinePage-Project:not([disabled]):hover {
+  background-color: #e6e6e6;
+}
+.ProjectTimelinePage-Surface .ProjectTimelinePage-Project:not([disabled]):hover {
+  position: relative;
+  background-color: transparent;
+  z-index: 0;
+}
+.ProjectTimelinePage-Surface .ProjectTimelinePage-Project:not([disabled]):hover::after {
+  content: "";
+  height: 100%;
+  background-color: #e6e6e6;
+  position: absolute;
+  left: -10px;
+  bottom: 0;
+  width: calc(100% + 10px*2);
+  z-index: -1;
 }
 
 .ProjectTimelinePage-TopHeader {
@@ -616,7 +625,6 @@ section {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-left: 10px;
 }
 .ProjectTimelinePage-TopHeader .ProjectTimelinePage-TopHeader-First {
   display: flex;
@@ -635,20 +643,9 @@ section {
   padding-bottom: 1rem;
 }
 
-.ProjectTimelinePage-Project {
-  display: flex;
-  flex-direction: column;
-}
-.ProjectTimelinePage-Project:not([disabled]):hover {
-  background-color: #e6e6e6;
-}
-@keyframes ripple {}
-
 .ProjectTimelinePage-Content {
   display: flex;
   flex-direction: row;
-  padding-left: 10px;
-  padding-right: 10px;
 }
 .ProjectTimelinePage-Content > * + * {
   margin-left: 50px;
@@ -700,35 +697,6 @@ section {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /*
-  .Button {
-      border-radius: 50%;
-  }
-
-
-  .Button .ButtonText {
-      text-align: center;
-  }
-  .Button > a, .Button > .ButtonText {
-      padding: 1em;
-      width: 1em;
-      height: 1em;
-  }
-
-  a > .ButtonText {
-      display: contents;
-  }
-
-  .Button .Icon {
-      width: 1em;
-      height: 1em;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-  }
-  */
 }
 .ProjectTimelinePage-Side .Button span.Text {
   display: none;

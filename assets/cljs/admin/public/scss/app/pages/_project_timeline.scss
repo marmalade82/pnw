@@ -2,38 +2,38 @@
 @use "componentlib/globals/abstract/constants";
 @use "componentlib/globals/abstract/mixins";
 
+
 .ProjectTimelinePage-Surface {
+    $horizontal-padding: 10px;
 
     & > section + section {
         margin-top: 3rem;
     }
 
     & > section > h2 {
-        border-width: 0;
-        border-bottom-width: 1px;
-        border-color: constants.$divider;
-        border-style: solid;
+        @include mixins.underline($horizontal-padding);
         padding-bottom: 2px;
     }
 
     & section {
         @include mixins.no-margin-headers;
-        @include mixins.style-headers {
-            padding-left: 10px;
-        }
     }
 
     .ProjectTimelinePage-Summary {
-        padding-left: 10px;
-        padding-right: 10px;
         margin-bottom: 3rem;
     }
 
+    .ProjectTimelinePage-Project {
+        display: flex;
+        flex-direction: column;
+
+        @include mixins.highlight(functions.gray(230), $horizontal-padding);
+
+    }
 }
 
 .ProjectTimelinePage-TopHeader {
     @include mixins.left-right-items;
-    padding-left: 10px;
 
     & .ProjectTimelinePage-TopHeader-First {
         display: flex;
@@ -57,27 +57,9 @@
     }
 }
 
-
- 
-.ProjectTimelinePage-Project {
-    display: flex;
-    flex-direction: column;
-
-    @include mixins.hover {
-        background-color: functions.gray(230);
-
-        @keyframes ripple {
-
-        }
-    }
-}
-
 .ProjectTimelinePage-Content {
     display: flex;
     flex-direction: row;
-    padding-left: 10px;
-    padding-right: 10px;
-
 
     & > * + * {
         margin-left: 50px;
