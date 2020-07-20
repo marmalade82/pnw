@@ -145,3 +145,15 @@
     padding-left: $val;
     padding-right: $val;
 }
+
+@mixin space-children-v {
+    & > * + * {
+        margin-top: 20px;
+    }
+}
+
+@mixin space-children-h {
+    & > * + * {
+        margin-left: 10px;
+    }
+}

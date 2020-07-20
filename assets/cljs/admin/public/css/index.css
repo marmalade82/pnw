@@ -140,6 +140,7 @@
   padding: 0.5em 0.5em;
   font-size: 1em;
   min-width: 250px;
+  flex: 1;
 }
 
 .InputGroup input[type=color] {
@@ -300,8 +301,6 @@ section {
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  overflow-y: scroll;
-  overscroll-behavior: contain;
 }
 
 .Header {
@@ -780,6 +779,21 @@ section {
 }
 
 .Login-Form > * + * {
+  margin-top: 20px;
+}
+
+.EditPage-Surface {
+  min-width: 800px;
+}
+
+.Blog-Form > * + * {
+  margin-top: 1.5rem;
+}
+
+.ProjectEditPage-Surface {
+  min-width: 800px;
+}
+.ProjectEditPage-Surface .ProjectEditPage-Form > * + * {
   margin-top: 20px;
 }
 

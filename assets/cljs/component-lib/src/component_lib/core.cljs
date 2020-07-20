@@ -116,7 +116,9 @@
     :reagent-render
     (fn []
 
-      [:textarea {:id id}]
+      [:div {:class (str "Markdown-" id)}
+       [:textarea {:id id}]
+       ]
       )
     })
   )

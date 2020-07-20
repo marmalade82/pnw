@@ -5,32 +5,9 @@
    [component-lib.core :as c]
    [fork.reagent :as f]
    [clojure.string :as str]
+   [admin.components.header :refer [header]]
    [mde]
    )
-  )
-
-
-(defn markdown-editor [{:keys [on-change id]
-                        :or {on-change #(js/console.log %)
-                             id "md-editor"
-                             }}]
-  (r/create-class
-   {:display-name "markdown-editor"
-    :component-did-mount
-    (fn [this]
-      (let [editor (js/SimpleMDE. (clj->js { :element (.getElementById js/document id)}))
-            ]
-        (doto editor
-          (-> (.-codemirror) (.on "change" #(on-change (.value editor))))
-          ))
-      )
-    :component-will-unmount (fn [] 1)
-    :reagent-render
-      (fn []
-
-        [:textarea {:id id}]
-        )
-    })
   )
 
 (defn blog-form [{:keys [values
@@ -61,14 +38,14 @@
                      :on-change handle-change
                      :value (values "edit-date")
                      }]
-     [markdown-editor {:id "blog-markdown-editor"
+     [c/markdown-editor {:id "blog-markdown-editor"
                        :on-change #(set-values %)
                        }]
 
      [c/submit-button {
                       :disabled submitting?
                       :class "Blog-Submit"
-                       } "Submit"]
+                       } "submit"]
      ]
   )
 
@@ -87,8 +64,13 @@
 
 
 (defn edit-page []
-  [:div {:class "EditPage"}
-   [:h2 "Edit Post"]
-   [render-blog-form]
+  [c/page {:class "EditPage"}
+   [header]
+   [c/body {:class "EditPage-Body"}
+    [c/surface {:class "EditPage-Surface"}
+     [c/text {:type 1} "Edit Post"]
+     [render-blog-form]
+     ]
+    ]
    ]
   )
