@@ -166,8 +166,11 @@
   (into [:div {:class ["Surface" class]}] (children))
   )
 
-(defn- render-menu-item [{:keys [label href] :or {label "", href nil}}]
-  [:nav {:class "MenuItem"}
+(defn- render-menu-item [{:keys [label href selected?] :or {label "", href nil, selected? #(false)}}]
+  [:nav {:class (if (selected?)
+                   "SelectedMenuItem"
+                   "MenuItem"
+                  )}
    [:a {:href href}
     [text label]
     ]
@@ -175,7 +178,7 @@
   )
 
 (defn menu [{:keys [items class] :or {items [] class ""}}]
-  (into [:navbar {:class ["Menu" class]}
+  (into [:nav {:class ["Menu" class]}
          
          ]
         (map render-menu-item items)

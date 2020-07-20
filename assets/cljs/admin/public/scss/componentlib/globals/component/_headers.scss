@@ -19,19 +19,33 @@
     }
 }
 
+%MenuItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    .Text {
+        color: constants.$light-primary;
+        font-size: 1.7rem;
+        font-weight: bold;
+        font-variant: small-caps;
+
+    }
+    
+    & > a {
+        padding: 1rem 1.5rem;
+        position: relative;
+    }
+}
+
 .Menu {
     display: flex;
     flex-direction: row;
 
     .MenuItem {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
+        @extend %MenuItem;
         & > a {
-            padding: 1rem 1.5rem;
-            position: relative;
-            
             @include mixins.hover {
                 @keyframes expand {
                     from {
@@ -45,9 +59,6 @@
                     }
                 }
 
-                .Text {
-                    color: white;
-                }
 
                 &::after {
                     $height: 0.6rem;
@@ -63,16 +74,26 @@
                     //background-color: constants.$light-primary;
                     background-color: white;
                 }
+
+                .Text {
+                    color: white;
+                }
             }
         }
 
     }
 
-    .Text {
-        color: constants.$light-primary;
-        font-size: 1.7rem;
-        font-weight: bold;
-        font-variant: small-caps;
+    .SelectedMenuItem {
+        @extend %MenuItem;
 
+
+        & > a {
+            background-image: linear-gradient(constants.$dark-primary, constants.$primary);
+
+            .Text {
+                color: white;
+            }
+        }
     }
+
 }

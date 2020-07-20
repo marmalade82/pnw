@@ -8,11 +8,11 @@
    ))
 
 (defn get-menu-items []
-  [{:label "home", :href (routes/root-path)}
-   {:label "skills", :href (routes/skills-path)} 
-   {:label "projects", :href (routes/project-timeline-path)}
-   {:label "posts", :href (routes/timeline-path)}
-   {:label "dashboard" :href (routes/admin-dashboard-path)}
+  [{:label "home", :href (routes/root-path) :selected? routes/is-root-path}
+   {:label "skills", :href (routes/skills-path) :selected? routes/is-skills-path} 
+   {:label "projects", :href (routes/project-timeline-path) :selected? routes/is-project-timeline-path}
+   {:label "posts", :href (routes/timeline-path) :selected? routes/is-timeline-path}
+   {:label "dashboard" :href (routes/admin-dashboard-path) :selected? routes/is-admin-dashboard-path}
    ]
   )
 

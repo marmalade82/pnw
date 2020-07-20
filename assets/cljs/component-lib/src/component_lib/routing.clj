@@ -1,4 +1,7 @@
 (ns component-lib.routing
+  (:require
+   [clojure.string]
+   )
   )
 
 (defmacro routing
@@ -11,9 +14,18 @@
        (def ~'render-chan (cljs.core.async/chan))
        (secretary.core/set-config! :prefix "#")
        ~@(for [[path-name path id] all]
-           `(secretary.core/defroute ~path-name ~path {}
-              (cljs.core.async/put! ~'render-chan ~id)
-              )
+           `(do
+              (secretary.core/defroute ~path-name ~path {}
+                 (cljs.core.async/put! ~'render-chan ~id)
+                )
+              (defn ~(symbol (str "is-" path-name)) []
+                (let [~'current (~'.getToken @~'history)
+                      ~'desired (clojure.string/replace-first
+                               (~path-name) #"^#" "")
+                      ]
+                  (= ~'current ~'desired)
+                  )
+                ))
            )
        (defn- ~'render-loop [~'render-target]
          (cljs.core.async/take! ~'render-chan

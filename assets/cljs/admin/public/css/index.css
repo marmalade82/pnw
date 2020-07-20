@@ -320,19 +320,26 @@ section {
   display: contents;
 }
 
-.Menu {
-  display: flex;
-  flex-direction: row;
-}
-.Menu .MenuItem {
+.Menu .SelectedMenuItem, .Menu .MenuItem {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
 }
-.Menu .MenuItem > a {
+.Menu .SelectedMenuItem .Text, .Menu .MenuItem .Text {
+  color: #FFECB3;
+  font-size: 1.7rem;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+.Menu .SelectedMenuItem > a, .Menu .MenuItem > a {
   padding: 1rem 1.5rem;
   position: relative;
+}
+
+.Menu {
+  display: flex;
+  flex-direction: row;
 }
 @keyframes expand {
   from {
@@ -343,9 +350,6 @@ section {
     width: 100%;
     left: 0;
   }
-}
-.Menu .MenuItem > a:not([disabled]):hover .Text {
-  color: white;
 }
 .Menu .MenuItem > a:not([disabled]):hover::after {
   content: "";
@@ -359,11 +363,14 @@ section {
   animation-timing-function: ease-in-out;
   background-color: white;
 }
-.Menu .Text {
-  color: #FFECB3;
-  font-size: 1.7rem;
-  font-weight: bold;
-  font-variant: small-caps;
+.Menu .MenuItem > a:not([disabled]):hover .Text {
+  color: white;
+}
+.Menu .SelectedMenuItem > a {
+  background-image: linear-gradient(#FFA000, #FFC107);
+}
+.Menu .SelectedMenuItem > a .Text {
+  color: white;
 }
 
 .My-Header .My-Logo {
