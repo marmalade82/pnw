@@ -10,6 +10,7 @@
    [admin.screens.skills-page.delete-form :refer [render-delete-form]]
    [admin.screens.skills-page.skills-form
        :refer [render-edit-form render-skill-form]]
+   [admin.components.body :refer [body]]
    )
   )
 
@@ -84,7 +85,7 @@
       [c/page {:class "SkillsPage"}
        [header {:class "SkillsPage-TopHeader"}
         ]
-       [c/body
+       [body
         [c/surface {:class "SkillsPage-Main"}
          [:div {:class "SkillsPage-Header"}
           [:div {:class "SkillsPage-Header-Left"}

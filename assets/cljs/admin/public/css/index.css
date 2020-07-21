@@ -276,14 +276,17 @@ section {
   width: 100vw;
   margin: 0;
   padding: 0;
+  z-index: -10000;
   background-color: #FFC107;
 }
 
 .Body {
   display: flex;
+  position: relative;
   flex-direction: column;
   flex: 1;
   background-color: #FFC107;
+  z-index: -1000;
   padding: 4rem 4rem;
 }
 
@@ -387,6 +390,183 @@ section {
   margin-left: 3rem;
 }
 
+.Patterns-Triangles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle {
+  width: 0;
+  height: 0;
+  border-width: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-left-width: 10px;
+  border-right-width: 10px;
+  border-bottom-width: 10px;
+  border-bottom-color: #FFA000;
+  position: absolute;
+  z-index: -1;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-0 {
+  transform: scale(1, 1) rotate(34deg);
+  left: 50px;
+  top: 40px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-1 {
+  transform: scale(2, 2) rotate(68deg);
+  left: 157.1807071264px;
+  top: 146.4897657576px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-2 {
+  transform: scale(3, 3) rotate(102deg);
+  left: 146.4416522936px;
+  top: 284.3200814043px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-3 {
+  transform: scale(4, 4) rotate(136deg);
+  left: 306.4581672808px;
+  top: 140.93942759px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-4 {
+  transform: scale(5, 5) rotate(170deg);
+  left: 396.724731587px;
+  top: 374.249557037px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-5 {
+  transform: scale(6, 6) rotate(204deg);
+  left: 282.4400439574px;
+  top: 687.5265537596px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-6 {
+  transform: scale(7, 7) rotate(238deg);
+  left: 695.5774164843px;
+  top: 430px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-7 {
+  transform: scale(8, 8) rotate(272deg);
+  left: 63.4383529567px;
+  top: 424.582618184px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-8 {
+  transform: scale(9, 9) rotate(306deg);
+  left: 903.8602391229px;
+  top: 1064.2000631327px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-9 {
+  transform: scale(10, 10) rotate(340deg);
+  left: 499.4505947422px;
+  top: 867.3149339883px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-10 {
+  transform: scale(11, 11) rotate(374deg);
+  left: 892.6488874309px;
+  top: 265.742630967px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-11 {
+  transform: scale(12, 12) rotate(408deg);
+  left: 1016.3489671572px;
+  top: 1336.0201354624px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-12 {
+  transform: scale(13, 13) rotate(442deg);
+  left: 586.8923688601px;
+  top: 1390.9996299037px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-13 {
+  transform: scale(14, 14) rotate(476deg);
+  left: 1453.7268723302px;
+  top: 187.2932052435px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-14 {
+  transform: scale(15, 15) rotate(510deg);
+  left: 103.7452249218px;
+  top: 1434.2008864765px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-15 {
+  transform: scale(16, 16) rotate(544deg);
+  left: 1643.777613377px;
+  top: 1923.5553612637px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-16 {
+  transform: scale(17, 17) rotate(578deg);
+  left: 876.2699505032px;
+  top: 751.4018981174px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-17 {
+  transform: scale(18, 18) rotate(612deg);
+  left: 1461.3069150166px;
+  top: 1307.6039243358px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-18 {
+  transform: scale(19, 19) rotate(646deg);
+  left: 1651.8536488624px;
+  top: 2380px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-19 {
+  transform: scale(20, 20) rotate(680deg);
+  left: 866.6280585426px;
+  top: 1456.7337977871px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-20 {
+  transform: scale(21, 21) rotate(714deg);
+  left: 2216.5770566269px;
+  top: 929.2523726467px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-21 {
+  transform: scale(22, 22) rotate(748deg);
+  left: 170.8960589212px;
+  top: 2676.9775057692px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-22 {
+  transform: scale(23, 23) rotate(782deg);
+  left: 2376.2533041707px;
+  top: 2230.8871073203px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-23 {
+  transform: scale(24, 24) rotate(816deg);
+  left: 1276.5683392232px;
+  top: 300.5956708155px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-24 {
+  transform: scale(25, 25) rotate(850deg);
+  left: 2011.9023392603px;
+  top: 2741.9992598074px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-25 {
+  transform: scale(26, 26) rotate(884deg);
+  left: 2302.6681217947px;
+  top: 2985.5003078691px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-26 {
+  transform: scale(27, 27) rotate(918deg);
+  left: 1121.3748571695px;
+  top: 626.9308405142px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-27 {
+  transform: scale(28, 28) rotate(952deg);
+  left: 2983.4343715676px;
+  top: 2521.9448019648px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-28 {
+  transform: scale(29, 29) rotate(986deg);
+  left: 264.8499391319px;
+  top: 3624.7002209644px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-29 {
+  transform: scale(30, 30) rotate(1020deg);
+  left: 3100.6121715221px;
+  top: 1633.2708467624px;
+}
+.Patterns-Triangles .Patterns-Triangles-Triangle-30 {
+  transform: scale(31, 31) rotate(1054deg);
+  left: 1700px;
+  top: 1990px;
+}
 .SkillsPage-Header {
   display: flex;
   flex-direction: row;

@@ -1,0 +1,49 @@
+@use "componentlib/globals/abstract/constants";
+@use "componentlib/globals/abstract/mixins";
+@use "sass:math";
+
+$-root: ".Patterns-Triangles";
+$-triangle: "#{$-root}-Triangle";
+
+
+#{$-root} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+
+    & #{$-triangle} {
+        @include mixins.triangle-t(constants.$dark-primary);
+        position: absolute;
+        z-index: -1;
+    }
+
+    @for $i from 0 through 30 {
+        & #{$-triangle}-#{$i} {
+            $f: ($i+1);
+            transform: scale($f, $f) rotate(34deg*($i + 1));
+            left: 50px + math.abs(math.sin($i*77deg)*$i) * 110px;
+            top: 40px + math.abs(math.sin($i*55deg)*$i) * 130px
+        }
+    }   
+    & #{$-triangle}-0 {
+    }
+
+    & #{$-triangle}-1 {
+    }
+
+    & #{$-triangle}-2 {
+    }
+
+    & #{$-triangle}-3 {
+    }
+
+    & #{$-triangle}-4 {
+    }
+
+    & #{$-triangle}-5 {
+    }
+}

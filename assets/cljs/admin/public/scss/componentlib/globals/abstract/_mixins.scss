@@ -183,3 +183,52 @@
         width: calc(100% + #{$t}*2);
     }
 }
+
+@mixin point {
+    width: 0;
+    height: 0;
+}
+
+@mixin -triangle-base {
+    border-width: 0;
+    border-color: transparent;
+    border-style: solid;
+
+}
+
+@mixin triangle-t($color: gray, $hyp: 10px, $height: 10px, $width: 10px) {
+    @include point;
+    @include -triangle-base;
+    border-left-width: $height;
+    border-right-width: $width;
+    border-bottom-width: $hyp;
+    border-bottom-color: $color;
+}
+
+@mixin triangle-b($hyp: 10px, $height: 10px, $width: 10px) {
+    @include point;
+    @include -triangle-base;
+    border-left-width: $height;
+    border-right-width: $width;
+    border-top-width: $hyp;
+    border-top-color: $color;
+}
+
+
+@mixin triangle-l($hyp: 10px, $height: 10px, $width: 10px) {
+    @include point;
+    @include -triangle-base;
+    border-top-width: $height;
+    border-bottom-width: $width;
+    border-right-width: $hyp;
+    border-right-color: $color;
+}
+
+@mixin triangle-r($hyp: 10px, $height: 10px, $width: 10px) {
+    @include point;
+    @include -triangle-base;
+    border-top-width: $height;
+    border-bottom-width: $width;
+    border-left-width: $hyp;
+    border-left-color: $color;
+}
