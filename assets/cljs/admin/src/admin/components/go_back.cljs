@@ -3,11 +3,15 @@
    [reagent.core :as r]
    [reagent.dom :as d]
    [component-lib.buttons :as b]
+   [admin.direction :as dir]
    )
   )
 
 (defn back! []
-  (.back js/window.history)
+  (do 
+    (dir/back!)
+    (.back js/window.history)
+    )
   )
 
 (defn go-back []

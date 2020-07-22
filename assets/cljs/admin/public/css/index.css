@@ -990,10 +990,10 @@ section {
   margin-top: 1.5rem;
 }
 
-.PageEnterForward-appear, .PageEnterForward-enter {
+.Forward.PageEnter-appear, .Forward.PageEnter-enter {
   opacity: 0;
 }
-.PageEnterForward-appear-active, .PageEnterForward-enter-active {
+.Forward.PageEnter-appear-active, .Forward.PageEnter-enter-active {
   animation-name: enter-forward;
   animation-duration: 1s;
   animation-timing-function: ease-in-out;
@@ -1009,10 +1009,10 @@ section {
     opacity: 1;
   }
 }
-.PageEnterForward-exit {
+.Forward.PageEnter-exit {
   opacity: 1;
 }
-.PageEnterForward-exit-active {
+.Forward.PageEnter-exit-active {
   animation-name: l;
   animation-duration: 1s;
   animation-timing-function: ease-in-out;
@@ -1024,15 +1024,19 @@ section {
     opacity: 1;
   }
   to {
-    transform: translate(-40%, 0);
-    opacity: 0.02;
+    transform: translate(40%, 0);
+    opacity: 0;
   }
 }
 
-.PageEnterBackward {
+.Backward.PageEnter-appear, .Backward.PageEnter-enter {
+  opacity: 0;
+}
+.Backward.PageEnter-appear-active, .Backward.PageEnter-enter-active {
   animation-name: enter-backward;
   animation-duration: 1s;
   animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
 }
 @keyframes enter-backward {
   from {
@@ -1044,27 +1048,14 @@ section {
     opacity: 1;
   }
 }
-
-.PageLeaveForward {
-  animation-name: leave-forward;
-  animation-duration: 1s;
-  animation-timing-function: ease-in-out;
+.Backward.PageEnter-exit {
+  opacity: 1;
 }
-@keyframes leave-forward {
-  from {
-    transform: translate(0, 0);
-    opacity: 1;
-  }
-  to {
-    transform: translate(40%, 0);
-    opacity: 0.3;
-  }
-}
-
-.PageLeaveBackward {
+.Backward.PageEnter-exit-active {
   animation-name: leave-backward;
   animation-duration: 1s;
   animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
 }
 @keyframes leave-backward {
   from {
@@ -1073,7 +1064,7 @@ section {
   }
   to {
     transform: translate(-40%, 0);
-    opacity: 0.02;
+    opacity: 0;
   }
 }
 
