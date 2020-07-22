@@ -99,7 +99,7 @@
         (map #(into [] [(render-project %)]) projects))
   )
 
-(defn project-timeline-page []
+(defn project-timeline-page [{:keys [class] :or {class ""}}]
   (let [{:keys [ongoing completed abandoned]
          :or
             {ongoing []
@@ -107,10 +107,7 @@
               abandoned []}}
             (get-grouped-projects) 
         ]
-    [c/page {:class "ProjectTimelinePage"}
-     [header]
-     [c/body
-      [c/surface {:class "ProjectTimelinePage-Surface"}
+    [c/surface {:class (str "ProjectTimelinePage-Surface" " " class)}
        [c/surface-nav-header {:class "ProjectTimelinePage-TopHeader"
                               :left-hiccup
                               [:<>
@@ -143,8 +140,6 @@
          ]
         ]
         ]
-      ]
-     ]
     )
   )
 

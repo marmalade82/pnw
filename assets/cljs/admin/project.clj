@@ -10,6 +10,7 @@
                  [component-lib "0.1.6"]
                  [fork "2.0.0"]
                  [org.clojure/core.match "1.0.0"]
+                 [cljsjs/react-transition-group "4.3.0-0"]
                  ]
   
   :compiler {

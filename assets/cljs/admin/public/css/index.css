@@ -937,6 +937,7 @@ section {
   }
   to {
     opacity: 1;
+    transform: translate(-50%, -50%);
   }
 }
 .LoginPage-Header .LoginPage-Logo {
@@ -987,6 +988,93 @@ section {
 }
 .ProjectAddPage-Surface .ProjectEditPage-Form > * + * {
   margin-top: 1.5rem;
+}
+
+.PageEnterForward-appear, .PageEnterForward-enter {
+  opacity: 0;
+}
+.PageEnterForward-appear-active, .PageEnterForward-enter-active {
+  animation-name: enter-forward;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes enter-forward {
+  from {
+    transform: translate(-40%, 0);
+    opacity: 0.3;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+.PageEnterForward-exit {
+  opacity: 1;
+}
+.PageEnterForward-exit-active {
+  animation-name: l;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes l {
+  from {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-40%, 0);
+    opacity: 0.02;
+  }
+}
+
+.PageEnterBackward {
+  animation-name: enter-backward;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+}
+@keyframes enter-backward {
+  from {
+    transform: translate(40%, 0);
+    opacity: 0.3;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+.PageLeaveForward {
+  animation-name: leave-forward;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+}
+@keyframes leave-forward {
+  from {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  to {
+    transform: translate(40%, 0);
+    opacity: 0.3;
+  }
+}
+
+.PageLeaveBackward {
+  animation-name: leave-backward;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+}
+@keyframes leave-backward {
+  from {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-40%, 0);
+    opacity: 0.02;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

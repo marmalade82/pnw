@@ -11,6 +11,7 @@
        (def ~'unknown-route (reagent.core/atom 0))
        (def ~'history
           (reagent.core/atom (goog.History.)))
+       (def ~'currentToken (reagent.core/atom nil))
        (def ~'render-chan (cljs.core.async/chan))
        (secretary.core/set-config! :prefix "#")
        ~@(for [[path-name path id] all]
@@ -19,11 +20,13 @@
                  (cljs.core.async/put! ~'render-chan ~id)
                 )
               (defn ~(symbol (str "is-" path-name)) []
-                (let [~'current (~'.getToken @~'history)
-                      ~'desired (clojure.string/replace-first
-                               (~path-name) #"^#" "")
-                      ]
-                  (= ~'current ~'desired)
+                (do
+                  (let [~'current @~'currentToken
+                        ~'desired (clojure.string/replace-first
+                                   (~path-name) #"^#" "")
+                        ]
+                    (= ~'current ~'desired)
+                    )
                   )
                 ))
            )
@@ -39,7 +42,9 @@
          (doto @~'history
            (goog.events/listen goog.history.EventType.NAVIGATE
                           #(do
-                             (secretary.core/dispatch! (~'.-token %))))
+                             (secretary.core/dispatch! (~'.-token %))
+                             (reset! ~'currentToken (~'.-token %))
+                             ))
            (~'.setEnabled true))
          )
        (defn ~'retry-route-or [~'render-fn]

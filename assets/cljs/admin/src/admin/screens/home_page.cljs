@@ -51,14 +51,6 @@
   )
 
 (defn home-page []
-  [c/page 
-   [c/header {:class "LoginPage-Header"}
-    [c/logo {:class "LoginPage-Logo", :href (root-path)}
-     [c/text {:class "LoginPage-LogoText"} "admin"]
-     [c/text {:class "LoginPage-LogoTagline"} "one step at a time."]
-     ]
-    ]
    [render-login-form]
-   ]
   )
 

@@ -78,16 +78,12 @@
 
 
 
-(defn skills-page []
+(defn skills-page [{:keys [class] :or {class ""}}]
   (let [skills (get-skills)
         {:keys [modal open! close! toggle!]} (mk-modal)
         ]
     (fn []
-      [c/page {:class "SkillsPage"}
-       [header {:class "SkillsPage-TopHeader"}
-        ]
-       [body
-        [c/surface {:class "SkillsPage-Main"}
+      [c/surface {:class (str "SkillsPage-Main" " " class)}
          [c/surface-nav-header {
                                 :left-hiccup [:<>
                                                [c/text {:type 1} "Skills"]
@@ -105,7 +101,6 @@
           (render-skills skills)
           ]
          ]
-        ]
-       ])
+      )
     )
   )

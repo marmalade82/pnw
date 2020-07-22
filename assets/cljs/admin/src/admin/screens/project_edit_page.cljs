@@ -10,15 +10,12 @@
   )
 
 
-(defn project-edit-page []
-  [c/page {:class "ProjectEditPage"}
-   [header]
-   [c/body {:class "ProjectEditPage-Body"}
-    [c/surface {:class "ProjectEditPage-Surface"}
+(defn project-edit-page [{:keys [class] :or {class ""}}]
+  [c/surface {:class (str "ProjectEditPage-Surface" " " class)}
      [c/surface-nav-header {:left-hiccup
                             [:<>
                              [go-back]
-                             [c/text {:type 2, :class "ProjectEditPage-Header"}
+                             [c/text {:type 1, :class "ProjectEditPage-Header"}
                               "Edit Project"
                               ]
                              ]
@@ -27,7 +24,5 @@
       [render-project-form]
       ]
      ]
-    ]
-   ]
   )
 

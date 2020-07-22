@@ -116,13 +116,10 @@
          ] (map #(into [] [(render-blog %)]) posts))
   )
 
-(defn timeline-page []
+(defn timeline-page [{:keys [class] :or {class ""}}]
   (let [blog-data (get-grouped-blog-data)
         ]
-    [c/page {:class "TimelinePage"}
-      [header]
-     [c/body
-      [c/surface {:class "TimelinePage-Surface"}
+    [c/surface {:class (str "TimelinePage-Surface" " " class)}
        [c/surface-nav-header {:class "TimelinePage-Header"
                               :left-hiccup
                               [:<>
@@ -139,8 +136,6 @@
               (map render-month blog-data))
         ]
        ]
-      ]
-     ]
     )
   )
 

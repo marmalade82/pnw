@@ -11,11 +11,8 @@
 
 
 
-(defn project-new-page []
-  [c/page
-   [header]
-   [c/body
-    [c/surface {:class "ProjectAddPage-Surface"}
+(defn project-new-page [{:keys [class] :or {class ""}}]
+  [c/surface {:class (str "ProjectAddPage-Surface" " " class)}
      [c/surface-nav-header {:left-hiccup
                             [:<>
                              [go-back]
@@ -27,6 +24,4 @@
       [render-new-form]
       ]
      ]
-    ]
-   ]
   )

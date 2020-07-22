@@ -18,7 +18,7 @@
   )
 
 
-(defn header [{:keys [class] :or {class ""}}]
+(defn my-header [{:keys [class] :or {class ""}}]
   (into [c/header {:class (join " " ["My-Header" class])}
          [c/logo {:class "My-Logo"}
           [c/text {:class "My-LogoText"} "admin"]
@@ -28,3 +28,18 @@
         (r/children (r/current-component))
         )
   )
+
+ (defn header [{:keys [class]}]
+   (cond
+     (routes/is-root-path)
+      (into [c/header {:class "LoginPage-Header"}
+              [c/logo {:class "LoginPage-Logo", :href (routes/root-path)}
+              [c/text {:class "LoginPage-LogoText"} "admin"]
+              [c/text {:class "LoginPage-LogoTagline"} "one step at a time."]
+              ]
+              ]
+              (r/children (r/current-component)))
+     :else [my-header {:class class}]
+     )
+      
+   )

@@ -12,43 +12,72 @@
    [admin.screens.skills-page :refer [skills-page]]
    [admin.routes :refer [retry-route-or]]
    [cljs.core.async :refer [go]]
+   [react-transition-group :as t]
    )
   )
 
-; responsible for coordinating page changes across client routing
-(defonce page (r/atom nil))
+(defonce direction (r/atom :forward))
 
-(defn update-page! [id]
-  (reset! page id)
+(defn get-to-class! []
+  (case @direction
+    :forward "PageEnterForward"
+    "PageEnterBackward"
+    )
   )
 
-#_(match target
-       "root" (render home-page)
-       "edit" (render edit-page)
-       "new" (render new-page)
-       "timeline" (render timeline-page)
-       "project-new" (render project-new-page)
-       "project-edit" (render project-edit-page)
-       "project-timeline" (render project-timeline-page)
-       "skills" (render skills-page)
-       :else (retry-route-or (fn [] (render home-page)))
-       )
+(defn get-from-class! []
+  (case @direction
+    :forward "PageEnterForward"
+    "PageEnterBackward"
+    )
+  )
+
+; responsible for coordinating page changes across client routing
+(defonce from (r/atom nil))
+
+(defonce to (r/atom nil))
+
+(defn update-page! [id]
+  (do
+    (reset! from @to)
+    (reset! to id)
+    )
+  )
+
+
+(defn transition [child class]
+  [:> t/SwitchTransition {:mode "out-in"}
+   [:> t/CSSTransition {:in true, :appear true,
+                        :key (str child)
+                        :timeout 1500, :classNames class}
+    child
+    ]
+   ]
+  )
+
+(defn get-hiccup [id class]
+        (case id
+          "root" [home-page]
+          "edit" (transition [edit-page {:class class}] class)
+          "new" (transition [new-page {:class class}] class)
+          "timeline" (transition [timeline-page {:class class}] class)
+          "project-edit" (transition [project-edit-page {:class class}] class)
+          "project-timeline" (transition [project-timeline-page {:class class}] class)
+          "project-new" (transition [project-new-page {:class class}] class)
+          "skills" (transition [skills-page {:class class}] class)
+          (do
+            (go
+              (retry-route-or nil)
+              )
+            [:div]
+            )
+          )
+  )
 
 (defn page-controller []
-  (case @page
-    "root" [home-page]
-    "edit" [edit-page]
-    "new" [new-page]
-    "timeline" [timeline-page]
-    "project-edit" [project-edit-page]
-    "project-timeline" [project-timeline-page]
-    "project-new" [project-new-page]
-    "skills" [skills-page]
-    (do
-      (go
-        (retry-route-or nil)
-        )
-      nil
-      )
+  (let [f (get-hiccup @from (get-from-class!))
+        t (get-hiccup @to (get-to-class!))
+        ]
+    (or t f)
     )
   )

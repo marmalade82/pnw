@@ -14,11 +14,8 @@
 
 
 
-(defn edit-page []
-  [c/page {:class "EditPage"}
-   [header]
-   [c/body {:class "EditPage-Body"}
-    [c/surface {:class "EditPage-Surface"}
+(defn edit-page [{:keys [class] :or {class ""}}]
+    [c/surface {:class (str "EditPage-Surface" " " class)}
      [c/surface-nav-header {:left-hiccup
                             [:<>
                              [go-back]
@@ -29,6 +26,4 @@
       [render-blog-form]
       ]
      ]
-    ]
-   ]
   )

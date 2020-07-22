@@ -1,0 +1,101 @@
+.PageEnterForward {
+    &-appear, &-enter {
+        opacity: 0;
+    }
+
+    &-appear-active, &-enter-active {
+        @keyframes enter-forward {
+            from {
+                transform: translate(-40%, 0);
+                opacity: 0.3;
+            }
+
+            to {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+        }
+
+        animation-name: enter-forward;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+    }
+
+    &-exit {
+        opacity: 1;
+    }
+
+    &-exit-active {
+        @keyframes l {
+            from {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translate(-40%, 0);
+                opacity: 0.02;
+            }
+        }
+
+        animation-name: l;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+    }
+}
+
+.PageEnterBackward {
+    @keyframes enter-backward {
+        from {
+            transform: translate(40%, 0);
+            opacity: 0.3;
+        }
+
+        to {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+    }
+
+    animation-name: enter-backward;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+}
+
+.PageLeaveForward {
+    @keyframes leave-forward {
+        from {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+
+        to {
+            transform: translate(40%, 0);
+            opacity: 0.3;
+        }
+    }
+
+    animation-name: leave-forward;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+}
+
+.PageLeaveBackward {
+    @keyframes leave-backward {
+        from {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+
+        to {
+            transform: translate(-40%, 0);
+            opacity: 0.02;
+        }
+    }
+
+    animation-name: leave-backward;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+}
