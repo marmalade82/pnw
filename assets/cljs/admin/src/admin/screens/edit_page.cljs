@@ -7,6 +7,7 @@
    [clojure.string :as str]
    [admin.components.header :refer [header]]
    [admin.forms.edit-form :refer [render-blog-form]]
+   [admin.components.go-back :refer [go-back]]
    [mde]
    )
   )
@@ -18,8 +19,15 @@
    [header]
    [c/body {:class "EditPage-Body"}
     [c/surface {:class "EditPage-Surface"}
-     [c/text {:type 1} "Edit Post"]
-     [render-blog-form]
+     [c/surface-nav-header {:left-hiccup
+                            [:<>
+                             [go-back]
+                             [c/text {:type 1} "Edit Post"]
+                             ]
+                            }]
+     [c/surface-body
+      [render-blog-form]
+      ]
      ]
     ]
    ]

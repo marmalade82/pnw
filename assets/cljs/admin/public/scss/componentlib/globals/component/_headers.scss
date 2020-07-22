@@ -97,3 +97,40 @@
     }
 
 }
+
+
+.SurfaceNavHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: constants.$dark-primary;
+    color: white;
+
+    & + * {
+        padding-top: 2rem;
+    }
+
+    .SurfaceNavHeader-First {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        & > * + * {
+            margin-left: 20px;
+        }
+    }
+
+    .SurfaceNavHeader-Last {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+
+        & > * + * {
+            margin-left: 20px;
+        }
+    }
+
+
+}

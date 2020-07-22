@@ -7,8 +7,13 @@
    [component-lib.icons :as i]
    ))
 
+
 (defn sep []
   [:span {:class "Separator"}]
+  )
+
+(defbutton go-back
+  [i/go-back]
   )
 
 (defbutton edit

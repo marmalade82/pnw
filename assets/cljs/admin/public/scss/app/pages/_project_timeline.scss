@@ -6,11 +6,11 @@
 .ProjectTimelinePage-Surface {
     $horizontal-padding: 10px;
 
-    & > section + section {
+    & section + section {
         margin-top: 3rem;
     }
 
-    & > section > h2 {
+    & section > h2 {
         @include mixins.underline($horizontal-padding);
         padding-bottom: 2px;
     }
@@ -20,7 +20,8 @@
     }
 
     .ProjectTimelinePage-Summary {
-        margin-bottom: 3rem;
+        font-size: 1.2rem;
+        margin-bottom: 2.3rem;
     }
 
     .ProjectTimelinePage-Project {
@@ -30,21 +31,6 @@
         @include mixins.highlight(functions.gray(230), $horizontal-padding);
 
     }
-}
-
-.ProjectTimelinePage-TopHeader {
-    @include mixins.left-right-items;
-
-    & .ProjectTimelinePage-TopHeader-First {
-        display: flex;
-        flex-direction: row;
-        & > * + * {
-            margin-left: 20px;
-        }
-    }
-
-
-
 }
 
 .ProjectTimelinePage-Projects {

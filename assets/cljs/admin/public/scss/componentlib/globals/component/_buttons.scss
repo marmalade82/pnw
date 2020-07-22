@@ -86,3 +86,10 @@
     $red: rgb(200, 0, 0);
     background-image: linear-gradient($red, $red);
 }
+
+.Go-backButton {
+    background-color: transparent; 
+    border-width: 0;
+    font-size: 2rem;
+    color: white;
+}

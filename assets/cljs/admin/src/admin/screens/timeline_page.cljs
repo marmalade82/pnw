@@ -123,12 +123,21 @@
       [header]
      [c/body
       [c/surface {:class "TimelinePage-Surface"}
-       [:div {:class "TimelinePage-Header"}
-        [c/text {:type 1} "Posts"]
-        [b/add {:href (add-post-path)}]
+       [c/surface-nav-header {:class "TimelinePage-Header"
+                              :left-hiccup
+                              [:<>
+                               [c/text {:type 1} "Posts"]
+                               ]
+                              :right-hiccup
+                              [:<>
+                               [b/add {:href (add-post-path)}]
+                               ]
+                              }
         ]
-       (into [:div {:class "TimelinePage-Timeline"}]
-             (map render-month blog-data))
+       [c/surface-body {:class "TimelinePage-Body"}
+        (into [:div {:class "TimelinePage-Timeline"}]
+              (map render-month blog-data))
+        ]
        ]
       ]
      ]

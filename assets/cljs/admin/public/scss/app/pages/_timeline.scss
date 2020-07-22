@@ -2,12 +2,9 @@
 @use "componentlib/globals/abstract/functions";
 @use "componentlib/globals/abstract/constants";
 
-$horizontal-padding: 10px;
+$-horizonal-padding: 10px;
 
 .TimelinePage-Surface {
-    & .TimelinePage-Header {
-        @include mixins.left-right-items;
-    }
 
     & .TimelinePage-Timeline > * + section {
         margin-top: 1.5rem;
@@ -22,7 +19,7 @@ $horizontal-padding: 10px;
         @include mixins.no-margin-headers;
 
         @include mixins.style-headers {
-            @include mixins.underline($horizontal-padding);
+            @include mixins.underline($-horizonal-padding);
         }
     }
 }
@@ -42,7 +39,7 @@ $horizontal-padding: 10px;
     display: flex;
     flex-direction: row;
     flex: 1;
-    @include mixins.highlight(functions.gray(230), $horizontal-padding);
+    @include mixins.highlight(functions.gray(230), $-horizonal-padding);
 
 }
 

@@ -10,10 +10,11 @@
       [admin.screens.new-page :refer [new-page]]
       [admin.screens.project-new-page :refer [project-new-page]]
       [admin.screens.skills-page :refer [skills-page]]
+      [admin.page-controller :refer [update-page! page-controller]]
       [admin.routes :refer
        [init-client-routing root-path edit-path timeline-path
         retry-route-or project-edit-path project-timeline-path
-        skills-path
+        skills-path project-add-path add-post-path
                             ]]
       [cljs.core.match :refer-macros [match]]
      ))
@@ -30,8 +31,10 @@
    (into [:ul]
          (map render-link [ ["Login" (root-path)]
                             ["Blog Editor" (edit-path)]
+                            ["Blog Add" (add-post-path)]
                             ["Blog Timeline" (timeline-path)]
                             ["Project Editor" (project-edit-path)]
+                            ["Project Add" (project-add-path)]
                             ["Project Timeline" (project-timeline-path)]
                             ["Skills" (skills-path)]
                            ]))
@@ -46,18 +49,12 @@
   )
 
 (defn mount-root [target]
-  (match target
-    "root" (render home-page)
-    "edit" (render edit-page)
-    "new" (render new-page)
-    "timeline" (render timeline-page)
-    "project-new" (render project-new-page)
-    "project-edit" (render project-edit-page)
-    "project-timeline" (render project-timeline-page)
-    "skills" (render skills-page)
-    :else (retry-route-or (fn [] (render home-page)))
-    )
+  (update-page! target)
   )
 
 (defn init! []
-  (init-client-routing mount-root))
+  (do
+    (init-client-routing mount-root)
+    (d/render [page-controller] (.getElementById js/document "app"))
+    )
+  )

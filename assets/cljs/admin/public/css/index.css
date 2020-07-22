@@ -121,6 +121,13 @@
   background-image: linear-gradient(#c80000, #c80000);
 }
 
+.Go-backButton {
+  background-color: transparent;
+  border-width: 0;
+  font-size: 2rem;
+  color: white;
+}
+
 .InputGroup {
   display: flex;
   flex-direction: row;
@@ -272,21 +279,18 @@ section {
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   margin: 0;
   padding: 0;
-  z-index: -10000;
   background-color: #FFC107;
 }
 
 .Body {
   display: flex;
-  position: relative;
   flex-direction: column;
   flex: 1;
   background-color: #FFC107;
-  z-index: -1000;
   padding: 4rem 4rem;
 }
 
@@ -300,12 +304,25 @@ section {
   justify-content: flex-start;
   align-items: stretch;
   background-color: whitesmoke;
-  padding: 20px 50px 60px 50px;
   border-radius: 5px;
   box-shadow: 1px 1px 3px 0.5px darkgray;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
+}
+.Surface > * {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.Surface:last-child {
+  padding-bottom: 4rem;
+}
+
+.SurfaceBody {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  overflow-y: auto;
 }
 
 .Header {
@@ -377,6 +394,34 @@ section {
   color: white;
 }
 
+.SurfaceNavHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #FFA000;
+  color: white;
+}
+.SurfaceNavHeader + * {
+  padding-top: 2rem;
+}
+.SurfaceNavHeader .SurfaceNavHeader-First {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.SurfaceNavHeader .SurfaceNavHeader-First > * + * {
+  margin-left: 20px;
+}
+.SurfaceNavHeader .SurfaceNavHeader-Last {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.SurfaceNavHeader .SurfaceNavHeader-Last > * + * {
+  margin-left: 20px;
+}
+
 .My-Header .My-Logo {
   margin-left: 3rem;
 }
@@ -391,11 +436,6 @@ section {
 }
 
 .Patterns-Triangles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
   overflow: hidden;
   display: flex;
 }
@@ -410,7 +450,6 @@ section {
   border-bottom-width: 10px;
   border-bottom-color: #FFA000;
   position: absolute;
-  z-index: -1;
 }
 .Patterns-Triangles .Patterns-Triangles-Triangle-0 {
   transform: scale(1, 1) rotate(34deg);
@@ -567,42 +606,14 @@ section {
   left: 1700px;
   top: 1990px;
 }
-.SkillsPage-Header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-.SkillsPage-Header .SkillsPage-Header-Left {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.SkillsPage-Header .SkillsPage-Header-Left > * + * {
-  margin-left: 20px;
-}
-
 .SkillsPage-Search {
   display: flex;
   flex-direction: row;
 }
 
 .SkillsPage-Skills {
-  padding: 20px 0;
-  /*
-  & > * + * {
-      border-top-width: 1px;
-      border-top-style: solid;
-      border-top-color: constants.$divider;
-  }
-  */
-  /*
-  & > *:last-child {
-      border-bottom-width: 1px;
-      border-bottom-style: solid;
-      border-bottom-color: constants.$divider;
-  }
-  */
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 .SkillsPage-Skills > *:first-child {
   position: relative;
@@ -693,12 +704,6 @@ section {
   margin-left: 20px;
 }
 
-.TimelinePage-Surface .TimelinePage-Header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
 .TimelinePage-Surface .TimelinePage-Timeline > * + section {
   margin-top: 1.5rem;
 }
@@ -777,16 +782,16 @@ section {
   display: none;
 }
 
-.ProjectTimelinePage-Surface > section + section {
+.ProjectTimelinePage-Surface section + section {
   margin-top: 3rem;
 }
-.ProjectTimelinePage-Surface > section > h2 {
+.ProjectTimelinePage-Surface section > h2 {
   padding-bottom: 2px;
 }
-.ProjectTimelinePage-Surface > section > h2 {
+.ProjectTimelinePage-Surface section > h2 {
   position: relative;
 }
-.ProjectTimelinePage-Surface > section > h2::after {
+.ProjectTimelinePage-Surface section > h2::after {
   position: absolute;
   content: "";
   height: 1px;
@@ -800,7 +805,8 @@ section {
   margin-bottom: 0;
 }
 .ProjectTimelinePage-Surface .ProjectTimelinePage-Summary {
-  margin-bottom: 3rem;
+  font-size: 1.2rem;
+  margin-bottom: 2.3rem;
 }
 .ProjectTimelinePage-Surface .ProjectTimelinePage-Project {
   display: flex;
@@ -823,20 +829,6 @@ section {
   bottom: 0;
   width: calc(100% + 10px*2);
   z-index: -1;
-}
-
-.ProjectTimelinePage-TopHeader {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-.ProjectTimelinePage-TopHeader .ProjectTimelinePage-TopHeader-First {
-  display: flex;
-  flex-direction: row;
-}
-.ProjectTimelinePage-TopHeader .ProjectTimelinePage-TopHeader-First > * + * {
-  margin-left: 20px;
 }
 
 .ProjectTimelinePage-Projects {

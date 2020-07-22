@@ -186,3 +186,24 @@
         (map render-menu-item items)
         )
   )
+
+(defn surface-nav-header [{:keys [class left-hiccup right-hiccup]
+                           :or {class "",
+                                left-hiccup nil,
+                                right-hiccup nil}}]
+  [:div {:class ["SurfaceNavHeader" class]}
+    [:div {:class "SurfaceNavHeader-First"}
+            left-hiccup
+          ]
+    [:div {:class "SurfaceNavHeader-Last"}
+        right-hiccup
+      ]
+   ]
+  )
+
+(defn surface-body [{:keys [class] :or {class ""}}]
+  (into [:div {:class ["SurfaceBody" class]}
+         ]
+        (children)
+        )
+  )

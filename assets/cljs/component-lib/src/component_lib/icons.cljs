@@ -6,12 +6,15 @@
   [reagent.core :as r]
   [reagent.dom :as d]
   [hiccup-icons.octicons :as octicons]
+  [hiccup-icons.mdi :as mdi]
   ))
 
 
 (deficon adjustments octicons/settings)
 
 (deficon alert octicons/stop)
+
+(deficon go-back octicons/arrow-left)
 
 (deficon check octicons/check)
 
@@ -47,13 +50,13 @@
 
 (deficon location octicons/location)
 
+(deficon more-info octicons/info)
+
 (deficon plus octicons/plus)
 
 (deficon pin octicons/pin)
 
 (deficon preview octicons/eye)
-
-(deficon more-info octicons/info)
 
 (deficon question octicons/question)
 
@@ -76,4 +79,3 @@
 (deficon website octicons/device-desktop)
 
 (deficon x octicons/x)
-

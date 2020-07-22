@@ -5,20 +5,20 @@
 $-root: ".Patterns-Triangles";
 $-triangle: "#{$-root}-Triangle";
 
-
 #{$-root} {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
+    //position: absolute;
+    //top: 0;
+    //left: 0;
+    //height: 100%;
+    //width: 100%;
     overflow: hidden;
+    //z-index: -1000;
     display: flex;
 
     & #{$-triangle} {
         @include mixins.triangle-t(constants.$dark-primary);
         position: absolute;
-        z-index: -1;
+        //z-index: -1;
     }
 
     @for $i from 0 through 30 {

@@ -4,6 +4,7 @@
    [reagent.dom :as d]
    [component-lib.core :as c]
    [admin.components.header :refer [header]]
+   [admin.components.go-back :refer [go-back]]
    [admin.forms.edit-form :refer [render-new-form]]
    ))
 
@@ -13,9 +14,16 @@
    [header]
    [c/body
     [c/surface {:class "AddPage-Surface"}
-     [c/text {:type 1} "New Post"
+     [c/surface-nav-header {:left-hiccup
+                            [:<>
+                             [go-back]
+                             [c/text {:type 1} "New Post"
+                              ]
+                             ]
+                            }]
+     [c/surface-body
+      [render-new-form]
       ]
-     [render-new-form]
      ]
     ]
    ]

@@ -2,21 +2,7 @@
 @use "componentlib/globals/abstract/mixins";
 @use "componentlib/globals/abstract/functions";
 
-.SkillsPage-Header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    .SkillsPage-Header-Left {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        & > * + * {
-            margin-left: 20px;
-        }
-    }
+.SkillsPage-Main {
 }
 
 .SkillsPage-Search {
@@ -25,27 +11,13 @@
 }
 
 .SkillsPage-Skills {
-    padding: 20px 0;
+    @include mixins.padding-v(20px); 
     $horizontal-padding: 10px;
-    /*
-    & > * + * {
-        border-top-width: 1px;
-        border-top-style: solid;
-        border-top-color: constants.$divider;
-    }
-    */
 
     & > *:first-child {
         @include mixins.overline($horizontal-padding);
     }
 
-    /*
-    & > *:last-child {
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-        border-bottom-color: constants.$divider;
-    }
-    */
     .SkillsPage-Skill {
         display: flex;
         flex-direction: row;

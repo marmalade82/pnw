@@ -13,6 +13,7 @@
    {:label "projects", :href (routes/project-timeline-path) :selected? routes/is-project-timeline-path}
    {:label "posts", :href (routes/timeline-path) :selected? routes/is-timeline-path}
    {:label "dashboard" :href (routes/admin-dashboard-path) :selected? routes/is-admin-dashboard-path}
+   {:label "workbench" :href (routes/admin-dashboard-path) :selected? #(or (routes/is-project-edit-path) (routes/is-project-add-path) (routes/is-edit-path) (routes/is-add-post-path))}
    ]
   )
 

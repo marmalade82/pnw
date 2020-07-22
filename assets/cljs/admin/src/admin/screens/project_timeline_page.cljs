@@ -111,30 +111,38 @@
      [header]
      [c/body
       [c/surface {:class "ProjectTimelinePage-Surface"}
-       [:div {:class "ProjectTimelinePage-TopHeader"}
-        [:div {:class "ProjectTimelinePage-TopHeader-First"}
-         [i/folder]
-         [c/text {:type 1} "Projects"]
+       [c/surface-nav-header {:class "ProjectTimelinePage-TopHeader"
+                              :left-hiccup
+                              [:<>
+                                [i/folder]
+                                [c/text {:type 1} "Projects"]
+                               ]
+                              :right-hiccup
+                              [:<>
+                               [b/add {:class "ProjectTimelinePage-Add", :href (project-add-path)}]
+                               ]
+
+                              }
+        ]
+       [c/surface-body
+        [c/text {:class "ProjectTimelinePage-Summary"} "A timeline of everything you've done so far."]
+
+        [:section
+         [c/text {:type 2 } "Ongoing"]
+         (render-projects ongoing)
          ]
-        [b/add {:class "ProjectTimelinePage-Add", :href (project-add-path)}]
-        ]
-       [c/text {:class "ProjectTimelinePage-Summary"} "A timeline of everything you've done so far."]
 
-       [:section
-        [c/text {:type 2 } "Ongoing"]
-        (render-projects ongoing)
-        ]
+        [:section
+         [c/text {:type 2} "Completed"]
+         (render-projects completed)
+         ]
 
-       [:section
-        [c/text {:type 2} "Completed"]
-        (render-projects completed)
+        [:section
+         [c/text {:type 2} "Abandoned"]
+         (render-projects abandoned)
+         ]
         ]
-
-       [:section
-        [c/text {:type 2} "Abandoned"]
-        (render-projects abandoned)
         ]
-       ]
       ]
      ]
     )

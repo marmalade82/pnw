@@ -11,6 +11,7 @@
    [admin.screens.skills-page.skills-form
        :refer [render-edit-form render-skill-form]]
    [admin.components.body :refer [body]]
+   [admin.components.motion.motion :as m]
    )
   )
 
@@ -87,17 +88,22 @@
         ]
        [body
         [c/surface {:class "SkillsPage-Main"}
-         [:div {:class "SkillsPage-Header"}
-          [:div {:class "SkillsPage-Header-Left"}
-           [c/text {:type 1} "Skills"]
-           ]
-          [b/add {:class "SkillsPage-Header-Add"
-                  :on-click #(toggle! :add)
-                  }]
+         [c/surface-nav-header {
+                                :left-hiccup [:<>
+                                               [c/text {:type 1} "Skills"]
+                                              ]
+                                :right-hiccup
+                                [:<>
+                                 [b/add {:class "SkillsPage-Header-Add"
+                                         :on-click #(toggle! :add)
+                                         }]
+                                 ]
+                                }]
+         [c/surface-body
+          [modal {:title {:add "Add Skill"}} {:add [render-skill-form]}]
+          [search-bar]
+          (render-skills skills)
           ]
-         [modal {:title {:add "Add Skill"}} {:add [render-skill-form]}]
-         [search-bar]
-         (render-skills skills)
          ]
         ]
        ])
