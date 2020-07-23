@@ -1015,7 +1015,7 @@ section {
 .Forward.PageEnter-exit-active {
   animation-name: l;
   animation-duration: 1s;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
 @keyframes l {
@@ -1054,7 +1054,7 @@ section {
 .Backward.PageEnter-exit-active {
   animation-name: leave-backward;
   animation-duration: 1s;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
 @keyframes leave-backward {
