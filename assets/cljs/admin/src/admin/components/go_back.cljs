@@ -7,16 +7,10 @@
    )
   )
 
-(defn back! []
-  (do 
-    (dir/back!)
-    (.back js/window.history)
-    )
-  )
 
 (defn go-back []
   (if (< 1 (.-length js/window.history))
-    [b/go-back {:on-click #(back!), :class "My-GoBack"}]
+    [b/go-back {:on-click #(dir/go-back!), :class "My-GoBack"}]
     nil
     )
   )

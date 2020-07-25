@@ -23,3 +23,10 @@
 (defn dir []
   @direction
   )
+
+(defn go-back! []
+  (do 
+    (back!)
+    (.back js/window.history)
+    )
+  )

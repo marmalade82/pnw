@@ -1,0 +1,128 @@
+@use "componentlib/globals/abstract/constants";
+@use "componentlib/globals/abstract/mixins";
+@use "componentlib/globals/abstract/functions";
+
+$-margin-bottom: 1rem;
+$-padding: 0.5rem 1rem;
+
+.Toast {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 50vw;
+    position: fixed;
+    bottom: 5%;
+    left: 50%;
+    z-index: 1000000000;
+    transform: translate(-50%, 0);
+
+
+    .Toast-EnteredList {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        > * {
+            margin-bottom: $-margin-bottom;
+        }
+    }
+
+    $toast-height: 4.5rem;
+
+    .Toast-Entered {
+        height: $toast-height;
+        background-color: functions.gray(250);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        padding: $-padding;
+        border-width: 0px;
+        @include mixins.elevation(1);
+
+        &-Header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    .EnteredToast {
+        &-enter, &-appear {
+            opacity: 0;
+            height: 0;
+            margin-bottom: 0;
+            padding: 0;
+        }
+
+        &-enter-active, &-appear-active {
+            @keyframes toast-enter {
+                from {
+                    opacity: 0;
+                    height: 0;
+                    margin-bottom: 0;
+                    padding: 0;
+                    transform: translate(0, 130%);
+                }
+
+                50% {
+                    opacity: 0;
+                    height: $toast-height;
+                    padding: $-padding;
+                    margin-bottom: $-margin-bottom;
+                    transform: translate(0, 130%);
+                }
+
+                to {
+                    opacity: 1;
+                    height: $toast-height;
+                    padding: $-padding;
+                    margin-bottom: $-margin-bottom;
+                    transform: translate(0, 0);
+                }
+            }
+            animation-name: toast-enter;
+            animation-delay: 2s;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+        }
+
+        &-exit-active {
+            @keyframes do-exit {
+                from {
+                    transform: translate(0, 0);
+                    opacity: 1;
+                    height: $toast-height;
+                    padding: $-padding;
+                    margin-bottom: $-margin-bottom;
+                }
+
+                50% {
+                    opacity: 0;
+                    transform: translate(150%, 0);
+                    height: $toast-height;
+                    padding: $-padding;
+                    margin-bottom: $-margin-bottom;
+                }
+
+                to {
+                    height: 0;
+                    padding: 0;
+                    margin: 0;
+                    opacity: 0;
+                    transform: translate(150%, 0);
+                    display: none;
+                }
+            }
+            animation-name: do-exit;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+        }
+
+        &-exit-done {
+            opacity: 0;
+            display: none;
+        }
+    }
+}

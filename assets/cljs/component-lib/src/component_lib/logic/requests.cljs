@@ -15,9 +15,21 @@
 
 (defonce subscribable-success (mk-subscribable fetch-success))
 
-(defn subscribe-errors []
-  (let [subscribe (:subscribe subscribable-errors)]
-    (subscribe)
+(defn fetch [url opts]
+  (try 
+    (go
+      (let [promise (js/fetch url opts)
+            response (<p! promise)
+            ]
+        (if (or (.-ok response) (.-redirected response))
+          (put! fetch-success true)
+          (put! fetch-errors response)
+          )
+        )
+      )
+    (catch :default e
+      (put! fetch-errors e)
+      )
     )
   )
 
@@ -25,9 +37,12 @@
   (try 
       (go
         (let [promise (js/fetch url opts)
-              res (.json (<p! promise))
+              response (<p! promise)
               ]
-          (put! fetch-success (js->clj res, :keywordize-keys true))
+          (if (or (.-ok response) )
+            (put! fetch-success (js->clj (.json response) :keywordize-keys true))
+            (put! fetch-errors response)
+            )
           )
         )
     (catch :default e
@@ -56,10 +71,10 @@
   )
 
 (defn do-delete [url]
-  (fetch-json url #js { :method "DELETE"}
+  (fetch url #js { :method "DELETE"}
             )
   )
 
 (defn do-patch [url]
-  (fetch-json url #js { :method "PATCH" })
+  (fetch url #js { :method "PATCH" })
   )

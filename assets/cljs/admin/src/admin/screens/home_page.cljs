@@ -6,6 +6,7 @@
    [fork.reagent :as f]
    [admin.routes :refer [root-path]]
    [admin.components.header :refer [header]]
+   [admin.external.side-effect :refer [side-effect]]
    )
   )
 
@@ -51,6 +52,6 @@
   )
 
 (defn home-page []
-   [render-login-form]
+      [render-login-form]
   )
 

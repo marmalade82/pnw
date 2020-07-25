@@ -9,7 +9,9 @@
                  [reagent "0.10.0"]
                  [component-lib "0.1.6"]
                  [fork "2.0.0"]
+                 [org.clojure/core.async "1.2.603"]
                  [org.clojure/core.match "1.0.0"]
+                 [environ "1.2.0"]
                  [cljsjs/react-transition-group "4.3.0-0"]
                  ]
   
@@ -63,9 +65,20 @@
 
   :aliases {"package" ["do" "clean" ["cljsbuild" "once" "release"]]}
 
-  :profiles {:dev {:source-paths ["src" "env/dev/clj"]
-                   :dependencies [[binaryage/devtools "1.0.2"]
-                                  [figwheel-sidecar "0.5.20"]
-                                  [nrepl "0.7.0"]
-                                  [cider/piggieback "0.5.0"]]}}
+  :profiles {:project/dev {:source-paths ["src" "env/dev/clj"]
+                           :dependencies [[binaryage/devtools "1.0.2"]
+                                          [figwheel-sidecar "0.5.20"]
+                                          [nrepl "0.7.0"]
+                                          [cider/piggieback "0.5.0"]]
+                            }
+             :project/test {}
+
+
+             :profiles/dev {}
+             :profiles/test {}
+             :profiles/prod {}
+
+             :dev [:project/dev :profiles/dev]
+             :test [:project/test :profiles/test]
+             }
                                   )

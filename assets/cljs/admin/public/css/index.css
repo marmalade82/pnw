@@ -606,6 +606,112 @@ section {
   left: 1700px;
   top: 1990px;
 }
+.Toast {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 50vw;
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+  z-index: 1000000000;
+  transform: translate(-50%, 0);
+}
+.Toast .Toast-EnteredList {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.Toast .Toast-EnteredList > * {
+  margin-bottom: 1rem;
+}
+.Toast .Toast-Entered {
+  height: 4.5rem;
+  background-color: #fafafa;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0.5rem 1rem;
+  border-width: 0px;
+  box-shadow: 1px 1px 3px 0.5px darkgray;
+}
+.Toast .Toast-Entered-Header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.Toast .EnteredToast-enter, .Toast .EnteredToast-appear {
+  opacity: 0;
+  height: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
+.Toast .EnteredToast-enter-active, .Toast .EnteredToast-appear-active {
+  animation-name: toast-enter;
+  animation-delay: 2s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes toast-enter {
+  from {
+    opacity: 0;
+    height: 0;
+    margin-bottom: 0;
+    padding: 0;
+    transform: translate(0, 130%);
+  }
+  50% {
+    opacity: 0;
+    height: 4.5rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    transform: translate(0, 130%);
+  }
+  to {
+    opacity: 1;
+    height: 4.5rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    transform: translate(0, 0);
+  }
+}
+.Toast .EnteredToast-exit-active {
+  animation-name: do-exit;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes do-exit {
+  from {
+    transform: translate(0, 0);
+    opacity: 1;
+    height: 4.5rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+  50% {
+    opacity: 0;
+    transform: translate(150%, 0);
+    height: 4.5rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+  to {
+    height: 0;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    transform: translate(150%, 0);
+    display: none;
+  }
+}
+.Toast .EnteredToast-exit-done {
+  opacity: 0;
+  display: none;
+}
+
 .SkillsPage-Search {
   display: flex;
   flex-direction: row;

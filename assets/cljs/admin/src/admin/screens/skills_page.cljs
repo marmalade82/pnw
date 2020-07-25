@@ -53,7 +53,7 @@
                     }]
          ]
         [modal {:title {:edit "Edit", :delete "Are you sure?"}}
-            {:edit [render-edit-form]
+            {:edit [render-edit-form {:close! close!}]
              :delete [render-delete-form
                       {:close! close!
                        :text (str "Please confirm that you want to delete " name ".")
@@ -96,7 +96,7 @@
                                  ]
                                 }]
          [c/surface-body
-          [modal {:title {:add "Add Skill"}} {:add [render-skill-form]}]
+          [modal {:title {:add "Add Skill"}} {:add [render-skill-form {:close! close!}]}]
           [search-bar]
           (render-skills skills)
           ]

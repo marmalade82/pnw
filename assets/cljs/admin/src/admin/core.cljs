@@ -9,6 +9,7 @@
         skills-path project-add-path add-post-path
                             ]]
       [cljs.core.match :refer-macros [match]]
+      [admin.components.toast :refer [toast]]
       [admin.components.header :refer [header]]
       [component-lib.core :as c]
      ))
@@ -35,6 +36,7 @@
    [:div
     [c/page {:class "ProjectEditPage"}
      [header]
+     [toast]
      [c/body {:class "ProjectEditPage-Body"}
       [page-controller]
       ]

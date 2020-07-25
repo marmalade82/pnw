@@ -5,6 +5,8 @@
    [component-lib.core :as c]
    [component-lib.buttons :as b]
    [fork.reagent :as f]
+   [admin.external.side-effect :refer [side-effect]]
+   [admin.external.requests :refer [request-status request!] ]
    ))
 
 (defn delete-form [{:keys [values
@@ -15,30 +17,37 @@
                           form-id
                           props
                           ] :as all}]
-  [:form {:class "SkillsPage-DeleteForm"
-          :id form-id
-          :on-submit handle-submit
-          }
-   [c/text {:class "SkillsPage-DeleteForm-Text"} (:text props)]
-   [:div {:class "SkillsPage-DeleteForm-Footer"}
-    [b/cancel {:disabled submitting?
-               :class "SkillsPage-Modal-Cancel"
-               :on-click (:close! props)
-               }]
+  (let [form-state request-status
+        close! (:close! props)
+        ]
+    (fn []
+      [:form {:class "SkillsPage-DeleteForm"
+              :id form-id
+              :on-submit handle-submit
+              }
+       [side-effect {:is-true (= :finished @form-state)
+                     :on-true #(close!)
+                     }]
+       [c/text {:class "SkillsPage-DeleteForm-Text"} (:text props)]
+       [:div {:class "SkillsPage-DeleteForm-Footer"}
+        [b/cancel {:disabled (not= @form-state :ready)
+                   :class "SkillsPage-Modal-Cancel"
+                   :on-click #(close!)
+                   }]
 
-    [c/submit-button { :disabled submitting?
-                      :class "SkillsPage-Modal-Delete"
-                      }
-     "yes, delete"]
-    ]
-   ]
+        [c/submit-button { :disabled (not= @form-state :ready)
+                          :class "SkillsPage-Modal-Delete"
+                          }
+         "yes, delete"]
+        ]
+       ]))
   )
 
 (defn render-delete-form [{:keys [close! text] :or {text ""} :as props}]
   [f/form {:prevent-default? true
            :clean-on-unmount? true
            :path :delete-form 
-           :on-submit #(identity %)
+           :on-submit #(request!)
            :props props
            }
    delete-form]

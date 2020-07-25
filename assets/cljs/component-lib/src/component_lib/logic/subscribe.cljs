@@ -11,7 +11,7 @@
 ; and no other values should consume directly from the channel
 (defn mk-subscribable [c]
   (let [latest (r/atom nil)]
-    (go
+    #_(go
       (loop []
         (take! c #(reset! latest %))
         (recur)
@@ -31,6 +31,13 @@
                     subscriber 
                     )
                   )
+     :subscribe-callback (fn [callback]
+                           (add-watch latest (random-uuid)
+                                      (fn [_key _ref _old new]
+                                        (callback new)
+                                        )
+                                )
+                           )
      }
     )
   )
