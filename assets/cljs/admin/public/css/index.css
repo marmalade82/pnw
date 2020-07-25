@@ -422,6 +422,57 @@ section {
   margin-left: 20px;
 }
 
+.LoadingSpinner {
+  position: relative;
+  flex: 1;
+  width: 100%;
+}
+.LoadingSpinner .LoadingSpinner-Rotate {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  background: linear-gradient(to right, #000000 10%, rgba(0, 0, 0, 0) 42%);
+  animation-name: spin;
+  animation-duration: 1.3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.LoadingSpinner .LoadingSpinner-Rotate:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 100% 0 0 0;
+  width: 50%;
+  background: black;
+  height: 50%;
+}
+.LoadingSpinner .LoadingSpinner-Rotate:after {
+  background: #0dc5c1;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  background: whitesmoke;
+  content: "";
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 .My-Header .My-Logo {
   margin-left: 3rem;
 }
@@ -810,6 +861,9 @@ section {
   margin-left: 20px;
 }
 
+.TimelinePage-Surface {
+  min-width: 700px;
+}
 .TimelinePage-Surface .TimelinePage-Timeline > * + section {
   margin-top: 1.5rem;
 }
@@ -1101,7 +1155,7 @@ section {
 }
 .Forward.PageEnter-appear-active, .Forward.PageEnter-enter-active {
   animation-name: enter-forward;
-  animation-duration: 1s;
+  animation-duration: 0.8s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
@@ -1120,7 +1174,7 @@ section {
 }
 .Forward.PageEnter-exit-active {
   animation-name: l;
-  animation-duration: 1s;
+  animation-duration: 0.8s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
@@ -1140,7 +1194,7 @@ section {
 }
 .Backward.PageEnter-appear-active, .Backward.PageEnter-enter-active {
   animation-name: enter-backward;
-  animation-duration: 1s;
+  animation-duration: 0.8s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
@@ -1159,7 +1213,7 @@ section {
 }
 .Backward.PageEnter-exit-active {
   animation-name: leave-backward;
-  animation-duration: 1s;
+  animation-duration: 0.8s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }

@@ -1,0 +1,58 @@
+@use "globals/abstract/functions";
+
+.LoadingSpinner {
+    position: relative;
+    flex: 1;
+    width: 100%;
+
+    .LoadingSpinner-Rotate {
+        height: 100px;
+        width: 100px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        background: linear-gradient(to right, #000000 10%, rgba(0, 0, 0, 0) 42%);
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 100% 0 0 0;
+            width: 50%;
+            background: black;
+            height: 50%;
+        }
+
+        &:after {
+            background: #0dc5c1;
+            width: 75%;
+            height: 75%;
+            border-radius: 50%;
+            background: functions.gray(245);
+            content: '';
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        @keyframes spin {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        animation-name: spin;
+        animation-duration: 1.3s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+}

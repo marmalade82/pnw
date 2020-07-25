@@ -49,7 +49,7 @@
                         :onEntered #(forward!)
                         :onExit #(set-dir-class! %)
                         :key (str child)
-                        :timeout 1100, :classNames class}
+                        :timeout 900, :classNames class}
     child
     ]
    ]

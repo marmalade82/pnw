@@ -5,6 +5,7 @@
 $-horizonal-padding: 10px;
 
 .TimelinePage-Surface {
+    min-width: 700px;
 
     & .TimelinePage-Timeline > * + section {
         margin-top: 1.5rem;

@@ -8,6 +8,7 @@
    [component-lib.containers :refer [mk-modal]]
    [admin.components.header :refer [header]]
    [admin.routes :refer [add-post-path]]
+   [admin.global-state.posts :as p]
    ))
 
 (defn get-grouped-blog-data []
@@ -117,7 +118,7 @@
   )
 
 (defn timeline-page [{:keys [class] :or {class ""}}]
-  (let [blog-data (get-grouped-blog-data)
+  (let [blog-data (p/get-posts)
         ]
     [c/surface {:class (str "TimelinePage-Surface" " " class)}
        [c/surface-nav-header {:class "TimelinePage-Header"
@@ -132,8 +133,13 @@
                               }
         ]
        [c/surface-body {:class "TimelinePage-Body"}
-        (into [:div {:class "TimelinePage-Timeline"}]
-              (map render-month blog-data))
+        (if (p/posts-loading?)
+          [:div {:class "LoadingSpinner"}
+              [:div {:class "LoadingSpinner-Rotate"}]
+           ]
+          (into [:div {:class "TimelinePage-Timeline"}]
+                (map render-month blog-data))
+          )
         ]
        ]
     )
