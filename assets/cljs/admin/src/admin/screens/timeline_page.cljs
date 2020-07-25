@@ -9,69 +9,9 @@
    [admin.components.header :refer [header]]
    [admin.routes :refer [add-post-path]]
    [admin.global-state.posts :as p]
+   [admin.components.spinner-page :refer [spinner-page]]
    ))
 
-(defn get-grouped-blog-data []
-  [
-   {:month "October 2020"
-    :posts [
-            {:title "Title 1"
-             :created_at "Oct 1"
-             :updated_at "Oct 3"
-             :views 30
-             :id 7
-             :edit-href "#/edit"
-             }
-            {:title "Title 1"
-             :created_at "Oct 1"
-             :updated_at "Oct 3"
-             :views 30
-             :id 7
-             :edit-href "#/edit"
-             }
-            {:title "Title 1"
-             :created_at "Oct 1"
-             :updated_at "Oct 3"
-             :views 30
-             :id 7
-             :edit-href "#/edit"
-             }
-            ]
-    }
-   {:month "August 2020"
-    :posts [
-            {:title "Title 1"
-             :created_at "Aug 1"
-             :updated_at "Aug 3"
-             :views 30
-             :id 3
-             :edit-href "#/edit"
-             }
-            {:title "Title 1"
-             :created_at "Aug 1"
-             :updated_at "Aug 3"
-             :views 30
-             :id 3
-             :edit-href "#/edit"
-             }
-            {:title "Title 1"
-             :created_at "Aug 1"
-             :updated_at "Aug 3"
-             :views 30
-             :id 3
-             :edit-href "#/edit"
-             }
-            {:title "Title 1"
-             :created_at "Aug 1"
-             :updated_at "Aug 3"
-             :views 30
-             :id 3
-             :edit-href "#/edit"
-             }
-            ]
-    }
-   ]
-  )
 
 (defn render-blog [{:keys [title created_at updated_at views edit-href]}]
   (let [stage (r/atom :view)
@@ -134,11 +74,9 @@
         ]
        [c/surface-body {:class "TimelinePage-Body"}
         (if (p/posts-loading?)
-          [:div {:class "LoadingSpinner"}
-              [:div {:class "LoadingSpinner-Rotate"}]
-           ]
+          [spinner-page]
           (into [:div {:class "TimelinePage-Timeline"}]
-                (map render-month blog-data))
+                (map render-month @blog-data))
           )
         ]
        ]
