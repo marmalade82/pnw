@@ -13,4 +13,5 @@
 
 for n <- 1..5 do
    Personal.Repo.insert!(%Personal.Blog.Posts{title: "test #{n}", subtitle: "subtitle", content: "content"})
+   Personal.Repo.insert!(%Personal.Skill{name: "skill #{n}", abbr: "ab", color: "pink"})
 end

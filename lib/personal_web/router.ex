@@ -14,17 +14,6 @@ defmodule PersonalWeb.Router do
     # plug :redirect_auth
   end
 
-  defp check_auth(_conn, _opts) do
-    # Expects to receive email and password,
-    # and checks them against database of users.
-    # If found, populates session.
-    _conn
-  end
-
-  defp redirect_auth(_conn, _opts) do
-
-  end
-
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -32,11 +21,11 @@ defmodule PersonalWeb.Router do
   scope "/", PersonalWeb do
     pipe_through :browser
 
-    resources "/posts", PostsController
+    #_resources "/posts", PostsController
     get "/", PageController, :index
     get "/projects", PageController, :projects
 
-    scope "api", API do
+    scope "/api", API do
       resources "/posts", PostsController
     end
 
@@ -54,9 +43,10 @@ defmodule PersonalWeb.Router do
   """
 
   scope "/admin", PersonalWeb.Admin do
-    scope "api", API do
+    scope "/api", API do
       pipe_through :api
       resources "/posts", PostsController
+      resources "/skills", SkillsController
     end
   end
 
