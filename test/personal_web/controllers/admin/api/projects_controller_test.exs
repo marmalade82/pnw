@@ -1,14 +1,15 @@
-defmodule PersonalWeb.Admin.API.SkillsControllerTest do
+defmodule PersonalWeb.Admin.API.ProjectsControllerTest do
   use PersonalWeb.ConnCase
   alias Personal.Repo
-  alias Personal.Skill
+  alias Personal.Project
 
   setup do
     for n <- 1..2 do
-      Repo.insert!(Skill.changeset(
-                    %Skill{name: "example #{n}",
-                          abbr: "abbr #{n}",
-                          color: "color #{n}",
+      Repo.insert!(Project.changeset(
+                    %Project{title: "title #{n}",
+                          subtitle: "subtitle #{n}",
+                          description: "description #{n}",
+                          reflection: "reflection #{n}",
                           },
                     %{}
                     ))
@@ -16,14 +17,15 @@ defmodule PersonalWeb.Admin.API.SkillsControllerTest do
     :ok
   end
 
-  @root "/admin/api/skills"
+  @root "/admin/api/projects"
   def endpoint(extension) do
     "#{@root}#{extension}"
   end
 
-  def do_post(conn, data \\ %{"name" => "test",
-                            "abbr" => "abbr",
-                            "color" => "pink"}
+  def do_post(conn, data \\ %{"title" => "title",
+                            "subtitle" => "subtitle",
+                            "description" => "description",
+                            "reflection" => "reflection"}
       ) do
     conn = post(conn, endpoint("/"), data)
     json_response(conn, :created)
@@ -50,20 +52,22 @@ defmodule PersonalWeb.Admin.API.SkillsControllerTest do
   end
 
   test "POST /", %{conn: conn} do
-    data = %{"name" => "test",
-    "abbr" => "abbr",
-    "color" => "pink"}
-    body = do_post(conn, data)
+    data = %{"title" => "title",
+             "subtitle" => "subtitle",
+             "description" => "description",
+             "reflection" => "reflection",
+            }
+    body = do_post(conn)
     assert body == Map.merge(body, data)
   end
 
   test "PATCH /:id", %{conn: conn} do
-    data = %{"name" => "patch",
-              "color" => "pink"}
+    data = %{"title" => "patch",
+            }
     id = get_first_id(conn)
     conn = patch(conn, endpoint("/#{id}"), data)
-    %{"name" => name} = json_response(conn, :ok)
-    assert name == "patch"
+    %{"title" => title} = json_response(conn, :ok)
+    assert title == "patch"
   end
 
   test "DELETE /:id", %{conn: conn} do
@@ -71,5 +75,4 @@ defmodule PersonalWeb.Admin.API.SkillsControllerTest do
     conn = delete(conn, endpoint("/#{id}"))
     response(conn, :no_content)
   end
-
 end

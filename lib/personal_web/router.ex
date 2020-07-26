@@ -45,6 +45,7 @@ defmodule PersonalWeb.Router do
   scope "/admin", PersonalWeb.Admin do
     scope "/api", API do
       pipe_through :api
+      resources "/projects", ProjectsController
       resources "/posts", PostsController
       resources "/skills", SkillsController
     end
