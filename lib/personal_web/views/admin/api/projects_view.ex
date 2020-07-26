@@ -4,7 +4,9 @@ defmodule PersonalWeb.Admin.API.ProjectsView do
   def render_admin_project(project) do
     project
     |> Map.take([:id, :title, :subtitle, :description,
-                 :reflection])
+                 :reflection, :status, :inserted_at,
+                 :updated_at,
+                 ])
   end
 
   def render("index.json", %{data: data}) do

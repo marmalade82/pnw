@@ -8,57 +8,10 @@
    [component-lib.icons :as i]
    [admin.routes :refer [project-edit-path project-add-path]]
    [admin.components.header :refer [header]]
+   [admin.components.spinner-page :refer [spinner-page]]
+   [admin.global-state.projects :refer [get-projects]]
    ))
 
-(defn get-grouped-projects []
-  {:ongoing
-   [{ :last_updated "Oct 1, 2020"
-      :start "Oct 1, 2019"
-      :title "lexer-gen"
-      :subtitle "Purescript lexing"
-      :skills [{:color "red", :label "CSS"},
-               {:color "purple", :label "PS"}
-              ]
-     :edit-href (project-edit-path)
-     }
-    { :last_updated "Oct 3, 2020"
-     :title "pnw"
-     :start "Oct 3, 2018"
-     :subtitle "Personal website"
-     :skills [{:color "red", :label "CLJS"}
-              {:color "green", :label "ELX"}
-              ]
-     :edit-href (project-edit-path)
-     }   
-
-    ]
-   :completed
-   [{ :last_updated "Oct 3, 2020"
-      :title "pnw"
-      :start "Oct 3, 2018"
-      :subtitle "Personal website"
-     :skills [{:color "red", :label "CLJS"}
-              {:color "green", :label "ELX"}
-              ]
-      :edit-href (project-edit-path)
-     }
-    
-    ]
-   :abandoned
-   [{:last_updated "Oct 14, 2020"
-     :title "spice"
-     :start "January 2020"
-     :subtitle "Task management and learning"
-     :skills [{:color "purple", :label "RN"}
-              {:color "pink" :label "JV"}
-              ]
-     :edit-href (project-edit-path)
-     
-     }
-    
-    ]
-   }
-  )
 
 (defn render-project [{:keys [title subtitle skills last_updated
                               edit-href
@@ -99,48 +52,52 @@
         (map #(into [] [(render-project %)]) projects))
   )
 
-(defn project-timeline-page [{:keys [class] :or {class ""}}]
-  (let [{:keys [ongoing completed abandoned]
-         :or
-            {ongoing []
-              completed []
-              abandoned []}}
-            (get-grouped-projects) 
-        ]
-    [c/surface {:class (str "ProjectTimelinePage-Surface" " " class)}
-       [c/surface-nav-header {:class "ProjectTimelinePage-TopHeader"
-                              :left-hiccup
-                              [:<>
-                                [i/folder]
-                                [c/text {:type 1} "Projects"]
-                               ]
-                              :right-hiccup
-                              [:<>
-                               [b/add {:class "ProjectTimelinePage-Add", :href (project-add-path)}]
-                               ]
+(defn project-timeline-page [attrs]
+  (let [projects (get-projects)]
+    (fn [{:keys [class] :or {class ""}}]
+        (let [{:keys [ongoing completed abandoned]
+               :or
+               {ongoing []
+                completed []
+                abandoned []}}
+              @projects
+              ]
+          [c/surface {:class (str "ProjectTimelinePage-Surface" " " class)}
+           [c/surface-nav-header {:class "ProjectTimelinePage-TopHeader"
+                                  :left-hiccup
+                                  [:<>
+                                   [i/folder]
+                                   [c/text {:type 1} "Projects"]
+                                   ]
+                                  :right-hiccup
+                                  [:<>
+                                   [b/add {:class "ProjectTimelinePage-Add", :href (project-add-path)}]
+                                   ]
 
-                              }
-        ]
-       [c/surface-body
-        [c/text {:class "ProjectTimelinePage-Summary"} "A timeline of everything you've done so far."]
+                                  }
+            ]
+           (if (nil? @projects)
+             [spinner-page]
+             [c/surface-body
+              [c/text {:class "ProjectTimelinePage-Summary"} "A timeline of everything you've done so far."]
 
-        [:section
-         [c/text {:type 2 } "Ongoing"]
-         (render-projects ongoing)
-         ]
+              [:section
+               [c/text {:type 2 } "Ongoing"]
+               (render-projects ongoing)
+               ]
 
-        [:section
-         [c/text {:type 2} "Completed"]
-         (render-projects completed)
-         ]
+              [:section
+               [c/text {:type 2} "Completed"]
+               (render-projects completed)
+               ]
 
-        [:section
-         [c/text {:type 2} "Abandoned"]
-         (render-projects abandoned)
-         ]
-        ]
-        ]
-    )
+              [:section
+               [c/text {:type 2} "Abandoned"]
+               (render-projects abandoned)
+               ]
+              ])
+           ]
+          )))
   )
 
 

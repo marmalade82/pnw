@@ -22,5 +22,11 @@ for n <- 1..5 do
                                   subtitle: "subtitle #{n}",
                                   description: "description #{n}",
                                   reflection: "reflection #{n}",
+                                  status:
+                                    case Kernel.rem(n, 3) do
+                                       0 -> "ongoing"
+                                       1 -> "completed"
+                                       2 -> "abandoned"
+                                    end
                                  })
 end

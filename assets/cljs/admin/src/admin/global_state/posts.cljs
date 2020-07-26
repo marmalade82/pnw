@@ -106,7 +106,7 @@
   (let [group-by-month (fn [acc post]
                 (let [date (get-date-string post)
                       ]
-                  (update acc date (fn [old posts]
+                  (update acc date (fn [old]
                                      (into [] (conj old post))
                                      ))
                  )

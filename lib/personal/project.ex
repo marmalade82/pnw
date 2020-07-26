@@ -7,6 +7,7 @@ defmodule Personal.Project do
     field :reflection, :string
     field :subtitle, :string
     field :title, :string
+    field :status, :string
 
     timestamps()
   end
@@ -14,7 +15,11 @@ defmodule Personal.Project do
   @doc false
   def changeset(project, attrs) do
     project
-    |> cast(attrs, [:title, :subtitle, :description, :reflection])
-    |> validate_required([:title, :subtitle, :description, :reflection])
+    |> cast(attrs, [:title, :subtitle, :description, :reflection,
+                    :status
+                    ])
+    |> validate_required([:title, :subtitle, :description, :reflection,
+                          :status
+                        ])
   end
 end

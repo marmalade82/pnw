@@ -297,8 +297,6 @@ section {
 .Surface {
   display: flex;
   flex: 1;
-  animation-name: grow;
-  animation-duration: 5s;
   flex-basis: 0;
   flex-direction: column;
   justify-content: flex-start;
@@ -307,6 +305,7 @@ section {
   border-radius: 5px;
   box-shadow: 1px 1px 3px 0.5px darkgray;
   width: fit-content;
+  min-width: 700px;
   margin-left: auto;
   margin-right: auto;
 }

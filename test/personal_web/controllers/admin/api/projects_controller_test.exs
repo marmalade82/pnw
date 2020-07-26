@@ -10,6 +10,7 @@ defmodule PersonalWeb.Admin.API.ProjectsControllerTest do
                           subtitle: "subtitle #{n}",
                           description: "description #{n}",
                           reflection: "reflection #{n}",
+                          status: "ongoing",
                           },
                     %{}
                     ))
@@ -25,6 +26,7 @@ defmodule PersonalWeb.Admin.API.ProjectsControllerTest do
   def do_post(conn, data \\ %{"title" => "title",
                             "subtitle" => "subtitle",
                             "description" => "description",
+                            "status" => "ongoing",
                             "reflection" => "reflection"}
       ) do
     conn = post(conn, endpoint("/"), data)
@@ -56,6 +58,7 @@ defmodule PersonalWeb.Admin.API.ProjectsControllerTest do
              "subtitle" => "subtitle",
              "description" => "description",
              "reflection" => "reflection",
+             "status" => "ongoing"
             }
     body = do_post(conn)
     assert body == Map.merge(body, data)
