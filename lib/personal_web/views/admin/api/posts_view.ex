@@ -2,7 +2,9 @@ defmodule PersonalWeb.Admin.API.PostsView do
 
   def render_admin_post(post) do
     post
-    |> Map.take([:id, :title, :subtitle, :content])
+    |> Map.take([:id, :title, :subtitle, :content,
+                 :inserted_at, :updated_at
+                     ])
   end
 
   def render("index.json", %{data: data}) do

@@ -42,5 +42,6 @@ defmodule PersonalWeb.Endpoint do
     key: "_personal_key",
     signing_salt: "263fccUR"
 
+  plug CORSPlug, origin: ["http://localhost:3449"]
   plug PersonalWeb.Router
 end

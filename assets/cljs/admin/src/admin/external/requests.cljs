@@ -5,6 +5,17 @@
    )
   )
 
+(defn pipe [atom transform]
+  (let [new-atom (r/atom @atom)]
+    (add-watch atom (random-uuid)
+               (fn [_key _ref _old new]
+                 (reset! new-atom (transform new))
+                 )
+               )
+      new-atom
+    )
+  )
+
 ; In development mode, these timeout and then succeed.
 ; In test mode, these make requests to the specified server.
 

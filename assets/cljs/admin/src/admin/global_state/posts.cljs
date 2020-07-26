@@ -3,6 +3,10 @@
    [reagent.core :as r]
    [reagent.dom :as d]
    [cljs.core.async :refer [go]]
+   [cljs.core.async.interop :refer [<p!]]
+   [admin.external.requests :refer [pipe]]
+   [admin.routes :as routes]
+   [clojure.set :refer [rename-keys]]
    )
   )
 
@@ -68,18 +72,69 @@
    ]
   )
 
-(def posts (r/atom nil))
+(defn by-date [{:keys [inserted_by]}]
+  inserted_by
+  )
+
+(defn get-date-string [post]
+  (let [date (new js/Date. (get post :inserted_at))]
+    (str (.getMonth date) " " (.getFullYear date))
+    )
+  )
+
+(defn for-timeline [{:keys [id] :as post}]
+  (let [renamed (rename-keys post {:inserted_at :created_at})
+        mapped (assoc renamed :views 30,
+                              :edit-href (routes/edit-path)
+                      )
+        ]
+        mapped
+    )
+  )
+
+(defn as-timeline [posts]
+  (let [group-by-month (fn [acc post]
+                (let [date (get-date-string post)
+                      ]
+                  (update acc date (fn [old posts]
+                                     (into [] (conj old post))
+                                     ))
+                 )
+              )
+         grouped (reduce group-by-month {} posts)
+         ]
+    (for [[month posts] grouped] {:month month
+                                  :posts (into [] (map for-timeline (sort-by by-date posts)))
+                                  }))
+  )
+
+(def global-posts (r/atom nil))
+
+(def posts (pipe global-posts as-timeline))
 
 (defn posts-loading? []
   (= @posts nil)
   )
 
+(defn fetch-posts []
+  (go
+    (let [req (js/fetch "http://localhost:4000/admin/api/posts"
+                        #js { "method" "GET"
+                             }
+                        )
+          resp (<p! req)
+          json (js->clj (<p! (.json resp)) :keywordize-keys true)
+          ]
+      (js/console.log json)
+      (reset! global-posts json)
+      )
+    )
+  )
+
 (defn get-posts []
   (do
     (if (posts-loading?)
-      (go
-        (js/setTimeout #(reset! posts (get-grouped-blog-data)) 1000)
-        )
+      (fetch-posts)
       )
     )
     posts
