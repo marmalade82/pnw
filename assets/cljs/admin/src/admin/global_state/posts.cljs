@@ -7,6 +7,7 @@
    [admin.external.requests :refer [pipe]]
    [admin.routes :as routes]
    [clojure.set :refer [rename-keys]]
+   [moment]
    )
   )
 
@@ -78,17 +79,26 @@
 
 (defn get-date-string [post]
   (let [date (new js/Date. (get post :inserted_at))]
-    (str (.getMonth date) " " (.getFullYear date))
+    (.format (js/moment date) "MMMM YYYY")
     )
   )
 
-(defn for-timeline [{:keys [id] :as post}]
-  (let [renamed (rename-keys post {:inserted_at :created_at})
-        mapped (assoc renamed :views 30,
+
+(defn map-for-timeline [posts]
+  (let [mapper
+        (fn [{:keys [id created_at updated_at] :as post}]
+          (let [renamed (rename-keys post {:inserted_at :created_at})
+                mapped (assoc renamed :views 30,
                               :edit-href (routes/edit-path)
-                      )
+                              :created_at (.format (js/moment) "MMMM Do, YYYY")
+                              :updated_at (.format (js/moment) "MMMM Do, YYYY")
+                              )
+                ]
+            mapped
+            )
+          )
         ]
-        mapped
+       (map mapper posts)
     )
   )
 
@@ -104,7 +114,7 @@
          grouped (reduce group-by-month {} posts)
          ]
     (for [[month posts] grouped] {:month month
-                                  :posts (into [] (map for-timeline (sort-by by-date posts)))
+                                  :posts (into [] (map-for-timeline (sort-by by-date posts)))
                                   }))
   )
 

@@ -4,6 +4,50 @@
 
 $-horizonal-padding: 10px;
 
+$r: ".TimelinePage";
+$blog: #{$r}-Blog;
+#{$r}-Surface {
+
+   #{$blog}-Main {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        min-width: 500px;
+        flex: 1;
+
+        & > * + * {
+            margin-top: 0.5rem;
+        }
+   }
+
+   #{$blog}-Title {
+       font-size: 1.25rem;
+       font-weight: bold;
+   }
+
+   #{$blog}-Second {
+        #{$blog}-Created {
+            font-size: 0.9rem;
+            color: functions.gray(80);
+        }
+
+        #{$blog}-Updated {
+            font-size: 0.9rem;
+            color: functions.gray(80);
+        }
+
+        #{$blog}-Views {
+            font-size: 0.9rem;
+            color: functions.gray(80);
+        }
+
+        & > * + * {
+            margin-left: 1rem;
+        }
+   }
+
+}
+
 .TimelinePage-Surface {
     min-width: 700px;
 
@@ -47,8 +91,8 @@ $-horizonal-padding: 10px;
 
 .TimelinePage-Blog-Main {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
     min-width: 500px;
     flex: 1;
 }

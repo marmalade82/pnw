@@ -861,6 +861,36 @@ section {
   margin-left: 20px;
 }
 
+.TimelinePage-Surface .TimelinePage-Blog-Main {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 500px;
+  flex: 1;
+}
+.TimelinePage-Surface .TimelinePage-Blog-Main > * + * {
+  margin-top: 0.5rem;
+}
+.TimelinePage-Surface .TimelinePage-Blog-Title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.TimelinePage-Surface .TimelinePage-Blog-Second .TimelinePage-Blog-Created {
+  font-size: 0.9rem;
+  color: #505050;
+}
+.TimelinePage-Surface .TimelinePage-Blog-Second .TimelinePage-Blog-Updated {
+  font-size: 0.9rem;
+  color: #505050;
+}
+.TimelinePage-Surface .TimelinePage-Blog-Second .TimelinePage-Blog-Views {
+  font-size: 0.9rem;
+  color: #505050;
+}
+.TimelinePage-Surface .TimelinePage-Blog-Second > * + * {
+  margin-left: 1rem;
+}
+
 .TimelinePage-Surface {
   min-width: 700px;
 }
@@ -920,8 +950,8 @@ section {
 
 .TimelinePage-Blog-Main {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   min-width: 500px;
   flex: 1;
 }

@@ -47,9 +47,14 @@
                          :asset-path   "js/out"
                          :source-map true
                          :optimizations :none
-                         :foreign-libs [{:file "admin/foreign/simplemde.min.js"
-                                          :provides ["mde"]
-                                          }]
+                         :foreign-libs
+                             [{:file "admin/foreign/simplemde.min.js"
+                               :provides ["mde"]
+                                }
+                              {:file "admin/foreign/moment.js"
+                               :provides ["moment"]
+                               }
+                              ]
                          :pretty-print  true}
                         :figwheel
                         {:on-jsload "admin.core/mount-root"

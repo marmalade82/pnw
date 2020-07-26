@@ -10,6 +10,7 @@
    [admin.routes :refer [add-post-path]]
    [admin.global-state.posts :as p]
    [admin.components.spinner-page :refer [spinner-page]]
+   [moment]
    ))
 
 
@@ -22,10 +23,14 @@
              }
        [:div {:class "TimelinePage-Blog-Content"}
         [:div {:class "TimelinePage-Blog-Main"}
-         [c/text {:class "TimelinePage-Blog-Title"} title]
-         [c/text {:class "TimelinePage-Blog-Created"} created_at]
-         [c/text {:class "TimelinePage-Blog-Updated"} updated_at]
-         [c/text {:class "TimelinePage-Blog-Views"} views]
+         [:div {:class "TimelinePage-Blog-First"}
+          [c/text {:class "TimelinePage-Blog-Title"} title]
+          ]
+         [:div {:class "TimelinePage-Blog-Second"}
+          [c/text {:class "TimelinePage-Blog-Created"} (str "Created: " created_at)]
+          [c/text {:class "TimelinePage-Blog-Updated"} (str "Updated: " updated_at)]
+          [c/text {:class "TimelinePage-Blog-Views"} (str "Views: " views)]
+          ]
          ]
         [:div {:class "Timeline-Blog-Side"}
          [b/edit {:href edit-href
