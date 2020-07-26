@@ -12,22 +12,12 @@
        :refer [render-edit-form render-skill-form]]
    [admin.components.body :refer [body]]
    [admin.components.motion.motion :as m]
+   [admin.global-state.skills :refer [get-skills]]
    )
   )
 
 
 
-(defn get-skills []
-  [{:name "JavaScript"
-    :abbr "JS"
-    :color "pink"
-    }
-   {:name "TypeScript"
-    :abbr "TS"
-    :color "blue"
-    }
-   ]
-  )
 
 
 (defn render-skill [{:keys [name abbr color]
@@ -98,7 +88,7 @@
          [c/surface-body
           [modal {:title {:add "Add Skill"}} {:add [render-skill-form {:close! close!}]}]
           [search-bar]
-          (render-skills skills)
+          (render-skills @skills)
           ]
          ]
       )
