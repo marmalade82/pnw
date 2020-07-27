@@ -5,6 +5,17 @@
    )
   )
 
+(defn form-data [vals]
+  (let [form (js/FormData.)]
+    (do
+      (doseq [[k v] vals]
+        (.append form (clj->js k) (clj->js v))
+        )
+      form
+      )
+    )
+  )
+
 (defn pipe [atom transform]
   (let [new-atom (r/atom @atom)]
     (add-watch atom (random-uuid)
@@ -24,6 +35,17 @@
 (defn change [atom next time]
   (js/setTimeout #(reset! atom next) 200)
   )
+
+(defn submitted []
+  (reset! request-status :submitted)
+  )
+
+(defn success []
+  (do 
+    (reset! request-status :finished)
+    (change request-status :ready 300))
+  )
+
 
 (defn timeout-then-succeed []
   (js/setTimeout (fn []

@@ -6,8 +6,10 @@
    [component-lib.buttons :as b]
    [fork.reagent :as f]
    [component-lib.logic.requests :as req]
+   [admin.routes :refer [params]]
    [admin.external.side-effect :refer [side-effect]]
-   [admin.external.requests :refer [request-status request!] ]
+   [admin.external.requests :refer
+      [submitted success request-status request! form-data] ]
    [admin.external.response-broker :as broker]
    [cljs.core.async :refer [go]]
    [cljs.core.async.interop :refer [<p!]]
@@ -58,27 +60,29 @@
        ]))
   )
 
-(defn edit-skill [vals]
+(defn edit-skill [vals id]
   ; this function should submit the values to the server.
   ; when the results return, the returned results should
   ; be passed to the results handler for processing
-  (request!)
-  
-  )
-
-(defn form-data [vals]
-  (let [form (js/FormData.)]
-    (do
-      (doseq [[k v] vals]
-          (.append form (clj->js k) (clj->js v))
-        )
-      form
+  (go
+    (submitted)
+    (let [req (js/fetch (str "http://localhost:4000/admin/api/skills/" id)
+                        #js { "method" "PATCH",
+                              "body" (form-data vals)
+                             })
+          res (<p! req)
+          json (js->clj (<p! (.json res)) :keywordize-keys true)
+          ]
+      (broker/send :edit-skill json)
+      (success)
       )
     )
   )
 
+
 (defn new-skill [vals]
   (go
+    (submitted)
     (let [req (js/fetch "http://localhost:4000/admin/api/skills"
                         #js { "method" "POST",
                              "body" (form-data vals)
@@ -86,26 +90,26 @@
           res (<p! req)
           json (js->clj (<p! (.json res)) :keywordize-keys true)
           ]
-      (js/console.log json)
       (broker/send :new-skill json)
+      (success)
       )
     )
   #_(request!)
   )
 
-(defn render-edit-form [{:keys [close!] :or {close! #(identity 1)}}]
-  [f/form {:prevent-default? true
-           :clean-on-unmount? true
-           :path :edit-form 
-           :on-submit (fn [{:keys [state path values touched errors dirty]}]
-                         (edit-skill values)
-                         )
-           :props {:edit? true
-                   :close! close!
-                   }
-           
-           }
-   skill-form]
+(defn render-edit-form [{:keys [close! id] :or {close! #(identity 1)}}]
+    [f/form {:prevent-default? true
+             :clean-on-unmount? true
+             :path :edit-form 
+             :on-submit (fn [{:keys [state path values touched errors dirty]}]
+                          (edit-skill values id)
+                          )
+             :props {:edit? true
+                     :close! close!
+                     }
+             
+             }
+     skill-form]
   )
 
 (defn render-skill-form [{:keys [close!] :or {close! #(identity 1)}}]

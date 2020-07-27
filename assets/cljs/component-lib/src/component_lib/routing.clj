@@ -9,6 +9,7 @@
   (let [all (cons first rest)]
     `(do
        (def ~'unknown-route (reagent.core/atom 0))
+       (def ~'params (reagent.core/atom {}))
        (def ~'history
           (reagent.core/atom (goog.History.)))
        (def ~'currentToken (reagent.core/atom nil))
@@ -16,8 +17,12 @@
        (secretary.core/set-config! :prefix "#")
        ~@(for [[path-name path id] all]
            `(do
-              (secretary.core/defroute ~path-name ~path {}
-                 (cljs.core.async/put! ~'render-chan ~id)
+              (secretary.core/defroute ~path-name ~path {:keys [~'id] :as ~'p}
+                (do
+                  ; We expose a global ratom of the current page's params
+                  (reset! ~'params ~'p)
+                  (cljs.core.async/put! ~'render-chan ~id)
+                  )
                 )
               (defn ~(symbol (str "is-" path-name)) []
                 (do

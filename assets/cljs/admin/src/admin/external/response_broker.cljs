@@ -19,6 +19,19 @@
      (put! broker-chan [topic data])
   )
 
+(defn replace-id [seq search-id replacement]
+  (js/console.log "Replacing with")
+  (js/console.log replacement)
+  (let [f (fn [{:keys [id] :as item}]
+            (if (= id search-id)
+                replacement
+                item
+              )
+            )
+        ]
+    (map f seq)
+    )
+  )
 
 ; Loop that takes something off the channel and processes it
 (defn- process []
@@ -26,6 +39,10 @@
          (fn [[topic data]]
            (case topic
              :new-skill (swap! global-skills #(conj % data))
+             :edit-skill (swap! global-skills
+                                 (fn [skills]
+                                  (into [] (replace-id skills (:id data) data))
+                                  ))
              :new-post (swap! global-posts #(conj % data))
              :new-project (swap! global-projects #(conj % data))
              :error (identity 1)
@@ -33,7 +50,9 @@
                (js/console.log "fail PROCESSING")
                (identity 1) ; this should lead to a custom error toast
                )
-             ))
+             )
+             (trampoline process)
+           )
          )
   )
 

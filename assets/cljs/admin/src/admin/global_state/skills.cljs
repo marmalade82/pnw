@@ -22,7 +22,11 @@
 
 (def global-skills (r/atom nil))
 
-(def timeline-skills (req/pipe global-skills #(identity %)))
+(def timeline-skills
+  (req/pipe global-skills
+          #(into [] (sort-by (fn [skill] (:name skill)) %))
+          )
+  )
 
 (defn fetch-skills []
   (go

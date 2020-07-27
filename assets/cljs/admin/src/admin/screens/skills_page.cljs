@@ -20,7 +20,7 @@
 
 
 
-(defn render-skill [{:keys [name abbr color]
+(defn render-skill [{:keys [id name abbr color]
                      :or {name "", abbr "", color "white"}}]
   (let [{:keys [toggle! close! stage modal disable-unless?]} (mk-modal)
         ]
@@ -43,7 +43,9 @@
                     }]
          ]
         [modal {:title {:edit "Edit", :delete "Are you sure?"}}
-            {:edit [render-edit-form {:close! close!}]
+         {:edit [render-edit-form {:close! close!
+                                   :id id
+                                   }]
              :delete [render-delete-form
                       {:close! close!
                        :text (str "Please confirm that you want to delete " name ".")
