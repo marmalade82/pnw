@@ -8,21 +8,25 @@
    [component-lib.logic.requests :as req]
    [admin.external.side-effect :refer [side-effect]]
    [admin.external.requests :refer [request-status request!] ]
+   [admin.external.response-broker :as broker]
+   [cljs.core.async :refer [go]]
+   [cljs.core.async.interop :refer [<p!]]
    ))
 
 
-(defn skill-form [{:keys [values
-                          set-values
-                          handle-change
-                          handle-submit
-                          submitting?
-                          form-id
-                          props
+(defn skill-form [{:keys [ props
                           ] :as all}]
   (let [form-state request-status
         close! (:close! props)
         ]
-    (fn []
+    (fn [{:keys [values
+                 set-values
+                 handle-change
+                 handle-submit
+                 submitting?
+                 form-id
+                 props
+                 ] :as all}]
       [:form {:class "SkillsPage-Form"
               :id form-id
               :on-submit handle-submit
@@ -62,8 +66,31 @@
   
   )
 
+(defn form-data [vals]
+  (let [form (js/FormData.)]
+    (do
+      (doseq [[k v] vals]
+          (.append form (clj->js k) (clj->js v))
+        )
+      form
+      )
+    )
+  )
+
 (defn new-skill [vals]
-  (request!)
+  (go
+    (let [req (js/fetch "http://localhost:4000/admin/api/skills"
+                        #js { "method" "POST",
+                             "body" (form-data vals)
+                             })
+          res (<p! req)
+          json (js->clj (<p! (.json res)) :keywordize-keys true)
+          ]
+      (js/console.log json)
+      (broker/send :new-skill json)
+      )
+    )
+  #_(request!)
   )
 
 (defn render-edit-form [{:keys [close!] :or {close! #(identity 1)}}]
@@ -82,6 +109,7 @@
   )
 
 (defn render-skill-form [{:keys [close!] :or {close! #(identity 1)}}]
+  (js/console.log "rerendering")
   [f/form {:prevent-default? true
            :clean-on-unmount? true
            :path :skill-form 
