@@ -8,11 +8,13 @@
    [component-lib.logic.requests :as req]
    [admin.routes :refer [params]]
    [admin.external.side-effect :refer [side-effect]]
-   [admin.external.requests :refer
-      [submitted success request-status request! form-data] ]
+   [admin.external.utils :refer [form-data]]
+   [admin.external.requests :as request :refer
+      [submitted success request-status request! ] ]
    [admin.external.response-broker :as broker]
    [cljs.core.async :refer [go]]
    [cljs.core.async.interop :refer [<p!]]
+   [clojure.walk :as w]
    ))
 
 
@@ -66,16 +68,12 @@
   ; be passed to the results handler for processing
   (go
     (submitted)
-    (let [req (js/fetch (str "http://localhost:4000/admin/api/skills/" id)
-                        #js { "method" "PATCH",
-                              "body" (form-data vals)
-                             })
-          res (<p! req)
-          json (js->clj (<p! (.json res)) :keywordize-keys true)
-          ]
-      (broker/send :edit-skill json)
-      (success)
-      )
+    (broker/send :edit-skill 
+                 (<p! 
+                  (request/do-patch (str "/admin/api/skills/" id)
+                                    (form-data vals)
+                                    )))
+    (success)
     )
   )
 
@@ -97,13 +95,14 @@
   #_(request!)
   )
 
-(defn render-edit-form [{:keys [close! id] :or {close! #(identity 1)}}]
+(defn render-edit-form [{:keys [close! id initial] :or {close! #(identity 1)}}]
     [f/form {:prevent-default? true
              :clean-on-unmount? true
              :path :edit-form 
              :on-submit (fn [{:keys [state path values touched errors dirty]}]
                           (edit-skill values id)
                           )
+             :initial-values (w/stringify-keys initial)
              :props {:edit? true
                      :close! close!
                      }
@@ -117,6 +116,11 @@
   [f/form {:prevent-default? true
            :clean-on-unmount? true
            :path :skill-form 
+           :initial-values
+           { "name" "a"
+             "abbr" "b"
+             "color" "#000000"
+            }
            :on-submit (fn [{:keys [state path values touched errors dirty]}]
                         (new-skill values)
                         )

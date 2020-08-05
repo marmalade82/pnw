@@ -2,9 +2,10 @@
   (:require
    [reagent.core :as r]
    [reagent.dom :as d]
-   [admin.external.requests :as req]
+   [admin.external.utils :refer [pipe]]
    [cljs.core.async :refer [go]]
    [cljs.core.async.interop :refer [<p!]]
+   [admin.external.requests :as req]
    )
   )
 
@@ -20,10 +21,10 @@
    ]
   )
 
-(def global-skills (r/atom nil))
+(def global-skills (r/atom nil) )
 
 (def timeline-skills
-  (req/pipe global-skills
+  (pipe global-skills
           #(into [] (sort-by (fn [skill] (:name skill)) %))
           )
   )

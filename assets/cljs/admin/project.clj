@@ -22,6 +22,8 @@
     }
 
   :plugins [[lein-cljsbuild "1.1.7"]
+            [lein-environ "1.2.0"]
+            [lein-pprint "1.3.2"]
             [lein-figwheel "0.5.20"]]
 
   :clean-targets ^{:protect false}
@@ -70,20 +72,33 @@
 
   :aliases {"package" ["do" "clean" ["cljsbuild" "once" "release"]]}
 
-  :profiles {:project/dev {:source-paths ["src" "env/dev/clj"]
-                           :dependencies [[binaryage/devtools "1.0.2"]
-                                          [figwheel-sidecar "0.5.20"]
-                                          [nrepl "0.7.0"]
-                                          [cider/piggieback "0.5.0"]]
-                            }
-             :project/test {}
-
-
-             :profiles/dev {}
-             :profiles/test {}
-             :profiles/prod {}
-
-             :dev [:project/dev :profiles/dev]
-             :test [:project/test :profiles/test]
+  :profiles {:dev {:source-paths ["src" "env/dev/cljs"]
+                   :dependencies [[binaryage/devtools "1.0.2"]
+                                  [figwheel-sidecar "0.5.20"]
+                                  [nrepl "0.7.0"]
+                                  [cider/piggieback "0.5.0"]]
+                    :cljsbuild
+                      {:builds
+                        {:app
+                          {:compiler
+                            {:closure-defines
+                              { admin.external.env/server ""
+                              }}
+                        }} 
+                    }}
+             :test {:source-paths ["src" "env/dev/cljs"]
+                    :dependencies [[binaryage/devtools "1.0.2"]
+                                  [figwheel-sidecar "0.5.20"]
+                                  [nrepl "0.7.0"]
+                                   [cider/piggieback "0.5.0"]]
+                    :cljsbuild
+                    {:builds
+                     {:app
+                      {:compiler
+                       {:closure-defines
+                        { admin.external.env/server "http://localhost:4000"}
+                         }
+                        }}
+                      }} 
              }
-                                  )
+    )

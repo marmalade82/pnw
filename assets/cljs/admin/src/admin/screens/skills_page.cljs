@@ -21,7 +21,7 @@
 
 
 (defn render-skill [{:keys [id name abbr color]
-                     :or {name "", abbr "", color "white"}}]
+                     :or {name "", abbr "", color "white"} :as skill}]
   (let [{:keys [toggle! close! stage modal disable-unless?]} (mk-modal)
         ]
     (fn []  
@@ -45,6 +45,7 @@
         [modal {:title {:edit "Edit", :delete "Are you sure?"}}
          {:edit [render-edit-form {:close! close!
                                    :id id
+                                   :initial skill
                                    }]
              :delete [render-delete-form
                       {:close! close!

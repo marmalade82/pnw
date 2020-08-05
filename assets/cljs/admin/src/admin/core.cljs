@@ -9,6 +9,7 @@
         skills-path project-add-path add-post-path
                             ]]
       [cljs.core.match :refer-macros [match]]
+      [admin.external.response-broker-process :as process]
       [admin.components.toast :refer [toast]]
       [admin.components.header :refer [header]]
       [component-lib.core :as c]
@@ -56,6 +57,7 @@
 (defn init! []
   (do
     (init-client-routing mount-root)
+    (process/start-events)
     (render)
     )
   )

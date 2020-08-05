@@ -1,31 +1,13 @@
 (ns admin.external.requests
   (:require
    [reagent.core :as r]
-   [environ.core :refer [env]]
+   [cljs.core.async :refer [go]]
+   [cljs.core.async.interop :refer [<p!]]
+   [admin.external.response-broker :refer [send]]
+   [admin.external.env :refer [config]]
    )
   )
 
-(defn form-data [vals]
-  (let [form (js/FormData.)]
-    (do
-      (doseq [[k v] vals]
-        (.append form (clj->js k) (clj->js v))
-        )
-      form
-      )
-    )
-  )
-
-(defn pipe [atom transform]
-  (let [new-atom (r/atom @atom)]
-    (add-watch atom (random-uuid)
-               (fn [_key _ref _old new]
-                 (reset! new-atom (transform new))
-                 )
-               )
-      new-atom
-    )
-  )
 
 ; In development mode, these timeout and then succeed.
 ; In test mode, these make requests to the specified server.
@@ -48,11 +30,15 @@
 
 
 (defn timeout-then-succeed []
-  (js/setTimeout (fn []
-                   (reset! request-status :finished)
-                   (change request-status :ready 300)
-                   )
-         2000)
+  (js/Promise. (fn [resolve reject]
+      (js/setTimeout (fn []
+                       (js/console.log "timing out, then succeeding")
+                      (reset! request-status :finished)
+                      (change request-status :ready 300)
+                       (resolve nil)
+                      )
+                    2000)
+                 ))
   )
 
 
@@ -61,25 +47,81 @@
   (timeout-then-succeed)
   )
 
-(def server (env :server))
+(def server (:server config))
 
 
-(defn do-get []
-  (if (nil? server)
-    (timeout-then-succeed))
+(defn fetch-nothing [url opts ]
+  (js/Promise. (fn [resolve reject ]
+                 (try
+                   
+                   (go
+                     (let [req (js/fetch url opts)
+                           res (<p! req)
+                           ]
+                        (resolve nil)
+                       )
+                     )
+                   (catch :default e
+                     (send :error e)
+                     (resolve nil)
+                     )
+                   )
+                 ))
   )
 
-(defn do-post []
-  (if (nil? server)
-    (timeout-then-succeed))
+(defn fetch-json [url opts ]
+  (js/Promise. (fn [resolve reject]
+                 (try 
+                   (go
+                     (let [req (js/fetch url opts)
+                           res (<p! req)
+                           json (js->clj (<p! (.json res)) :keywordize-keys true)
+                           ]
+                        (resolve json)
+                       )
+                     )
+                   (catch :default e ; send the errors the to the error message broker
+                     (send :error e)
+                     (resolve nil)
+                     )
+                   )
+
+                 ))
   )
 
-(defn do-delete []
-  (if (nil? server)
-    (timeout-then-succeed))
+(defn dev-server []
+  (= server "")
   )
 
-(defn do-patch []
-  (if (nil? server)
-    (timeout-then-succeed))
+(defn full-url [path]
+  (str server path)
+  )
+
+(defn do-get [path ]
+  (if (dev-server)
+    (timeout-then-succeed)
+    (fetch-json (full-url path) #js { "method" "GET" } )
+    )
+  )
+
+(defn do-post [path form-body ]
+  (if (dev-server)
+    (timeout-then-succeed)
+    (fetch-json (full-url path) #js { "method" "POST", "body" form-body} )
+    )
+  )
+
+(defn do-delete [path ]
+  (if (dev-server)
+    (timeout-then-succeed)
+    (fetch-nothing (full-url path) #js { "method" "DELETE" } )
+    )
+  )
+
+(defn do-patch [path form-body ]
+  (if (dev-server)
+    (do
+      (timeout-then-succeed))
+    (fetch-json (full-url path) #js { "method" "PATCH", "body" form-body} )
+    )
   )

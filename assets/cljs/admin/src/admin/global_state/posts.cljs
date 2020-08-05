@@ -4,7 +4,7 @@
    [reagent.dom :as d]
    [cljs.core.async :refer [go]]
    [cljs.core.async.interop :refer [<p!]]
-   [admin.external.requests :refer [pipe]]
+   [admin.external.utils :refer [pipe]]
    [admin.routes :as routes]
    [clojure.set :refer [rename-keys]]
    [moment]

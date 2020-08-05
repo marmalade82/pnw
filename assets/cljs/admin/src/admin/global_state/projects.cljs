@@ -2,7 +2,7 @@
   (:require
    [reagent.core :as r]
    [reagent.dom :as d]
-   [admin.external.requests :as req]
+   [admin.external.utils :refer [pipe]]
    [admin.routes :refer [project-edit-path]]
    [cljs.core.async :refer [go]]
    [cljs.core.async.interop :refer [<p!]]
@@ -106,7 +106,7 @@
     )
   )
 
-(def timeline-projects (req/pipe global-projects for-timeline))
+(def timeline-projects (pipe global-projects for-timeline))
 
 
 (defn fetch-projects []
