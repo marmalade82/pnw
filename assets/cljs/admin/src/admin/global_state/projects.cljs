@@ -7,6 +7,7 @@
    [cljs.core.async :refer [go]]
    [cljs.core.async.interop :refer [<p!]]
    [clojure.set :refer [rename-keys]]
+   [admin.external.requests :as req]
    )
   )
 
@@ -111,17 +112,9 @@
 
 (defn fetch-projects []
    (go
-     (let [req 
-             (js/fetch "http://localhost:4000/admin/api/projects"
-                     #js { "method" "GET"
-                          
-                          })
-           resp (<p! req)
-           json (<p! (.json resp))
-                     ]
-          (js/console.log json)
-          (reset! global-projects (js->clj json :keywordize-keys :true))
-       )
+     (reset! global-projects
+             (<p! 
+              (req/do-get "/admin/api/projects")))
     )
   )
 

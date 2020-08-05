@@ -6,6 +6,7 @@
    [cljs.core.async.interop :refer [<p!]]
    [admin.external.utils :refer [pipe]]
    [admin.routes :as routes]
+   [admin.external.requests :as req]
    [clojure.set :refer [rename-keys]]
    [moment]
    )
@@ -128,16 +129,9 @@
 
 (defn fetch-posts []
   (go
-    (let [req (js/fetch "http://localhost:4000/admin/api/posts"
-                        #js { "method" "GET"
-                             }
-                        )
-          resp (<p! req)
-          json (js->clj (<p! (.json resp)) :keywordize-keys true)
-          ]
-      (js/console.log json)
-      (reset! global-posts json)
-      )
+    (reset! global-posts
+            (<p!  
+             (req/do-get "/admin/api/posts")))
     )
   )
 

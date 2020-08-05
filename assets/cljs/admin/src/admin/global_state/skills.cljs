@@ -31,13 +31,9 @@
 
 (defn fetch-skills []
   (go
-    (let [req (js/fetch "http://localhost:4000/admin/api/skills"
-                        #js {"method" "GET"})
-          resp (<p! req)
-          json (js->clj (<p! (.json resp)) :keywordize-keys true)
-          ]
-      (reset! global-skills (into [] json))
-      )
+    (reset! global-skills (into [] 
+                                (<p! 
+                                 (req/do-get "/admin/api/skills"))))
     )
   )
 
