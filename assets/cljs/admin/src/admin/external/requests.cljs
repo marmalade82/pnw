@@ -52,40 +52,38 @@
 
 (defn fetch-nothing [url opts ]
   (js/Promise. (fn [resolve reject ]
-                 (try
-                   
                    (go
-                     (let [req (js/fetch url opts)
-                           res (<p! req)
-                           ]
-                        (resolve nil)
+                     (try 
+                       (let [req (js/fetch url opts)
+                             res (<p! req)
+                             ]
+                         (resolve nil)
+                         )
+                       (catch :default e
+                         (send :error e)
+                         (resolve nil)
+                         )
                        )
                      )
-                   (catch :default e
-                     (send :error e)
-                     (resolve nil)
-                     )
-                   )
                  ))
   )
 
 (defn fetch-json [url opts ]
   (js/Promise. (fn [resolve reject]
-                 (try 
                    (go
-                     (let [req (js/fetch url opts)
-                           res (<p! req)
-                           json (js->clj (<p! (.json res)) :keywordize-keys true)
-                           ]
-                        (resolve json)
+                     (try 
+                       (let [req (js/fetch url opts)
+                             res (<p! req)
+                             json (js->clj (<p! (.json res)) :keywordize-keys true)
+                             ]
+                         (resolve json)
+                         )
+                       (catch :default e
+                         (send :error e)
+                         (resolve nil)
+                         )
                        )
                      )
-                   (catch :default e ; send the errors the to the error message broker
-                     (send :error e)
-                     (resolve nil)
-                     )
-                   )
-
                  ))
   )
 

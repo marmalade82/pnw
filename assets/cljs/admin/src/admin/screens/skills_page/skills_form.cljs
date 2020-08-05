@@ -81,18 +81,11 @@
 (defn new-skill [vals]
   (go
     (submitted)
-    (let [req (js/fetch "http://localhost:4000/admin/api/skills"
-                        #js { "method" "POST",
-                             "body" (form-data vals)
-                             })
-          res (<p! req)
-          json (js->clj (<p! (.json res)) :keywordize-keys true)
-          ]
-      (broker/send :new-skill json)
-      (success)
-      )
+    ( broker/send :new-skill
+     (<p! 
+      (request/do-post "/admin/api/skills" (form-data vals))))
+    (success)
     )
-  #_(request!)
   )
 
 (defn render-edit-form [{:keys [close! id initial] :or {close! #(identity 1)}}]
